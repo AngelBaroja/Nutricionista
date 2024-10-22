@@ -21,7 +21,7 @@ public class Paciente {
     private float pesoBuscado;
 private static List <Paciente> listaPacientes = new ArrayList <> ();
     
-    public Paciente(int nroPaciente, String nombre, int edad, float altura, float pesoActual, int pesoBuscado) {
+    public Paciente(int nroPaciente, String nombre, int edad, float altura, float pesoActual, float pesoBuscado) {
         this.nroPaciente = nroPaciente;
         this.nombre = nombre;
         this.edad = edad;
@@ -30,6 +30,18 @@ private static List <Paciente> listaPacientes = new ArrayList <> ();
         this.pesoBuscado = pesoBuscado;
         listaPacientes.add(this);
     }
+
+    public Paciente(String nombre, int edad, float altura, float pesoActual, float pesoBuscado) {
+        this.nombre = nombre;
+        this.edad = edad;
+        this.altura = altura;
+        this.pesoActual = pesoActual;
+        this.pesoBuscado = pesoBuscado;
+    }
+
+    public Paciente() {
+    }
+    
 
     public int getNroPaciente() {
         return nroPaciente;
@@ -90,7 +102,7 @@ private static List <Paciente> listaPacientes = new ArrayList <> ();
     }
     
    public boolean seAcercaAlPeso(Dieta dieta) {
-       float pesoConDieta = this.pesoActual - dieta.getPesoFinal();
+       double pesoConDieta = this.pesoActual - dieta.getPesoFinal();
        return pesoConDieta == pesoBuscado;
    }
     
@@ -106,6 +118,13 @@ private static List <Paciente> listaPacientes = new ArrayList <> ();
   return pacientesQueLlegaron;
            
        }
+
+    @Override
+    public String toString() {
+        return "Paciente{" + "nroPaciente=" + nroPaciente + ", nombre=" + nombre + ", edad=" + edad + ", altura=" + altura + ", pesoActual=" + pesoActual + ", pesoBuscado=" + pesoBuscado + '}';
+    }
+   
+   
    }
    
 
