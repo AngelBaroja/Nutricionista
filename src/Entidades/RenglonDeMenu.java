@@ -5,7 +5,7 @@ public class RenglonDeMenu {
 
     private int nroRenglon;
     private Comida comida;
-    private double cantidadPorciones;
+    private int cantidadPorciones;
     private double subtotalCalorias;
 
     public int getNroRenglon() {
@@ -28,7 +28,7 @@ public class RenglonDeMenu {
         return cantidadPorciones;
     }
 
-    public void setCantidadPorciones(double cantidadPorciones) {
+    public void setCantidadPorciones(int cantidadPorciones) {
         this.cantidadPorciones = cantidadPorciones;
     }
 
@@ -43,7 +43,7 @@ public class RenglonDeMenu {
     public RenglonDeMenu() {
     }
 
-    public RenglonDeMenu(int nroRenglon, Comida comida, double cantidadPorciones) {
+    public RenglonDeMenu(int nroRenglon, Comida comida, int cantidadPorciones) {
         this.nroRenglon = nroRenglon;
         this.comida = comida;
         this.cantidadPorciones = cantidadPorciones;
@@ -51,7 +51,7 @@ public class RenglonDeMenu {
 
     }
 
-    public RenglonDeMenu(Comida comida, double cantidadPorciones) {
+    public RenglonDeMenu(Comida comida, int cantidadPorciones) {
         this.comida = comida;
         this.cantidadPorciones = cantidadPorciones;
         this.subtotalCalorias = contadorCalorias();

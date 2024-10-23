@@ -19,21 +19,21 @@ import java.util.stream.Collectors;
     private int dia;
     private boolean estado;
     private List<RenglonDeMenu> comidas;
-    private float pesoActual;
+    
 
     public MenuDiario(int dia) {
-        codMenu= 0;
         this.dia = dia;
         estado = true;
-        comidas = new ArrayList<>();
-        pesoActual = 0;
+        comidas = new ArrayList<>();        
     }
 
-    public MenuDiario(int dia, boolean estado, List<RenglonDeMenu> comidas, float pesoActual) {
+    public MenuDiario() {
+    }
+
+    public MenuDiario(int dia, boolean estado, List<RenglonDeMenu> comidas) {
         this.dia = dia;
         this.estado = estado;
-        this.comidas = comidas;
-        this.pesoActual = pesoActual;
+        this.comidas = comidas;        
     }
     
     
@@ -95,7 +95,7 @@ import java.util.stream.Collectors;
                 .toList();
             if (!comidasTipo.isEmpty()) {
                 Comida comidafinal = comidasTipo.get(random.nextInt(comidasTipo.size()));
-                double cantidadGramos = 1 + (random.nextDouble() * (3 - 1));
+                int cantidadGramos = 1 + (random.nextInt()* (3 - 1));
 
                 RenglonDeMenu renglon = new RenglonDeMenu(comidafinal, cantidadGramos);
                 

@@ -19,7 +19,7 @@ public class Paciente {
     private float altura;
     private float pesoActual;
     private float pesoBuscado;
-    private static List <Paciente> listaPacientes = new ArrayList <> ();
+   
     
     public Paciente(int nroPaciente, String nombre, int edad, float altura, float pesoActual, float pesoBuscado) {
         this.nroPaciente = nroPaciente;
@@ -27,8 +27,7 @@ public class Paciente {
         this.edad = edad;
         this.altura = altura;
         this.pesoActual = pesoActual;
-        this.pesoBuscado = pesoBuscado;
-        listaPacientes.add(this);
+        this.pesoBuscado = pesoBuscado;        
     }
 
     public Paciente(String nombre, int edad, float altura, float pesoActual, float pesoBuscado) {
@@ -36,8 +35,7 @@ public class Paciente {
         this.edad = edad;
         this.altura = altura;
         this.pesoActual = pesoActual;
-        this.pesoBuscado = pesoBuscado;
-        listaPacientes.add(this);
+        this.pesoBuscado = pesoBuscado;       
     }
 
     public Paciente() {
@@ -104,10 +102,12 @@ public class Paciente {
     
    public boolean seAcercaAlPeso(Dieta dieta) {
        double pesoConDieta = this.pesoActual - dieta.getPesoFinal();
-       return pesoConDieta == pesoBuscado;
+       double cantidadaBajar = this.pesoActual - this.pesoBuscado;
+       double porcentajeBajo = pesoConDieta/ cantidadaBajar;       
+       return porcentajeBajo>=0.65;
    }
     
-   public static List<Paciente> listarLosQueLLegaron(){
+   public  List<Paciente> listarLosQueLLegaron(ArrayList<Paciente> listaPacientes){
        List<Paciente> pacientesQueLlegaron = new  ArrayList <>();
        for (Paciente p : listaPacientes) {
            if (p.pesoActual == p.pesoBuscado) {
