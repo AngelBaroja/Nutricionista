@@ -30,9 +30,9 @@ public class Main {
 //          Paciente paciente =pacienteData.buscarPaciente(1);
 //          paciente.setEdad(105);
 //          pacienteData.actualizarPaciente(paciente);
-//            Paciente paciente2 = new Paciente("Jorge", 28, 1.7f, 68, 72);
-//            pacienteData.guardarPaciente(paciente2);
-//            pacienteData.borradoFisico(4);
+//          Paciente paciente2 = new Paciente("Jorge", 28, 1.7f, 68, 72);
+//          pacienteData.guardarPaciente(paciente2);
+//          pacienteData.borradoFisico(4);
         Paciente paciente = new Paciente(1, "Jorge", 28, 1.7f, 68, 72);  // ID, Nombre, Edad, Altura, Peso Inicial, Peso Final
 
         // Crear alimentos

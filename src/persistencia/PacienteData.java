@@ -138,6 +138,32 @@ public class PacienteData {
         }
     }
     
+    public ArrayList<Paciente> listaPacientesQueNoLlegaron(){
+        ArrayList<Paciente> lista = new ArrayList<>();
+        Paciente paciente = null;
+        String query = "SELECT p.* FROM paciente p JOIN dieta d"
+                + " ON p.nroPaciente = d.nroPaciente WHERE p.pesoActual > p.PesoBuscado;";
+        try {
+            PreparedStatement ps = conexion.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                paciente = new Paciente();
+                paciente.setNroPaciente(rs.getInt("nroPaciente"));
+                paciente.setNombre(rs.getString("nombre"));
+                paciente.setEdad(rs.getInt("edad"));
+                paciente.setAltura(rs.getFloat("altura"));
+                paciente.setPesoActual(rs.getFloat("pesoActual"));
+                paciente.setPesoBuscado(rs.getFloat("pesoBuscado"));
+                lista.add(paciente);
+            }
+            System.out.println("Lista de pacientes");
+            ps.close();
+        } catch (SQLException ex) {
+            System.out.println("No se pudo ingresar a la tabla Pacientes");
+        }
+
+        return lista;
+    }
 //    Hasta que paciente no tenga un estado no se lo puede borrar logicamente
 //     public void borradoLogico(int nroPaciente) {
 //      String query = "UPDATE `paciente` SET `estado`= false WHERE nroPaciente = ? ";

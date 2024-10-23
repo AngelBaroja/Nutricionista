@@ -74,10 +74,7 @@ import java.util.stream.Collectors;
 
     public void setComidas(List<RenglonDeMenu> comidas) {
         this.comidas = comidas;
-    }
-    public void alterarDietaDiaria() {
-        
-    }
+    }    
 
     public static MenuDiario generarDietaDiaria(List<Comida> alimentos ,List<String> ingredientes, int dia) {
         MenuDiario menu = new MenuDiario(dia);

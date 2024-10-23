@@ -16,12 +16,12 @@ public class Paciente {
     private int nroPaciente;
     private String nombre;
     private int edad;
-    private float altura;
-    private float pesoActual;
-    private float pesoBuscado;
+    private double altura;
+    private double pesoActual;
+    private double pesoBuscado;
    
     
-    public Paciente(int nroPaciente, String nombre, int edad, float altura, float pesoActual, float pesoBuscado) {
+    public Paciente(int nroPaciente, String nombre, int edad, double altura, double pesoActual, double pesoBuscado) {
         this.nroPaciente = nroPaciente;
         this.nombre = nombre;
         this.edad = edad;
@@ -30,7 +30,7 @@ public class Paciente {
         this.pesoBuscado = pesoBuscado;        
     }
 
-    public Paciente(String nombre, int edad, float altura, float pesoActual, float pesoBuscado) {
+    public Paciente(String nombre, int edad, double altura, double pesoActual, double pesoBuscado) {
         this.nombre = nombre;
         this.edad = edad;
         this.altura = altura;
@@ -54,15 +54,15 @@ public class Paciente {
         return edad;
     }
 
-    public float getAltura() {
+    public double getAltura() {
         return altura;
     }
 
-    public float getPesoActual() {
+    public double getPesoActual() {
         return pesoActual;
     }
 
-    public float getPesoBuscado() {
+    public double getPesoBuscado() {
         return pesoBuscado;
     }
 
@@ -78,25 +78,25 @@ public class Paciente {
         this.edad = edad;
     }
 
-    public void setAltura(float altura) {
+    public void setAltura(double altura) {
         this.altura = altura;
     }
 
-    public void setPesoActual(float pesoActual) {
+    public void setPesoActual(double pesoActual) {
         this.pesoActual = pesoActual;
     }
 
-    public void setPesoBuscado(float pesoBuscado) {
+    public void setPesoBuscado(double pesoBuscado) {
         this.pesoBuscado = pesoBuscado;
         
     }
             
-    public void cambiarPesoDeseado(float nuevoPesoBuscado){
+    public void cambiarPesoDeseado(double nuevoPesoBuscado){
         this.pesoBuscado=nuevoPesoBuscado;
         
     }
     
-    public void actualizarPesoAct(float nuevoPesoActual){
+    public void actualizarPesoAct(double nuevoPesoActual){
         this.pesoActual=nuevoPesoActual;
     }
     
