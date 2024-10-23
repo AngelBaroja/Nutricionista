@@ -19,7 +19,7 @@ public class Paciente {
     private float altura;
     private float pesoActual;
     private float pesoBuscado;
-private static List <Paciente> listaPacientes = new ArrayList <> ();
+    private static List <Paciente> listaPacientes = new ArrayList <> ();
     
     public Paciente(int nroPaciente, String nombre, int edad, float altura, float pesoActual, float pesoBuscado) {
         this.nroPaciente = nroPaciente;
@@ -37,6 +37,7 @@ private static List <Paciente> listaPacientes = new ArrayList <> ();
         this.altura = altura;
         this.pesoActual = pesoActual;
         this.pesoBuscado = pesoBuscado;
+        listaPacientes.add(this);
     }
 
     public Paciente() {
@@ -115,7 +116,7 @@ private static List <Paciente> listaPacientes = new ArrayList <> ();
            }
            
        }
-  return pacientesQueLlegaron;
+         return pacientesQueLlegaron;
            
        }
 

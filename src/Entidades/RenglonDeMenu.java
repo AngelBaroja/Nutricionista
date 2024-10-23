@@ -1,24 +1,13 @@
+package Entidades;
+
+
 public class RenglonDeMenu {
+
     private int nroRenglon;
-    private Alimento comida;
-    private double cantidadGrs;
-    private int subtotalCalorias;
-    private int contManz;
-    public void modificarRenglon(){
-        //?
-    }
-    public void imprimirRenglon(){
-        //?
-    }
-    public void addAlimento(Alimento a){
-        comida = a;
-    }
-    private int subtotalCalorias(){
-       if(comida.getNombre().toLowerCase() == "manzana"){
-           contManz++;
-       }
-       return (comida.getCaloriasPor100g() * contManz); //este es un ejemplo de lo que pondria, pero creo que iria en MenuDia, ya que cada Renglon solo tiene 1 alimento cada uno, y menu tendria para que el contador llege a mas de 1
-    }
+    private Comida comida;
+    private double cantidadPorciones;
+    private double subtotalCalorias;
+
     public int getNroRenglon() {
         return nroRenglon;
     }
@@ -27,45 +16,56 @@ public class RenglonDeMenu {
         this.nroRenglon = nroRenglon;
     }
 
-    public Alimento getComida() {
+    public Comida getComida() {
         return comida;
     }
 
-    public void setComida(Alimento comida) {
+    public void setComida(Comida comida) {
         this.comida = comida;
     }
 
-    public double getCantidadGrs() {
-        return cantidadGrs;
+    public double getCantidadPorciones() {
+        return cantidadPorciones;
     }
 
-    public void setCantidadGrs(double cantidadGrs) {
-        this.cantidadGrs = cantidadGrs;
+    public void setCantidadPorciones(double cantidadPorciones) {
+        this.cantidadPorciones = cantidadPorciones;
     }
 
-    public int getSubtotalCalorias() {
+    public double getSubtotalCalorias() {
         return subtotalCalorias;
     }
 
-    public void setSubtotalCalorias(int subtotalCalorias) {
+    public void setSubtotalCalorias(double subtotalCalorias) {
         this.subtotalCalorias = subtotalCalorias;
     }
 
     public RenglonDeMenu() {
     }
 
-    public RenglonDeMenu(int nroRenglon, Alimento comida, double cantidadGrs, int subtotalCalorias) {
+    public RenglonDeMenu(int nroRenglon, Comida comida, double cantidadPorciones) {
         this.nroRenglon = nroRenglon;
         this.comida = comida;
-        this.cantidadGrs = cantidadGrs;
-        this.subtotalCalorias = subtotalCalorias;
+        this.cantidadPorciones = cantidadPorciones;
+        this.subtotalCalorias = contadorCalorias();
+
+    }
+
+    public RenglonDeMenu(Comida comida, double cantidadPorciones) {
+        this.comida = comida;
+        this.cantidadPorciones = cantidadPorciones;
+        this.subtotalCalorias = contadorCalorias();
+
     }
 
     @Override
     public String toString() {
-        return "nroRenglon: " + nroRenglon + ", comida: " + comida + ", cantidadGrs: " + cantidadGrs + ", subtotalCalorias: " + subtotalCalorias;
+        return "Numero de Renglon= " + nroRenglon + " Comida=" + comida.getNombre() + " Cantidad de Porciones="
+                + cantidadPorciones + " Calorias=" + subtotalCalorias;
     }
- 
     
-    
+    public double contadorCalorias(){
+        return cantidadPorciones*comida.getCaloriasPorPorcion();
+    }
+
 }
