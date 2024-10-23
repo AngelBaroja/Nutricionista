@@ -1,6 +1,6 @@
 package Entidades;
 
-public class Alimento {
+public class Comida {
 
     private int conComida;
     private String nombre;
@@ -57,10 +57,10 @@ public class Alimento {
         this.baja = baja;
     }
 
-    public Alimento() {
+    public Comida() {
     }
 
-    public Alimento(int conComida, String nombre, String tipoComida, int caloriasPorPorcion, String detalle, boolean baja) {
+    public Comida(int conComida, String nombre, String tipoComida, int caloriasPorPorcion, String detalle, boolean baja) {
         this.conComida = conComida;
         this.nombre = nombre;
         this.tipoComida = tipoComida;
@@ -69,7 +69,7 @@ public class Alimento {
         this.baja = baja;
     }
 
-    public Alimento(String nombre, String tipoComida, int caloriasPorPorcion, String detalle, boolean baja) {
+    public Comida(String nombre, String tipoComida, int caloriasPorPorcion, String detalle, boolean baja) {
         this.nombre = nombre;
         this.tipoComida = tipoComida;
         this.caloriasPorPorcion = caloriasPorPorcion;

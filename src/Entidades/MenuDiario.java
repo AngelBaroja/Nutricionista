@@ -4,6 +4,7 @@
  */
 package Entidades;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -16,27 +17,29 @@ import java.util.stream.Collectors;
     public class MenuDiario {
     private int codMenu;
     private int dia;
-    private int CaloriasMenu;
     private boolean estado;
     private List<RenglonDeMenu> comidas;
     private float pesoActual;
 
-    public MenuDiario() {
+    public MenuDiario(int dia) {
+        codMenu= 0;
+        this.dia = dia;
+        estado = true;
+        comidas = new ArrayList<>();
+        pesoActual = 0;
     }
 
-    public MenuDiario(int dia, int CaloriasMenu, boolean estado, List<RenglonDeMenu> comidas, float pesoActual) {
+    public MenuDiario(int dia, boolean estado, List<RenglonDeMenu> comidas, float pesoActual) {
         this.dia = dia;
-        this.CaloriasMenu = CaloriasMenu;
         this.estado = estado;
         this.comidas = comidas;
         this.pesoActual = pesoActual;
     }
     
     
-    public MenuDiario(int codMenu, int dia, int CaloriasMenu, boolean estado, List<RenglonDeMenu> comidas) {
+    public MenuDiario(int codMenu, int dia, boolean estado, List<RenglonDeMenu> comidas) {
         this.codMenu = codMenu;
         this.dia = dia;
-        this.CaloriasMenu = CaloriasMenu;
         this.estado = estado;
         this.comidas = comidas;
     }
@@ -55,14 +58,6 @@ import java.util.stream.Collectors;
 
     public void setDia(int dia) {
         this.dia = dia;
-    }
-
-    public int getCaloriasMenu() {
-        return CaloriasMenu;
-    }
-
-    public void setCaloriasMenu(int CaloriasMenu) {
-        this.CaloriasMenu = CaloriasMenu;
     }
 
     public boolean isEstado() {
@@ -84,10 +79,10 @@ import java.util.stream.Collectors;
         
     }
 
-    public MenuDiario generarDietaDiaria(List<Alimento> alimentos ,List<String> ingredientes) {
-        MenuDiario menu = null;
+    public static MenuDiario generarDietaDiaria(List<Comida> alimentos ,List<String> ingredientes, int dia) {
+        MenuDiario menu = new MenuDiario(dia);
         Random random = new Random();
-        List<Alimento> comidasAlimento = alimentos.stream()
+        List<Comida> comidasAlimento = alimentos.stream()
                 .filter(comida -> ingredientes.stream().anyMatch(ingrediente -> comida.getDetalle().contains(ingrediente)))
                 .collect(Collectors.toList());
         if (comidasAlimento.size() < 5) {
@@ -95,30 +90,24 @@ import java.util.stream.Collectors;
         }
         String[] tipo = {"desayuno", "merienda", "snack", "almuerzo", "cena"};
         for (String comi : tipo) {
-            Alimento comidafinal = null;
-            
-            List<Alimento> comidasTipo = comidasAlimento.stream()
+            List<Comida> comidasTipo = comidasAlimento.stream()
                 .filter(c -> c.getTipoComida().equals(comi))
                 .toList();
             if (!comidasTipo.isEmpty()) {
-                comidafinal = comidasTipo.get(random.nextInt(comidasTipo.size()));
-            }
-
-            if (comidafinal != null) {
+                Comida comidafinal = comidasTipo.get(random.nextInt(comidasTipo.size()));
                 double cantidadGramos = 1 + (random.nextDouble() * (3 - 1));
 
                 RenglonDeMenu renglon = new RenglonDeMenu(comidafinal, cantidadGramos);
                 
                 menu.addRenglon(renglon);
             }
-        }
 
-        
+        } 
         return menu;
     }
 
     public MenuDiario armarDietaDiaria(List<RenglonDeMenu> comidas) {
-        MenuDiario menu = null;
+        MenuDiario menu = new MenuDiario(dia);
         for (RenglonDeMenu comida : comidas) {
             menu.addRenglon(comida);
         }
@@ -127,7 +116,6 @@ import java.util.stream.Collectors;
 
     public void addRenglon(RenglonDeMenu renglon) {
         this.comidas.add(renglon);
-        this.CaloriasMenu += renglon.getSubtotalCalorias();
     }
 
     public int calcularCaloriasDelDia() {
@@ -135,14 +123,13 @@ import java.util.stream.Collectors;
         for (RenglonDeMenu renglon : comidas) {
             totalCalorias += renglon.getSubtotalCalorias();
         }
-        this.CaloriasMenu = totalCalorias;
         return totalCalorias;
     }
 
     public void imprimirMenuDiario() {
-        System.out.println("Día " + dia + ": " + CaloriasMenu + " kcal");
+        System.out.println("Dia " + dia + ": " + calcularCaloriasDelDia() + " kcal");
         for (RenglonDeMenu renglon : comidas) {
-            renglon.toString();
+            System.out.println(renglon.getComida().getNombre());
         }
    }
 

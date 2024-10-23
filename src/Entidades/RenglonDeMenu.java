@@ -4,7 +4,7 @@ package Entidades;
 public class RenglonDeMenu {
 
     private int nroRenglon;
-    private Alimento comida;
+    private Comida comida;
     private double cantidadPorciones;
     private double subtotalCalorias;
 
@@ -16,11 +16,11 @@ public class RenglonDeMenu {
         this.nroRenglon = nroRenglon;
     }
 
-    public Alimento getComida() {
+    public Comida getComida() {
         return comida;
     }
 
-    public void setComida(Alimento comida) {
+    public void setComida(Comida comida) {
         this.comida = comida;
     }
 
@@ -43,7 +43,7 @@ public class RenglonDeMenu {
     public RenglonDeMenu() {
     }
 
-    public RenglonDeMenu(int nroRenglon, Alimento comida, double cantidadPorciones) {
+    public RenglonDeMenu(int nroRenglon, Comida comida, double cantidadPorciones) {
         this.nroRenglon = nroRenglon;
         this.comida = comida;
         this.cantidadPorciones = cantidadPorciones;
@@ -51,7 +51,7 @@ public class RenglonDeMenu {
 
     }
 
-    public RenglonDeMenu(Alimento comida, double cantidadPorciones) {
+    public RenglonDeMenu(Comida comida, double cantidadPorciones) {
         this.comida = comida;
         this.cantidadPorciones = cantidadPorciones;
         this.subtotalCalorias = contadorCalorias();
@@ -60,7 +60,8 @@ public class RenglonDeMenu {
 
     @Override
     public String toString() {
-        return "RenglonDeMenu{" + "nroRenglon=" + nroRenglon + ", comida=" + comida + ", cantidadPorciones=" + cantidadPorciones + ", subtotalCalorias=" + subtotalCalorias + '}';
+        return "Numero de Renglon= " + nroRenglon + " Comida=" + comida.getNombre() + " Cantidad de Porciones="
+                + cantidadPorciones + " Calorias=" + subtotalCalorias;
     }
     
     public double contadorCalorias(){
