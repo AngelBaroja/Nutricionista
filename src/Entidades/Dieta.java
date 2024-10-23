@@ -4,31 +4,37 @@
  */
 package Entidades;
 
-import java.time.LocalDate;
 
 /**
  *
  * @author Nicolas
  */
+import java.time.LocalDate;
+import java.util.List;
+
 public class Dieta {
     private int codDieta;
-    private LocalDate fechaInicio;
+    private String nombreD;
+    private List<MenuDiario> menus;
+    private LocalDate fechaIni;
     private LocalDate fechaFin;
-    private String Nombre;
+    private float pesoFinal;
+    private boolean estado;
+    private int totalCalorias;
     private Paciente paciente;
     private float pesoInicial;
-    private float pesoFinal;
-    private int calorias;   
 
-    public Dieta(int codDieta, LocalDate fechaInicio, LocalDate fechaFin, String Nombre, Paciente paciente, float pesoInicial, float pesoFinal, int calorias) {
+    public Dieta(int codDieta, String nombreD, List<MenuDiario> menus, LocalDate fechaIni, LocalDate fechaFin, 
+                 float pesoFinal, boolean estado, int totalCalorias, Paciente paciente) {
         this.codDieta = codDieta;
-        this.fechaInicio = fechaInicio;
+        this.nombreD = nombreD;
+        this.menus = menus;
+        this.fechaIni = fechaIni;
         this.fechaFin = fechaFin;
-        this.Nombre = Nombre;
-        this.paciente = paciente;
-        this.pesoInicial = pesoInicial;
         this.pesoFinal = pesoFinal;
-        this.calorias = calorias;
+        this.estado = estado;
+        this.totalCalorias = totalCalorias;
+        this.paciente = paciente;
     }
 
     public int getCodDieta() {
@@ -39,12 +45,28 @@ public class Dieta {
         this.codDieta = codDieta;
     }
 
-    public LocalDate getFechaInicio() {
-        return fechaInicio;
+    public String getNombreD() {
+        return nombreD;
     }
 
-    public void setFechaInicio(LocalDate fechaInicio) {
-        this.fechaInicio = fechaInicio;
+    public void setNombreD(String nombreD) {
+        this.nombreD = nombreD;
+    }
+
+    public List<MenuDiario> getMenus() {
+        return menus;
+    }
+
+    public void setMenus(List<MenuDiario> menus) {
+        this.menus = menus;
+    }
+
+    public LocalDate getFechaIni() {
+        return fechaIni;
+    }
+
+    public void setFechaIni(LocalDate fechaIni) {
+        this.fechaIni = fechaIni;
     }
 
     public LocalDate getFechaFin() {
@@ -55,12 +77,28 @@ public class Dieta {
         this.fechaFin = fechaFin;
     }
 
-    public String getNombre() {
-        return Nombre;
+    public float getPesoFinal() {
+        return pesoFinal;
     }
 
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+    public void setPesoFinal(float pesoFinal) {
+        this.pesoFinal = pesoFinal;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    public int getTotalCalorias() {
+        return totalCalorias;
+    }
+
+    public void setTotalCalorias(int totalCalorias) {
+        this.totalCalorias = totalCalorias;
     }
 
     public Paciente getPaciente() {
@@ -71,34 +109,14 @@ public class Dieta {
         this.paciente = paciente;
     }
 
-    public float getPesoInicial() {
-        return pesoInicial;
-    }
 
-    public void setPesoInicial(int pesoInicial) {
-        this.pesoInicial = pesoInicial;
-    }
-
-    public float getPesoFinal() {
-        return pesoFinal;
-    }
-
-    public void setPesoFinal(int pesoFinal) {
-        this.pesoFinal = pesoFinal;
-    }
-
-    public int getCalorias() {
-        return calorias;
-    }
-
-    public void setCalorias(int calorias) {
-        this.calorias = calorias;
-    }
+   
     public void cargarPesoYFinalizar(float pesoFinal) {
         this.pesoFinal = pesoFinal;
         System.out.println("Peso final cargado: " + pesoFinal); 
     }
     public int calcularDiferDePeso() {
+        float pesoInicial = 0;
         return (int) (pesoFinal - pesoInicial);
     }
      public Dieta(float pesoInicial) {
