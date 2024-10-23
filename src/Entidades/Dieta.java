@@ -10,6 +10,7 @@ package Entidades;
  * @author Nicolas
  */
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Dieta {
@@ -18,14 +19,29 @@ public class Dieta {
     private List<MenuDiario> menus;
     private LocalDate fechaIni;
     private LocalDate fechaFin;
-    private float pesoFinal;
+    private double pesoFinal;
     private boolean estado;
     private int totalCalorias;
     private Paciente paciente;
-    private float pesoInicial;
+    private double pesoInicial;
+
+    public Dieta() {
+        menus = new ArrayList<>();
+    }
+    public Dieta(String nombreD, List<MenuDiario> menus, LocalDate fechaIni, LocalDate fechaFin, double pesoFinal, boolean estado, int totalCalorias, Paciente paciente, double pesoInicial) {
+        this.nombreD = nombreD;
+        this.menus = menus;
+        this.fechaIni = fechaIni;
+        this.fechaFin = fechaFin;
+        this.pesoFinal = pesoFinal;
+        this.estado = estado;
+        this.totalCalorias = totalCalorias;
+        this.paciente = paciente;
+        this.pesoInicial = pesoInicial;
+    }
 
     public Dieta(int codDieta, String nombreD, List<MenuDiario> menus, LocalDate fechaIni, LocalDate fechaFin, 
-                 float pesoFinal, boolean estado, int totalCalorias, Paciente paciente) {
+        double pesoFinal, boolean estado, int totalCalorias, Paciente paciente, double pesoInicial) {
         this.codDieta = codDieta;
         this.nombreD = nombreD;
         this.menus = menus;
@@ -35,6 +51,7 @@ public class Dieta {
         this.estado = estado;
         this.totalCalorias = totalCalorias;
         this.paciente = paciente;
+        this.pesoInicial = pesoInicial;
     }
 
     public int getCodDieta() {
@@ -77,11 +94,11 @@ public class Dieta {
         this.fechaFin = fechaFin;
     }
 
-    public float getPesoFinal() {
+    public double getPesoFinal() {
         return pesoFinal;
     }
 
-    public void setPesoFinal(float pesoFinal) {
+    public void setPesoFinal(double pesoFinal) {
         this.pesoFinal = pesoFinal;
     }
 
@@ -109,21 +126,27 @@ public class Dieta {
         this.paciente = paciente;
     }
 
+    public double getPesoInicial() {
+        return pesoInicial;
+    }
 
-   
-    public void cargarPesoYFinalizar(float pesoFinal) {
+    public void setPesoInicial(double pesoInicial) {
+        this.pesoInicial = pesoInicial;
+    }
+    
+    public void cargarPesoYFinalizar(double pesoFinal) {
         this.pesoFinal = pesoFinal;
         System.out.println("Peso final cargado: " + pesoFinal); 
     }
     public int calcularDiferDePeso() {
-        float pesoInicial = 0;
         return (int) (pesoFinal - pesoInicial);
     }
-     public Dieta(float pesoInicial) {
-        this.pesoInicial = pesoInicial;
-        System.out.println("Peso inicial registrado: " + pesoInicial);
-     }
-      public void imprimirDietaCompleta() {
+
+    public void imprimirDietaCompleta() {
         System.out.println("Imprimiendo detalles de la dieta...");
+        for (MenuDiario menu : menus) {
+            menu.imprimirMenuDiario();
+            System.out.println("");
+        }
     }
 }
