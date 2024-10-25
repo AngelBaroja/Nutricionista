@@ -2,15 +2,15 @@ package Entidades;
 
 public class Comida {
 
-    private int conComida;
+    private int codComida;
     private String nombre;
     private String tipoComida;
     private int caloriasPorPorcion;
     private String detalle;
     private boolean baja;
 
-    public int getConComida() {
-        return conComida;
+    public int getCodComida() {
+        return codComida;
     }
 
     public int getCaloriasPorPorcion() {
@@ -21,8 +21,8 @@ public class Comida {
         this.caloriasPorPorcion = caloriasPorPorcion;
     }
 
-    public void setConComida(int conComida) {
-        this.conComida = conComida;
+    public void setCodComida(int conComida) {
+        this.codComida = conComida;
     }
 
     public String getNombre() {
@@ -60,8 +60,8 @@ public class Comida {
     public Comida() {
     }
 
-    public Comida(int conComida, String nombre, String tipoComida, int caloriasPorPorcion, String detalle, boolean baja) {
-        this.conComida = conComida;
+    public Comida(int codComida, String nombre, String tipoComida, int caloriasPorPorcion, String detalle, boolean baja) {
+        this.codComida = codComida;
         this.nombre = nombre;
         this.tipoComida = tipoComida;
         this.caloriasPorPorcion = caloriasPorPorcion;
@@ -79,7 +79,7 @@ public class Comida {
 
     @Override
     public String toString() {
-        return "Alimento{" + "conComida=" + conComida + ", nombre=" + nombre + ", tipoComida=" + tipoComida + ", caloriasPorPorcion=" + caloriasPorPorcion + ", detalle=" + detalle + ", baja=" + baja + '}';
+        return "Alimento{" + "conComida=" + codComida + ", nombre=" + nombre + ", tipoComida=" + tipoComida + ", caloriasPorPorcion=" + caloriasPorPorcion + ", detalle=" + detalle + ", baja=" + baja + '}';
     }
 
 }
