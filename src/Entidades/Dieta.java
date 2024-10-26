@@ -149,4 +149,10 @@ public class Dieta {
             System.out.println("");
         }
     }
+    
+    @Override
+    public String toString(){
+        return "Nombre: " + this.nombreD + "\nFecha inicio: " + this.fechaIni 
+                + "\nPeso Inicial: " + this.pesoInicial;
+    }
 }

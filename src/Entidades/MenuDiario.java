@@ -19,29 +19,35 @@ import java.util.stream.Collectors;
     private int dia;
     private boolean estado;
     private List<RenglonDeMenu> comidas;
-    
+    private float pesoActual;
+    private Dieta dieta;
 
     public MenuDiario(int dia) {
         this.dia = dia;
         estado = true;
-        comidas = new ArrayList<>();        
+        comidas = new ArrayList<>();
     }
 
     public MenuDiario() {
     }
-
-    public MenuDiario(int dia, boolean estado, List<RenglonDeMenu> comidas) {
+   
+    public MenuDiario(int dia, boolean estado, List<RenglonDeMenu> comidas, float pesoActual, Dieta dieta) {
         this.dia = dia;
         this.estado = estado;
-        this.comidas = comidas;        
+        this.comidas = comidas;
+        this.pesoActual = pesoActual;
+        this.dieta = dieta;
     }
     
     
-    public MenuDiario(int codMenu, int dia, boolean estado, List<RenglonDeMenu> comidas) {
+
+    public MenuDiario(int codMenu, int dia, boolean estado, List<RenglonDeMenu> comidas, float pesoActual, Dieta dieta) {
         this.codMenu = codMenu;
         this.dia = dia;
         this.estado = estado;
         this.comidas = comidas;
+        this.pesoActual = pesoActual;
+        this.dieta = dieta;
     }
 
     public int getCodMenu() {
@@ -56,6 +62,22 @@ import java.util.stream.Collectors;
         return dia;
     }
 
+    public float getPesoActual() {
+        return pesoActual;
+    }
+
+    public void setPesoActual(float pesoActual) {
+        this.pesoActual = pesoActual;
+    }
+
+    public Dieta getDieta() {
+        return dieta;
+    }
+
+    public void setDieta(Dieta dieta) {
+        this.dieta = dieta;
+    }
+    
     public void setDia(int dia) {
         this.dia = dia;
     }
@@ -128,9 +150,7 @@ import java.util.stream.Collectors;
         for (RenglonDeMenu renglon : comidas) {
             System.out.println(renglon.getComida().getNombre());
         }
-   }
-
-    
+   }   
 }
 
 
