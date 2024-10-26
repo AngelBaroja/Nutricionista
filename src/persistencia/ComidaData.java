@@ -134,6 +134,24 @@ public class ComidaData {
             
         }
         
+        public void EliminarComida(Comida comida){
+             String query = "DELETE comida WHERE nombre = ? , tipoComida = ?, caloriasPorPorcion = ?, detalle = ?, baja = ?";
+            try{
+                PreparedStatement ps = conexion.prepareStatement(query);
+                ps.setString(1, comida.getNombre());
+                ps.setString(2, comida.getTipoComida());
+                ps.setInt(3, comida.getCaloriasPorPorcion());
+                ps.setString(4, comida.getDetalle());
+                ps.setBoolean(5, comida.isBaja());
+                ps.setInt(6, comida.getCodComida());
+               
+                ps.executeUpdate();
+                System.out.println("Comida eliminada con exito.");
+                
+                }catch (SQLException e){
+                System.out.println("Error al eliminar comida: " +e.getMessage());
+                }
+            }
 }
     
 
