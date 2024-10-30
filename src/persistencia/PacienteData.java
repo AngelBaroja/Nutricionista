@@ -125,6 +125,34 @@ public class PacienteData {
         return listaPaciente;
     }
     
+    public ArrayList<Paciente> listaPacienteSinDieta() {
+        ArrayList<Paciente> listaPaciente = new ArrayList<>();
+        Paciente paciente = null;
+        String query = "SELECT P.*\n"
+                + "FROM paciente P\n"
+                + "LEFT JOIN dieta D ON P.nroPaciente = D.nroPaciente\n"
+                + "WHERE D.nroPaciente IS NULL;";
+        try {
+            PreparedStatement ps = conexion.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                paciente = new Paciente();
+                paciente.setNroPaciente(rs.getInt("nroPaciente"));
+                paciente.setNombre(rs.getString("nombre"));
+                paciente.setEdad(rs.getInt("edad"));
+                paciente.setAltura(rs.getDouble("altura"));
+                paciente.setPesoActual(rs.getDouble("pesoActual"));
+                paciente.setPesoBuscado(rs.getDouble("pesoBuscado"));
+                listaPaciente.add(paciente);
+            }
+            System.out.println("Lista de pacientes sin Dieta");
+            ps.close();
+        } catch (SQLException ex) {
+            System.out.println("SE PRODUJO UN ERROR CON LA BASE DE DATOS FORMANDO LA LISTA DE PACIENTES");
+        }
+        return listaPaciente;
+    }
+    
     public void borradoFisico(int nroPaciente) {
         String query = "DELETE FROM paciente WHERE nroPaciente= ? ";
         try {

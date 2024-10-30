@@ -32,6 +32,9 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jmGenerarDieta = new javax.swing.JMenuItem();
+        jmIniciarDieta = new javax.swing.JMenuItem();
+        jmPacientesEnDieta = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
@@ -85,6 +88,31 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Dieta");
+
+        jmGenerarDieta.setText("Generar Dieta");
+        jmGenerarDieta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmGenerarDietaActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmGenerarDieta);
+
+        jmIniciarDieta.setText("Iniciar Dieta");
+        jmIniciarDieta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmIniciarDietaActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmIniciarDieta);
+
+        jmPacientesEnDieta.setText("Pacientes con Dieta");
+        jmPacientesEnDieta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmPacientesEnDietaActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmPacientesEnDieta);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Menu");
@@ -151,6 +179,33 @@ public class Menu extends javax.swing.JFrame {
         Escritorio.moveToFront(vP);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jmGenerarDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmGenerarDietaActionPerformed
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        VistaGenerarDieta vP= new VistaGenerarDieta();
+        vP.setVisible(true);
+        Escritorio.add(vP);
+        Escritorio.moveToFront(vP);
+    }//GEN-LAST:event_jmGenerarDietaActionPerformed
+
+    private void jmIniciarDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmIniciarDietaActionPerformed
+          Escritorio.removeAll();
+        Escritorio.repaint();
+        VistaIniciarDieta vP= new VistaIniciarDieta();
+        vP.setVisible(true);
+        Escritorio.add(vP);
+        Escritorio.moveToFront(vP);
+    }//GEN-LAST:event_jmIniciarDietaActionPerformed
+
+    private void jmPacientesEnDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmPacientesEnDietaActionPerformed
+         Escritorio.removeAll();
+        Escritorio.repaint();
+        VistaPacientesEnDieta vP= new VistaPacientesEnDieta();
+        vP.setVisible(true);
+        Escritorio.add(vP);
+        Escritorio.moveToFront(vP);
+    }//GEN-LAST:event_jmPacientesEnDietaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -196,5 +251,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jmGenerarDieta;
+    private javax.swing.JMenuItem jmIniciarDieta;
+    private javax.swing.JMenuItem jmPacientesEnDieta;
     // End of variables declaration//GEN-END:variables
 }

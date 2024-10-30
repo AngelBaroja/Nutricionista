@@ -122,7 +122,7 @@ public class Paciente {
 
     @Override
     public String toString() {
-        return "Paciente{" + "nroPaciente=" + nroPaciente + ", nombre=" + nombre + ", edad=" + edad + ", altura=" + altura + ", pesoActual=" + pesoActual + ", pesoBuscado=" + pesoBuscado + '}';
+        return getNroPaciente()+" / "+nombre + "/ " + edad + " años / Al: " + altura + " / Peso: " + pesoActual + " - " + pesoBuscado;
     }
    
    
