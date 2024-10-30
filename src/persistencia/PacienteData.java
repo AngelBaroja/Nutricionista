@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -132,7 +133,7 @@ public class PacienteData {
             ps.executeUpdate();
 
             ps.close();
-            System.out.println("Paciente Borrado");
+            JOptionPane.showMessageDialog(null, "Paciente eliminado con exito");
         } catch (SQLException ex) {
             System.out.println("SE PRODUJO UN ERROR CON LA BASE DE DATOS BORRANDOLO FISICAMENTE");
         }

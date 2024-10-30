@@ -1,6 +1,6 @@
 package Vistas;
 
-import Entidades.Paciente;
+import Entidades.*;
 import static java.awt.PageAttributes.MediaType.A;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,43 +8,20 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.mariadb.jdbc.Connection;
 import persistencia.Conexion;
+import persistencia.DietaData;
 import persistencia.PacienteData;
 
 
 public class vistaListadePacientes extends javax.swing.JInternalFrame {
 private final Conexion conexion = new Conexion("jdbc:mysql://localhost/nutricionista", "root", "");
 private PacienteData pacienteData = new PacienteData(conexion);
+private DietaData dietadata = new DietaData(conexion);
 
     public vistaListadePacientes() {
         initComponents();
+        armarTabla();
         cargarlistaPaciente();
     }
-//carga los pacientes
-    private void cargarlistaPaciente() {
-    ArrayList<Paciente> pacientes = pacienteData.listaPaciente(); 
-
-    DefaultTableModel model = new DefaultTableModel(); 
-    model.addColumn("Nro Paciente");
-    model.addColumn("Nombre");
-    model.addColumn("Edad");
-    model.addColumn("Altura (m)");
-    model.addColumn("Peso Actual (kg)");
-    model.addColumn("Peso Buscado (kg)");
-
-    for (Paciente p : pacientes) {
-        int nroPaciente = p.getNroPaciente();
-        String nombre = p.getNombre();
-        int edad = p.getEdad();
-
-        String altura = String.format("%.2f", p.getAltura());
-        String pesoActual = String.format("%.2f", p.getPesoActual());
-        String pesoBuscado = String.format("%.2f", p.getPesoBuscado());
-
-        model.addRow(new Object[]{nroPaciente, nombre, edad, altura, pesoActual, pesoBuscado});
-    }
-
-    listaPaciente.setModel(model);
-}
 
 
     /**
@@ -73,8 +50,8 @@ private PacienteData pacienteData = new PacienteData(conexion);
         Id = new javax.swing.JTextField();
         Actualizar = new javax.swing.JButton();
         borrar = new javax.swing.JButton();
-        jRadioButtonpesologrado = new javax.swing.JRadioButton();
-        jRadioButtonseacercanalpeso = new javax.swing.JRadioButton();
+        pesologrado = new javax.swing.JRadioButton();
+        seacerca = new javax.swing.JRadioButton();
 
         jButton4.setText("jButton4");
 
@@ -146,17 +123,17 @@ private PacienteData pacienteData = new PacienteData(conexion);
             }
         });
 
-        jRadioButtonpesologrado.setText("Peso logrado");
-        jRadioButtonpesologrado.addActionListener(new java.awt.event.ActionListener() {
+        pesologrado.setText("Peso logrado");
+        pesologrado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonpesologradoActionPerformed(evt);
+                pesologradoActionPerformed(evt);
             }
         });
 
-        jRadioButtonseacercanalpeso.setText("Se acerca al peso");
-        jRadioButtonseacercanalpeso.addActionListener(new java.awt.event.ActionListener() {
+        seacerca.setText("Se acerca al peso");
+        seacerca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonseacercanalpesoActionPerformed(evt);
+                seacercaActionPerformed(evt);
             }
         });
 
@@ -180,16 +157,17 @@ private PacienteData pacienteData = new PacienteData(conexion);
                         .addGap(18, 18, 18)
                         .addComponent(Id, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(131, 131, 131)
-                        .addComponent(jRadioButtonpesologrado)
+                        .addComponent(pesologrado)
                         .addGap(18, 18, 18)
-                        .addComponent(jRadioButtonseacercanalpeso))
+                        .addComponent(seacerca))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(249, 249, 249)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(16, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,8 +181,8 @@ private PacienteData pacienteData = new PacienteData(conexion);
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Id, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)
-                            .addComponent(jRadioButtonpesologrado)
-                            .addComponent(jRadioButtonseacercanalpeso))))
+                            .addComponent(pesologrado)
+                            .addComponent(seacerca))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -252,20 +230,50 @@ private PacienteData pacienteData = new PacienteData(conexion);
 //actualizar
     private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
     for (int fila = 0; fila < listaPaciente.getRowCount(); fila++) {
- 
-        int nroPaciente = (int) listaPaciente.getValueAt(fila, 0);
+    int nroPaciente = (int) listaPaciente.getValueAt(fila, 0);
+    Paciente paciente = pacienteData.buscarPaciente(nroPaciente);
 
-        Paciente paciente = pacienteData.buscarPaciente(nroPaciente);
+    if (paciente != null) {
+        String nombre = listaPaciente.getValueAt(fila, 1).toString().trim();
 
-        if (paciente != null) {
-  
-            String nombre = listaPaciente.getValueAt(fila, 1).toString().trim();
-            int edad = Integer.parseInt(listaPaciente.getValueAt(fila, 2).toString());
-            double altura = Double.parseDouble(listaPaciente.getValueAt(fila, 3).toString());
-            double pesoActual = Double.parseDouble(listaPaciente.getValueAt(fila, 4).toString());
-            double pesoBuscado = Double.parseDouble(listaPaciente.getValueAt(fila, 5).toString());
+        int edad = 0;
+        double altura = 0.0;
+        double pesoActual = 0.0;
+        double pesoBuscado = 0.0;
+        boolean datosValidos = true;
 
-            
+        try {
+            edad = Integer.parseInt(listaPaciente.getValueAt(fila, 2).toString().trim());
+        } catch (NumberFormatException e) {
+            System.out.println("Error en el formato de edad en la fila " + fila);
+            datosValidos = false;
+        }
+
+        try {
+            String alturaStr = listaPaciente.getValueAt(fila, 3).toString().trim().replace(",", ".");
+            altura = Double.parseDouble(alturaStr);
+        } catch (NumberFormatException e) {
+            System.out.println("Error en el formato de altura en la fila " + fila);
+            datosValidos = false;
+        }
+
+        try {
+            String pesoActualStr = listaPaciente.getValueAt(fila, 4).toString().trim().replace(",", ".");
+            pesoActual = Double.parseDouble(pesoActualStr);
+        } catch (NumberFormatException e) {
+            System.out.println("Error en el formato de peso actual en la fila " + fila);
+            datosValidos = false;
+        }
+
+        try {
+            String pesoBuscadoStr = listaPaciente.getValueAt(fila, 5).toString().trim().replace(",", ".");
+            pesoBuscado = Double.parseDouble(pesoBuscadoStr);
+        } catch (NumberFormatException e) {
+            System.out.println("Error en el formato de peso buscado en la fila " + fila);
+            datosValidos = false;
+        }
+
+        if (datosValidos) {
             boolean actualizado = false;
 
             if (!paciente.getNombre().equals(nombre)) {
@@ -294,10 +302,16 @@ private PacienteData pacienteData = new PacienteData(conexion);
                 System.out.println("Paciente actualizado: " + nroPaciente);
             }
         } else {
-            System.out.println("Paciente con ID " + nroPaciente + " no encontrado");
+            System.out.println("Datos inválidos para el paciente con ID " + nroPaciente + " en la fila " + fila);
         }
+    } else {
+        System.out.println("Paciente con ID " + nroPaciente + " no encontrado");
     }
-    JOptionPane.showMessageDialog(this, "Actualización completada para todos los pacientes.");
+}
+
+JOptionPane.showMessageDialog(this, "Actualización completada para todos los pacientes.");
+borrarFilasTablas();
+cargarlistaPaciente();
 
 
    
@@ -323,28 +337,66 @@ private PacienteData pacienteData = new PacienteData(conexion);
         
         if (confirmacion == JOptionPane.YES_OPTION) {
           
-            boolean exito = pacienteData.borradoFisico(id);
-            
-            if (exito) {
+            pacienteData.borradoFisico(id);
              
-                ((DefaultTableModel) listaPaciente.getModel()).removeRow(filaSeleccionada);
-                JOptionPane.showMessageDialog(this, "Elemento eliminado con éxito.");
-            } else {
-                JOptionPane.showMessageDialog(this, "No se pudo eliminar el elemento de la base de datos.");
-            }
+            borrarFilasTablas();
+            armarTabla();
+            cargarlistaPaciente();
+
         }
     } else {
         JOptionPane.showMessageDialog(this, "Selecciona un elemento para eliminar.");
     }
     }//GEN-LAST:event_borrarActionPerformed
 
-    private void jRadioButtonpesologradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonpesologradoActionPerformed
-                                                                          
-    }//GEN-LAST:event_jRadioButtonpesologradoActionPerformed
+    private void pesologradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesologradoActionPerformed
+        seacerca.setSelected(false);
+        cargarlistaPaciente();
+        borrarFilasTablas();
+        Paciente paciente = null;
+        ArrayList<Paciente> pacientes = (ArrayList<Paciente>) Paciente.listarLosQueLLegaron(pacienteData.listaPaciente());
+        for (Paciente p : pacientes) {
+            int nroPaciente = p.getNroPaciente();
+            String nombre = p.getNombre();
+            int edad = p.getEdad();
 
-    private void jRadioButtonseacercanalpesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonseacercanalpesoActionPerformed
+            String altura = String.format("%.2f", p.getAltura());
+            String pesoActual = String.format("%.2f", p.getPesoActual());
+            String pesoBuscado = String.format("%.2f", p.getPesoBuscado());
 
-    }//GEN-LAST:event_jRadioButtonseacercanalpesoActionPerformed
+            modelo.addRow(new Object[]{nroPaciente, nombre, edad, altura, pesoActual, pesoBuscado});
+        }
+        if (!pesologrado.isSelected()) {
+            borrarFilasTablas();
+            cargarlistaPaciente();
+        }
+        
+    }//GEN-LAST:event_pesologradoActionPerformed
+
+    private void seacercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seacercaActionPerformed
+        pesologrado.setSelected(false);
+        borrarFilasTablas();
+        String[] columnanueva = {"ID", "Nombre Completo","Peso buscado","Peso Actual","¿Se acerca al peso?"};
+        DefaultTableModel modelo2 = new DefaultTableModel(columnanueva, 0);
+        listaPaciente.setModel(modelo2);
+        ArrayList<Dieta> listaDieta = new ArrayList<>();
+        for (Paciente paciente : pacienteData.listaPaciente()) {
+            int nroPaciente = paciente.getNroPaciente();
+            String nombre = paciente.getNombre();
+            String pesoActual = String.format("%.2f", paciente.getPesoActual());
+            String pesoBuscado = String.format("%.2f", paciente.getPesoBuscado());
+
+
+    // Determinar si el paciente se acerca a su peso buscado
+           // modelo2.addRow(new Object[]{nroPaciente,nombre,pesoActual,pesoBuscado,acerca});
+            
+        }
+        
+        if (!seacerca.isSelected()) {
+            borrarFilasTablas();
+            cargarlistaPaciente();
+        }
+    }//GEN-LAST:event_seacercaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -362,11 +414,51 @@ private PacienteData pacienteData = new PacienteData(conexion);
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JRadioButton jRadioButtonpesologrado;
-    private javax.swing.JRadioButton jRadioButtonseacercanalpeso;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JTable listaPaciente;
+    private javax.swing.JRadioButton pesologrado;
+    private javax.swing.JRadioButton seacerca;
     // End of variables declaration//GEN-END:variables
+    private DefaultTableModel modelo = new DefaultTableModel(){
+        public boolean isCellEditable(int fila, int columna){
+            return true;
+        }
+    };
+    private void cargarlistaPaciente() { 
 
+        for (Paciente p : pacienteData.listaPaciente()) {
+            int nroPaciente = p.getNroPaciente();
+            String nombre = p.getNombre();
+            int edad = p.getEdad();
+
+            String altura = String.format("%.2f", p.getAltura());
+            String pesoActual = String.format("%.2f", p.getPesoActual());
+            String pesoBuscado = String.format("%.2f", p.getPesoBuscado());
+
+            modelo.addRow(new Object[]{nroPaciente, nombre, edad, altura, pesoActual, pesoBuscado});
+        }
+
+        listaPaciente.setModel(modelo);
+    }
+    private void armarTabla(){
+        modelo.addColumn("Nro Paciente");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Edad");
+        modelo.addColumn("Altura (m)");
+        modelo.addColumn("Peso Actual (kg)");
+        modelo.addColumn("Peso Buscado (kg)");
+    }
+    private void borrarFilasTablas(){
+        int fila= modelo.getRowCount()-1;
+        for (int i = fila ; i >= 0 ; i--) {
+            modelo.removeRow(i);
+        }
+    }
+    private void borrarColum(){
+        int colum = modelo.getColumnCount()-1;
+        for (int i = colum; i >= 0; i--) {
+            modelo.removeRow(i);
+        }
+    }
 }

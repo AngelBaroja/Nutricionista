@@ -68,20 +68,21 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="Id" min="-2" pref="95" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
-                      <Component id="jRadioButtonpesologrado" min="-2" max="-2" attributes="0"/>
+                      <Component id="pesologrado" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jRadioButtonseacercanalpeso" min="-2" max="-2" attributes="0"/>
+                      <Component id="seacerca" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="249" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" pref="121" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="588" max="-2" attributes="0"/>
-                  </Group>
               </Group>
               <EmptySpace pref="16" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane1" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -98,8 +99,8 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="Id" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jRadioButtonpesologrado" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jRadioButtonseacercanalpeso" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="pesologrado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="seacerca" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -234,20 +235,20 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="borrarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="jRadioButtonpesologrado">
+    <Component class="javax.swing.JRadioButton" name="pesologrado">
       <Properties>
         <Property name="text" type="java.lang.String" value="Peso logrado"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButtonpesologradoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pesologradoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="jRadioButtonseacercanalpeso">
+    <Component class="javax.swing.JRadioButton" name="seacerca">
       <Properties>
         <Property name="text" type="java.lang.String" value="Se acerca al peso"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButtonseacercanalpesoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="seacercaActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

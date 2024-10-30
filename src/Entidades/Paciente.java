@@ -103,11 +103,11 @@ public class Paciente {
    public boolean seAcercaAlPeso(Dieta dieta) {
        double pesoConDieta = this.pesoActual - dieta.getPesoFinal();
        double cantidadaBajar = this.pesoActual - this.pesoBuscado;
-       double porcentajeBajo = pesoConDieta/ cantidadaBajar;       
+       double porcentajeBajo = pesoConDieta/ cantidadaBajar;
        return porcentajeBajo>=0.65;
    }
     
-   public  List<Paciente> listarLosQueLLegaron(ArrayList<Paciente> listaPacientes){
+   public static List<Paciente> listarLosQueLLegaron(ArrayList<Paciente> listaPacientes){
        List<Paciente> pacientesQueLlegaron = new  ArrayList <>();
        for (Paciente p : listaPacientes) {
            if (p.pesoActual == p.pesoBuscado) {
