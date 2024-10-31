@@ -437,12 +437,10 @@ public class VistaPacientesEnDieta extends javax.swing.JInternalFrame {
             dieta.setFechaFin(jdcFechaFinal.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
             dieta.setPesoInicial(Double.parseDouble(jtPesoInicial.getText()));
             dieta.setPesoFinal(Double.parseDouble(jtPesoFinal.getText()));
-            if (jcbEstado.isSelected()) {
-                dieta.setEstado(true);
-            } else {
-                dieta.setEstado(false);
-            }
+            dieta.setEstado(jcbEstado.isSelected());
+            
             dietaData.actualizarDieta(dieta);
+            JOptionPane.showMessageDialog(this, "Dieta Actualizada con exito");
             borrarFilasTablas();
             limpiarCampos();
             cargarFilas();
@@ -455,6 +453,7 @@ public class VistaPacientesEnDieta extends javax.swing.JInternalFrame {
         }else{
             Dieta dieta = dietaData.buscarDieta(Integer.parseInt(jlCodigo.getText()));
             dietaData.borradoFisicoDieta(dieta.getCodDieta());
+            JOptionPane.showMessageDialog(this, "Dieta Eliminada con exito");
             limpiarCampos();
             borrarFilasTablas();
             cargarFilas();
