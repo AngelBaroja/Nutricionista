@@ -7,10 +7,13 @@ import persistencia.*;
 import entidades.*;
 import java.sql.Connection;
 public class VistasComida extends javax.swing.JInternalFrame {
-    private Conexion conexion = new Conexion("jdbc:mysql://localhost/nutricionista", "root", "");
-    ComidaData comiData = new ComidaData((Connection) conexion);
+
+    private final Conexion conexion = new Conexion("jdbc:mysql://localhost/nutricionista", "root", "");
+    private ComidaData comiData = new ComidaData(conexion);
     public VistasComida() {
         initComponents();
+        armarTabla();
+        cargarComidas();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -145,9 +148,6 @@ public class VistasComida extends javax.swing.JInternalFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(TipoComidaInp, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(246, 246, 246)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(99, 99, 99)
                         .addComponent(Añadir)
                         .addGap(39, 39, 39)
@@ -163,8 +163,11 @@ public class VistasComida extends javax.swing.JInternalFrame {
                         .addGap(266, 266, 266)
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
-                        .addComponent(IDanch, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(32, Short.MAX_VALUE))
+                        .addComponent(IDanch, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(273, 273, 273)
+                        .addComponent(jLabel1)))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,34 +223,34 @@ public class VistasComida extends javax.swing.JInternalFrame {
        }
        Comida c = new Comida(nom, tip, cal, det, bu);
        comiData.guardarComida(c);
+       borrarFilasTablas();
+        cargarComidas();
     }//GEN-LAST:event_AñadirActionPerformed
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
-    if (jTable.getSelectedColumn() != -1){
-       String nom = Nombreinp.getText();
-       String det = IngredientesInp.getText();
-       String tip = TipoComidaInp.getText();
-       int cal = Integer.valueOf(CaloriasInp.getText()); 
-       boolean bu = false;
-       if (Estado.isSelected()){
-           bu = true;
-       }
-       Comida c = new Comida(nom, tip, cal, det, bu);
-        comiData.EliminarComida(c);
-                }
+    int row = jTable.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor seleccione una Comida de la tabla");
+        } else {
+            int id = (int) jTable.getValueAt(row, 0);
+            comiData.EliminarComida(id);
+            borrarFilasTablas();
+            cargarComidas();
+        }
     }//GEN-LAST:event_EliminarActionPerformed
 
     private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
         if (jTable.getSelectedColumn() != -1){
-        String nom = (String) jTable.getValueAt(jTable.getSelectedColumn(), 1);
-        String tip = (String) jTable.getValueAt(jTable.getSelectedColumn(), 2);
-        int cal = (int) jTable.getValueAt(jTable.getSelectedColumn(), 3);
-        String det = (String) jTable.getValueAt(jTable.getSelectedColumn(), 4);
-        String estado = (String) jTable.getValueAt(jTable.getSelectedColumn(), 5);
-        boolean bu = estado.equals("Activo");
+        String nom = Nombreinp.getText();
+        String tip = TipoComidaInp.getText();
+        int cal = Integer.parseInt(CaloriasInp.getText());
+        String det = IngredientesInp.getText();
+        boolean estado =  Estado.isSelected();
         int ide = (int) jTable.getValueAt(jTable.getSelectedColumn(), 0);
-        Comida c = new Comida(ide, nom, tip, cal, det, bu);
+        Comida c = new Comida(ide, nom, tip, cal, det, estado);
         comiData.actualizarComida(c);
+        borrarFilasTablas();
+        cargarComidas();
          }
     }//GEN-LAST:event_EditarActionPerformed
 
@@ -256,46 +259,23 @@ public class VistasComida extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_SalirActionPerformed
 
     private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
-        String nombre = (String) jTable.getValueAt(jTable.getSelectedColumn(), 1);
-        String tipocomida = (String) jTable.getValueAt(jTable.getSelectedColumn(), 2);
-        int caloria = (int) jTable.getValueAt(jTable.getSelectedColumn(), 3);
-        String ingrediente = (String) jTable.getValueAt(jTable.getSelectedColumn(), 4);
-        String estado = (String) jTable.getValueAt(jTable.getSelectedColumn(), 5);
-        boolean activo = estado.equals("Activo"); 
-        String id = (String) jTable.getValueAt(jTable.getSelectedColumn(), 0);
-        IDanch.setText(id);
+        int row = jTable.getSelectedRow();
+        int id =  (int) jTable.getValueAt(row, 0);
+        String nombre = (String) jTable.getValueAt(row, 1);
+        String tipocomida = (String) jTable.getValueAt(row, 2);
+        int caloria = (int) jTable.getValueAt(row, 3);
+        String ingrediente = (String) jTable.getValueAt(row, 4);
+        boolean estado =  (boolean) jTable.getValueAt(row, 5);
+
+        IDanch.setText(String.valueOf(id));
         Nombreinp.setText(nombre);
         IngredientesInp.setText(ingrediente);
         TipoComidaInp.setText(tipocomida);
         CaloriasInp.setText(String.valueOf(caloria));
-        Estado.setSelected(activo);
+        Estado.setSelected(estado);
     }//GEN-LAST:event_jTableMouseClicked
 
-     private DefaultTableModel modelo = new DefaultTableModel(){
-        public boolean isCellEditable(int fila, int columna){
-            return false;
-        }
-    };
-     
-      private boolean validarCampos() { 
-        if (Nombreinp.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Ingrese un Nombre");
-            return false;
-        } 
-        if (TipoComidaInp.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Ingrese el Tipo de la Comida");
-            return false;
-        }
-        if (IngredientesInp.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Ingrese los Detalles e Ingredientes de la Comida");
-            return false;
-        }
-        if (CaloriasInp.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Ingrese una Cantidad de Calorias");
-            return false;
-        }
-        return true;
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Añadir;
@@ -319,4 +299,57 @@ public class VistasComida extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable;
     // End of variables declaration//GEN-END:variables
+    private DefaultTableModel modelo = new DefaultTableModel(){
+        public boolean isCellEditable(int fila, int columna){
+            return false;
+        }
+    };
+     
+    private boolean validarCampos() { 
+        if (Nombreinp.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese un Nombre");
+            return false;
+        } 
+        if (TipoComidaInp.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese el Tipo de la Comida");
+            return false;
+        }
+        if (IngredientesInp.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese los Detalles e Ingredientes de la Comida");
+            return false;
+        }
+        if (CaloriasInp.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese una Cantidad de Calorias");
+            return false;
+        }
+        return true;
+    }
+    private void armarTabla(){
+        modelo.addColumn("ID Comida");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Tipo de Comida");
+        modelo.addColumn("Calorias");
+        modelo.addColumn("Ingredientes");
+        modelo.addColumn("Estado");
+    }
+    private void cargarComidas(){
+            for (Comida p : comiData.listarComidas()) {
+            int id = p.getCodComida();
+            String nombre = p.getNombre();
+            String tipo = p.getTipoComida();
+            int calorias = p.getCaloriasPorPorcion();
+            String detalle = p.getDetalle();
+            boolean estado = p.isBaja();
+
+            modelo.addRow(new Object[]{id, nombre, tipo, calorias, detalle, estado});
+            
+        }
+            jTable.setModel(modelo);
+    }
+    private void borrarFilasTablas(){
+        int fila= modelo.getRowCount()-1;
+        for (int i = fila ; i >= 0 ; i--) {
+            modelo.removeRow(i);
+        }
+    }
 }

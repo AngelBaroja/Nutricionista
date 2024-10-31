@@ -106,6 +106,11 @@ private DietaData dietadata = new DietaData(conexion);
                 IdActionPerformed(evt);
             }
         });
+        Id.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                IdKeyTyped(evt);
+            }
+        });
 
         Actualizar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Actualizar.setText("Actualizar");
@@ -163,7 +168,7 @@ private DietaData dietadata = new DietaData(conexion);
                     .addGroup(layout.createSequentialGroup()
                         .addGap(249, 249, 249)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
@@ -202,29 +207,7 @@ private DietaData dietadata = new DietaData(conexion);
 
 //buscar
     private void IdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdActionPerformed
-         try {
-            int nroPaciente = Integer.parseInt(Id.getText());
-
-            Paciente paciente = pacienteData.buscarPaciente(nroPaciente);
-
-            if (paciente != null) {
-                DefaultTableModel model = (DefaultTableModel) listaPaciente.getModel();
-                model.setRowCount(0); // Limpiar filas previas
-
-                model.addRow(new Object[]{
-                    paciente.getNroPaciente(), 
-                    paciente.getNombre(), 
-                    paciente.getEdad(), 
-                    paciente.getAltura(), 
-                    paciente.getPesoActual(), 
-                    paciente.getPesoBuscado()
-                });
-            } else {
-                JOptionPane.showMessageDialog(this, "No se encontró un paciente con ese ID.");
-            }
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Por favor, ingresa un número válido como ID.");
-        }
+         
          
     }//GEN-LAST:event_IdActionPerformed
 //actualizar
@@ -318,11 +301,7 @@ cargarlistaPaciente();
     }//GEN-LAST:event_ActualizarActionPerformed
 //editar
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
-     int respuesta = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que deseas salir?", "Confirmación de salida", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
-    if (respuesta == JOptionPane.YES_OPTION) {
-        System.exit(0); 
-    }
+        dispose();
     }//GEN-LAST:event_SalirActionPerformed
 
     private void borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarActionPerformed
@@ -350,6 +329,9 @@ cargarlistaPaciente();
     }//GEN-LAST:event_borrarActionPerformed
 
     private void pesologradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesologradoActionPerformed
+        Actualizar.setEnabled(false);
+        borrar.setEnabled(false);
+        Salir.setEnabled(false);
         seacerca.setSelected(false);
         cargarlistaPaciente();
         borrarFilasTablas();
@@ -369,34 +351,82 @@ cargarlistaPaciente();
         if (!pesologrado.isSelected()) {
             borrarFilasTablas();
             cargarlistaPaciente();
+            Actualizar.setEnabled(true);
+            borrar.setEnabled(true);
+            Salir.setEnabled(true);
         }
         
     }//GEN-LAST:event_pesologradoActionPerformed
 
     private void seacercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seacercaActionPerformed
+        Actualizar.setEnabled(false);
+        borrar.setEnabled(false);
+        Salir.setEnabled(false);
         pesologrado.setSelected(false);
         borrarFilasTablas();
-        String[] columnanueva = {"ID", "Nombre Completo","Peso buscado","Peso Actual","¿Se acerca al peso?"};
+        String[] columnanueva = {"Nro Paciente", "Nombre Completo","Peso Actual","Peso Buscado","¿Se acerca al peso?"};
         DefaultTableModel modelo2 = new DefaultTableModel(columnanueva, 0);
         listaPaciente.setModel(modelo2);
-        ArrayList<Dieta> listaDieta = new ArrayList<>();
+        ArrayList<Dieta> listaDieta = dietadata.listaDietaConPacienteCargados();
         for (Paciente paciente : pacienteData.listaPaciente()) {
             int nroPaciente = paciente.getNroPaciente();
             String nombre = paciente.getNombre();
             String pesoActual = String.format("%.2f", paciente.getPesoActual());
             String pesoBuscado = String.format("%.2f", paciente.getPesoBuscado());
-
-
-    // Determinar si el paciente se acerca a su peso buscado
-           // modelo2.addRow(new Object[]{nroPaciente,nombre,pesoActual,pesoBuscado,acerca});
             
+            Dieta dieta = listaDieta.stream()
+                             .filter(d -> d.getPaciente() != null && d.getPaciente().getNroPaciente() == nroPaciente)
+                             .findFirst()
+                             .orElse(null);
+
+            if (dieta != null) {
+                if (!(paciente.getPesoActual() <= paciente.getPesoBuscado())) {
+                    boolean acerca = paciente.seAcercaAlPeso(dieta);
+                    modelo2.addRow(new Object[]{nroPaciente,nombre,pesoActual,pesoBuscado,acerca});
+                }
+                
+            }
         }
         
         if (!seacerca.isSelected()) {
             borrarFilasTablas();
             cargarlistaPaciente();
+            Actualizar.setEnabled(true);
+            borrar.setEnabled(true);
+            Salir.setEnabled(true);
         }
     }//GEN-LAST:event_seacercaActionPerformed
+
+    private void IdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IdKeyTyped
+        borrarFilasTablas();
+        if (Id.getText().equals("")) {
+            cargarlistaPaciente();
+        } else{
+             try {
+                int nroPaciente = Integer.parseInt(Id.getText());
+
+                Paciente paciente = pacienteData.buscarPaciente(nroPaciente);
+
+                if (paciente != null) {
+                    DefaultTableModel model = (DefaultTableModel) listaPaciente.getModel();
+                    model.setRowCount(0); // Limpiar filas previas
+
+                    model.addRow(new Object[]{
+                        paciente.getNroPaciente(), 
+                        paciente.getNombre(), 
+                        paciente.getEdad(), 
+                        paciente.getAltura(), 
+                        paciente.getPesoActual(), 
+                        paciente.getPesoBuscado()
+                    });
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se encontró un paciente con ese ID.");
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Por favor, ingresa un número válido como ID.");
+            }
+         }
+    }//GEN-LAST:event_IdKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -422,7 +452,7 @@ cargarlistaPaciente();
     // End of variables declaration//GEN-END:variables
     private DefaultTableModel modelo = new DefaultTableModel(){
         public boolean isCellEditable(int fila, int columna){
-            return true;
+            return columna != 0;
         }
     };
     private void cargarlistaPaciente() { 

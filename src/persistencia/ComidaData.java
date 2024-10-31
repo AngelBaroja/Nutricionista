@@ -19,10 +19,10 @@ import java.util.List;
  * @author Luciano
  */
 public class ComidaData {
-    private Connection conexion ;
+    private Connection conexion = null;
 
-    public ComidaData(Connection conexion) {
-        this.conexion = conexion;
+    public ComidaData(Conexion conexion) {
+        this.conexion = conexion.buscarConexion();
     }
     
     public void guardarComida(Comida comida) {
@@ -107,7 +107,7 @@ public class ComidaData {
                return null;
         }
         
-        public List<Comida> listarComidas(){
+        public List<Comida> listarComidasBaja(){
             List <Comida> comidas = new ArrayList<>();
             String query = "SELECT * FROM comida WHERE baja = false";
            try{
@@ -133,25 +133,49 @@ public class ComidaData {
               
             
         }
+        public List<Comida> listarComidas(){
+            List <Comida> comidas = new ArrayList<>();
+            String query = "SELECT * FROM comida";
+           try{
+               Statement stmt = conexion.createStatement();
+               ResultSet rs = stmt.executeQuery(query);
+               
+               while    (rs.next()){
+                   Comida comida = new Comida(
+                    rs.getInt("codComida"),
+                    rs.getString("nombre"),
+                    rs.getString("tipoComida"),
+                    rs.getInt("caloriasPorPorcion"),
+                    rs.getString("detalle"),
+                    rs.getBoolean("baja")
+                    
+                    );
+                   comidas.add(comida);
+               }
+           }catch (SQLException e){
+               System.out.println("Error al listar comidas: " + e.getMessage() );
+           }
+               return comidas;
+              
+            
+        }
         
-        public void EliminarComida(Comida comida){
-             String query = "DELETE comida WHERE nombre = ? , tipoComida = ?, caloriasPorPorcion = ?, detalle = ?, baja = ?";
+        public void EliminarComida(int codComida){
+             String query = "DELETE FROM comida WHERE codComida = ?";
             try{
                 PreparedStatement ps = conexion.prepareStatement(query);
-                ps.setString(1, comida.getNombre());
-                ps.setString(2, comida.getTipoComida());
-                ps.setInt(3, comida.getCaloriasPorPorcion());
-                ps.setString(4, comida.getDetalle());
-                ps.setBoolean(5, comida.isBaja());
-                ps.setInt(6, comida.getCodComida());
+                ps.setInt(1, codComida);
                
-                ps.executeUpdate();
-                System.out.println("Comida eliminada con exito.");
-                
+                int filas = ps.executeUpdate();
+                if (filas > 1) {
+                    System.out.println("Comida eliminada con exito.");
+                }
+                ps.close();
                 }catch (SQLException e){
                 System.out.println("Error al eliminar comida: " +e.getMessage());
                 }
             }
+        
 }
     
 
