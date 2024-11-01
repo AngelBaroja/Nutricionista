@@ -174,53 +174,88 @@ public class vistaPacientes extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
+ try {
+    String nombre = Nombre.getText().trim();
+    int edad = (int) Edad.getValue();
+    
 
-    try {
-        String nombre = Nombre.getText().trim();
-        int edad = (int) Edad.getValue();
+    String alturaText = Altura.getText().trim();
+    String pesoActualText = PesoActual.getText().trim();
+    String pesoBuscadoText = PesoBuscado.getText().trim();
 
-        String alturaText = Altura.getText().trim();
-        String pesoActualText = PesoActual.getText().trim();
-        String pesoBuscadoText = PesoBuscado.getText().trim();
-
-        // Validar que no tenga más de dos decimales
-        if (!isValidDecimal(alturaText) || !isValidDecimal(pesoActualText) || !isValidDecimal(pesoBuscadoText)) {
-            JOptionPane.showMessageDialog(this, "Por favor, ingresa un número válido con hasta dos decimales.");
-            return;
-        }
-
-        double altura = Math.round(Double.parseDouble(alturaText) * 100.0) / 100.0;
-        double pesoActual = Math.round(Double.parseDouble(pesoActualText) * 100.0) / 100.0;
-        double pesoBuscado = Math.round(Double.parseDouble(pesoBuscadoText) * 100.0) / 100.0;
-
-        // Validación de campos vacíos
-        if (nombre.isEmpty() || altura <= 0 || pesoActual <= 0 || pesoBuscado <= 0) {
-            JOptionPane.showMessageDialog(this, "Por favor, completa todos los campos correctamente.");
-            return;
-        }
-
-        Paciente paciente = new Paciente(nombre, edad, altura, pesoActual, pesoBuscado);
-        pacienteData.guardarPaciente(paciente);
-
-        JOptionPane.showMessageDialog(this, "Paciente guardado exitosamente.");
-        limpiarCampos();
-
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Por favor, ingresa valores válidos en todos los campos.");
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar el paciente: " + e.getMessage());
+    // Validación de campos vacíos o valores no válidos
+    if (nombre.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "El nombre no puede estar vacío.");
+        return;
     }
-}
+      if (edad < 0) {
+        JOptionPane.showMessageDialog(this, "La edad no puede ser un número negativo.");
+        return;
+    }
+    if (alturaText.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Altura no puede estar vacía.");
+        return;
+    }
+    if (pesoActualText.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Peso actual no puede estar vacío.");
+        return;
+    }
+    if (pesoBuscadoText.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Peso buscado no puede estar vacío.");
+        return;
+    }
 
-// Método para validar que el número tiene hasta dos decimales
-private boolean isValidDecimal(String text) {
-    if (text.isEmpty()) return false; // Si el campo está vacío
-    String regex = "^\\d+(\\.\\d{1,2})?$"; // Expresión regular para hasta dos decimales
-    return text.matches(regex);
+    if (!isValidDecimal(alturaText)) {
+        JOptionPane.showMessageDialog(this, "Altura debe ser un número válido con hasta dos decimales y punto.");
+        return;
+    }
+    if (!isValidDecimal(pesoActualText)) {
+        JOptionPane.showMessageDialog(this, "Peso actual debe ser un número válido con hasta dos decimales y punto.");
+        return;
+    }
+    if (!isValidDecimal(pesoBuscadoText)) {
+        JOptionPane.showMessageDialog(this, "Peso buscado debe ser un número válido con hasta dos decimales y punto.");
+        return;
+    }
+
+    double altura = Math.round(Double.parseDouble(alturaText) * 100.0) / 100.0;
+    double pesoActual = Math.round(Double.parseDouble(pesoActualText) * 100.0) / 100.0;
+    double pesoBuscado = Math.round(Double.parseDouble(pesoBuscadoText) * 100.0) / 100.0;
+
+    if (altura <= 0) {
+        JOptionPane.showMessageDialog(this, "Altura debe ser mayor que 0.");
+        return;
+    }
+    if (pesoActual <= 0) {
+        JOptionPane.showMessageDialog(this, "Peso actual debe ser mayor que 0.");
+        return;
+    }
+    if (pesoBuscado <= 0) {
+        JOptionPane.showMessageDialog(this, "Peso buscado debe ser mayor que 0.");
+        return;
+    }
+
+    Paciente paciente = new Paciente(nombre, edad, altura, pesoActual, pesoBuscado);
+    pacienteData.guardarPaciente(paciente);
+
+    JOptionPane.showMessageDialog(this, "Paciente guardado exitosamente.");
+    limpiarCampos();
+
+} catch (NumberFormatException e) {
+    JOptionPane.showMessageDialog(this, "Por favor, ingresa valores válidos en todos los campos.");
+} catch (Exception e) {
+    JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar el paciente: " + e.getMessage());
+}
 
 
     }//GEN-LAST:event_GuardarActionPerformed
-  private void limpiarCampos() {
+  private boolean isValidDecimal(String text) {
+    if (text.isEmpty()) return false; 
+    String regex = "^\\d+(\\.\\d{1,2})?$"; 
+    return text.matches(regex);
+  }
+  
+private void limpiarCampos() {
         Nombre.setText(""); 
         Edad.setValue(0);   
         Altura.setText(""); 
