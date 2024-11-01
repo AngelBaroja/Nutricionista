@@ -12,6 +12,7 @@ import java.util.List;
 import persistencia.Conexion;
 import persistencia.DietaData;
 import persistencia.PacienteData;
+import persistencia.MenuDiarioData;
 
 /**
  *
@@ -23,8 +24,13 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-     /*   Conexion conexion = new Conexion ("jdbc:mysql://localhost/nutricionista", "root", "");
-        PacienteData pacienteData= new PacienteData(conexion);
+       Conexion conexion = new Conexion ("jdbc:mysql://localhost/nutricionista", "root", "");
+       MenuDiarioData menuData = new MenuDiarioData(conexion);
+       menuData.GenerarMenuDiario(menu);
+       /*Dieta d = new Dieta(2, null, null, null, null, 0, true, 0, null, 0);
+       MenuDiario menu = new MenuDiario(3, true, null, 12, d);
+       menuData.GenerarMenuDiario(menu);
+        /*PacienteData pacienteData= new PacienteData(conexion);
           DietaData dietaData = new DietaData(conexion);
         System.out.println(pacienteData.buscarPaciente(1).toString());
           System.out.println(dietaData.buscarDieta(1).toString());
@@ -96,8 +102,8 @@ public class Main {
 //           Imprimir los menús generados
 //           menu.imprimirMenuDiario(); */
                         
-        Menu  VistaMenu = new Menu(); // Crear una instancia de la vista
-        VistaMenu.setVisible(true);
+       // Menu  VistaMenu = new Menu(); // Crear una instancia de la vista
+       // VistaMenu.setVisible(true);
     }
     
 }

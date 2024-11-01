@@ -5,11 +5,12 @@
         <group>
             <file>file:/C:/Users/Valentino/Documents/GitHub/Nutricionista/src/persistencia/ComidaData.java</file>
             <file>file:/C:/Users/Valentino/Documents/GitHub/Nutricionista/src/Entidades/Comida.java</file>
-            <file>file:/C:/Users/Valentino/Documents/GitHub/Nutricionista/src/Entidades/Dieta.java</file>
             <file>file:/C:/Users/Valentino/Documents/GitHub/Nutricionista/src/Vistas/VistasComida.java</file>
+            <file>file:/C:/Users/Valentino/Documents/GitHub/Nutricionista/src/persistencia/DietaData.java</file>
             <file>file:/C:/Users/Valentino/Documents/GitHub/Nutricionista/src/Entidades/MenuDiario.java</file>
-            <file>file:/C:/Users/Valentino/Documents/GitHub/Nutricionista/src/Entidades/Paciente.java</file>
-            <file>file:/C:/Users/Valentino/Documents/GitHub/Nutricionista/src/Entidades/RenglonDeMenu.java</file>
+            <file>file:/C:/Users/Valentino/Documents/GitHub/Nutricionista/src/nutricionista/Main.java</file>
+            <file>file:/C:/Users/Valentino/Documents/GitHub/Nutricionista/src/Vistas/Menu.java</file>
+            <file>file:/C:/Users/Valentino/Documents/GitHub/Nutricionista/src/persistencia/MenuDiarioData.java</file>
         </group>
     </open-files>
 </project-private>
