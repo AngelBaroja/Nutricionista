@@ -19,18 +19,13 @@ public class MenuDiarioData {
         this.conexion = conexion.buscarConexion();
     }
     
-     public void AlterarDietaDiaria(MenuDiario menu){
-          String query = "UPDATE menuDiario diaNro = ? estado = ? codDieta = ? WHERE codMenu = ?";
+     public void AlterarDietaDiaria(MenuDiario menu, Dieta diet){
+          String query = "UPDATE menuDiario SET codDieta = ? WHERE codMenu = ?";
         
         try {
             PreparedStatement ps = conexion.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, menu.getDia());
-            ps.setBoolean(2, menu.isEstado());
-           /* Array we = (Array) menu.getComidas();
-            ps.setArray(3, we); //no creo que funcione, pero pareceria que si
-            ps.setDouble(4, menu.getPesoActual());*/
-            ps.setInt(3, menu.getDieta().getCodDieta());
-            ps.setInt(4, menu.getCodMenu());
+            ps.setInt(1, diet.getCodDieta());
+            ps.setInt(2, menu.getCodMenu());
             ps.executeUpdate();
             
             ResultSet rs = ps.getGeneratedKeys();
@@ -42,15 +37,14 @@ public class MenuDiarioData {
             JOptionPane.showMessageDialog(null, "Error al acceder a tabla");
         }
      }
-     
-      public void AñadirRenglon(MenuDiario menu, RenglonDeMenu reng){ //no se como implementarlos con la base de datos, voy a revisar luego
-         String query = "UPDATE menuDiario SET comidas = ? WHERE codMenu = ?";
+  
+      public void AñadirRenglon(MenuDiario menu, RenglonDeMenu reng){ //creo que esto iria en RenglonDeMenuData, ya que estan conectados desde la primary key del menu y no creo que se pueda desde este lado sin añadir mas valores a la base de datos
+         String query = "UPDATE renglondemenu SET codMenu = ? WHERE nroRenglon = ?";
          try{
              PreparedStatement ps =conexion.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
              menu.addRenglon(reng);
-             Array we = (Array) menu.getComidas();
-             ps.setArray(1, we);
-             ps.setInt(2, menu.getCodMenu());
+             ps.setInt(1, menu.getCodMenu());
+             ps.setInt(2, reng.getNroRenglon());
              ps.executeUpdate();
              ResultSet rs = ps.getGeneratedKeys();
              ps.close();
@@ -61,19 +55,19 @@ public class MenuDiarioData {
       }
       
        public void CambiarRenglon(MenuDiario menu, RenglonDeMenu reng){
-         String query = "UPDATE menuDiario SET comidas = ? WHERE codMenu = ?";
+         String query = "UPDATE renglondemenu SET codMenu = ? WHERE nroRenglon = ?";
          try{
              PreparedStatement ps =conexion.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
-             for(RenglonDeMenu r : menu.getComidas()){
+             /*for(RenglonDeMenu r : menu.getComidas()){
                  if(r.getNroRenglon() == reng.getNroRenglon()){
                      r = reng;
                  }else{
                      System.out.println("no existe el renglon a actualizar");
                  }
-             }
-             Array we = (Array) menu.getComidas();
-             ps.setArray(1, we);
-             ps.setInt(2, menu.getCodMenu());
+             }*/
+             menu.addRenglon(reng);
+             ps.setInt(1, menu.getCodMenu());
+             ps.setInt(2, reng.getNroRenglon());
              ps.executeUpdate();
              ResultSet rs = ps.getGeneratedKeys();
              ps.close();
@@ -102,7 +96,7 @@ public class MenuDiarioData {
             System.out.println("Menu generado");
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a tabla");
+            JOptionPane.showMessageDialog(null, "Error al acceder a tabla"+ex.getMessage());
         }
     }
       public void borrarMenuDiario(int cod) { //borrara el menuDiario y sus renglones, no se puede eliminar menu sin eliminar renglon
@@ -130,6 +124,31 @@ public class MenuDiarioData {
             JOptionPane.showMessageDialog(null, "Error al acceder a tabla");
         }
     }
+      
+      public MenuDiario BuscarMenu(int cod){
+          String query = "SELECT * FROM menudiario WHERE codMenu = ?";
+          MenuDiario me = null;
+          try{
+             PreparedStatement ps = conexion.prepareStatement(query);
+             ps.setInt(1, cod);
+             
+            
+             System.out.println("Menu Encontrado");
+              ResultSet rs = ps.executeQuery();
+               if (rs.next()) {
+                me = new MenuDiario();
+                me.setCodMenu(rs.getInt("codMenu"));
+                me.setDia(rs.getInt("nroDia"));
+                me.setEstado(rs.getBoolean("estado"));
+               }
+               ps.close();
+         } catch (SQLException ex) {
+             System.out.println("Se Produjo un error con la base de datos");;
+         }
+          return me;
+    }
+      
+      
       public void CambiarEstadoFalse(int cod) {
             String query = "UPDATE menuDiario SET estado = false WHERE codMenu = ? ";
             try{

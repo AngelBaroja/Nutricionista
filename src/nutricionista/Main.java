@@ -9,6 +9,7 @@ import Vistas.Menu;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Spliterator;
 import persistencia.Conexion;
 import persistencia.DietaData;
 import persistencia.PacienteData;
@@ -25,11 +26,13 @@ public class Main {
      */
     public static void main(String[] args) {
        Conexion conexion = new Conexion ("jdbc:mysql://localhost/nutricionista", "root", "");
+        DietaData dietaData = new DietaData(conexion);
        MenuDiarioData menuData = new MenuDiarioData(conexion);
-       menuData.GenerarMenuDiario(menu);
-       /*Dieta d = new Dieta(2, null, null, null, null, 0, true, 0, null, 0);
-       MenuDiario menu = new MenuDiario(3, true, null, 12, d);
-       menuData.GenerarMenuDiario(menu);
+         Dieta diet = dietaData.buscarDieta(2);
+          //diet.setPesoFinal(70);
+       
+         MenuDiario menu = menuData.BuscarMenu(22); //por aca salta error de base de datos, pero aun asi funciona
+       menuData.AlterarDietaDiaria(menu, diet);
         /*PacienteData pacienteData= new PacienteData(conexion);
           DietaData dietaData = new DietaData(conexion);
         System.out.println(pacienteData.buscarPaciente(1).toString());
