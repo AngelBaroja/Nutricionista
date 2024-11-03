@@ -24,7 +24,7 @@ public class RenglonDeMenu {
         this.comida = comida;
     }
 
-    public double getCantidadPorciones() {
+    public int getCantidadPorciones() {
         return cantidadPorciones;
     }
 
