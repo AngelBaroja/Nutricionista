@@ -115,6 +115,11 @@ public class VistaIniciarDieta extends javax.swing.JInternalFrame {
                 jbGenerarDietaMouseClicked(evt);
             }
         });
+        jbGenerarDieta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbGenerarDietaActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Salir");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -351,6 +356,10 @@ public class VistaIniciarDieta extends javax.swing.JInternalFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jbGenerarDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGenerarDietaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbGenerarDietaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -61,7 +61,7 @@ public class RenglonDeMenuData {
     } 
 }
     public void darBajaRenglonDeMenu(int nroRenglon){
-        String query = "UPDATE renglondemenu SET baja true WHERE nroRenglon  = ?  ";
+        String query = "UPDATE renglondemenu SET baja=true WHERE nroRenglon  = ?  ";
         try {
             PreparedStatement ps = conexion.prepareStatement(query);
             ps.setInt(1, nroRenglon);
@@ -116,12 +116,10 @@ public class RenglonDeMenuData {
                 RenglonDeMenu renglon = new RenglonDeMenu(
                 rs.getInt("nroRenglon"),
                 comida,
-                  rs.getInt("canridadPorciones")
-                
+                rs.getInt("canridadPorciones")                
                 );
                 renglon.setSubtotalCalorias(rs.getDouble("subTotalCalorias"));
-                renglones.add(renglon);
-                
+                renglones.add(renglon);                
             }
         }catch (SQLException e){
             System.out.println("Error al listar renglones de menu:  " + e.getMessage());

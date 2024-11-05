@@ -155,9 +155,31 @@ public class ComidaData {
            }catch (SQLException e){
                System.out.println("Error al listar comidas: " + e.getMessage() );
            }
-               return comidas;
-              
-            
+               return comidas; 
+        }
+          public List<Comida> listarComidasActivas(){
+            List <Comida> comidas = new ArrayList<>();
+            String query = "SELECT * FROM comida WHERE baja=false";
+           try{
+               Statement stmt = conexion.createStatement();
+               ResultSet rs = stmt.executeQuery(query);
+               
+               while    (rs.next()){
+                   Comida comida = new Comida(
+                    rs.getInt("codComida"),
+                    rs.getString("nombre"),
+                    rs.getString("tipoComida"),
+                    rs.getInt("caloriasPorPorcion"),
+                    rs.getString("detalle"),
+                    rs.getBoolean("baja")
+                    
+                    );
+                   comidas.add(comida);
+               }
+           }catch (SQLException e){
+               System.out.println("Error al listar comidas: " + e.getMessage() );
+           }
+               return comidas; 
         }
         
         public void EliminarComida(int codComida){

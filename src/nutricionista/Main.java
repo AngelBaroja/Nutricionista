@@ -6,6 +6,7 @@ package nutricionista;
 
 import Entidades.*;
 import Vistas.Menu;
+import Vistas.VistaRenglonDeMenu;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,14 +26,14 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       Conexion conexion = new Conexion ("jdbc:mysql://localhost/nutricionista", "root", "");
-        DietaData dietaData = new DietaData(conexion);
-       MenuDiarioData menuData = new MenuDiarioData(conexion);
-         Dieta diet = dietaData.buscarDieta(2);
-          //diet.setPesoFinal(70);
-       
-         MenuDiario menu = menuData.BuscarMenu(22); //por aca salta error de base de datos, pero aun asi funciona
-       menuData.AlterarDietaDiaria(menu, diet);
+//       Conexion conexion = new Conexion ("jdbc:mysql://localhost/nutricionista", "root", "");
+//        DietaData dietaData = new DietaData(conexion);
+//       MenuDiarioData menuData = new MenuDiarioData(conexion);
+//         Dieta diet = dietaData.buscarDieta(2);
+//          //diet.setPesoFinal(70);
+//       
+//         MenuDiario menu = menuData.BuscarMenu(22); //por aca salta error de base de datos, pero aun asi funciona
+//       menuData.AlterarDietaDiaria(menu, diet);
         /*PacienteData pacienteData= new PacienteData(conexion);
           DietaData dietaData = new DietaData(conexion);
         System.out.println(pacienteData.buscarPaciente(1).toString());
@@ -105,8 +106,10 @@ public class Main {
 //           Imprimir los menús generados
 //           menu.imprimirMenuDiario(); */
                         
-       // Menu  VistaMenu = new Menu(); // Crear una instancia de la vista
-       // VistaMenu.setVisible(true);
+        Menu  VistaMenu = new Menu(); // Crear una instancia de la vista
+        VistaMenu.setVisible(true);
+       
+                
     }
     
 }
