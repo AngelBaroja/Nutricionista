@@ -7,6 +7,7 @@ public class RenglonDeMenu {
     private Comida comida;
     private int cantidadPorciones;
     private double subtotalCalorias;
+    private MenuDiario menu;
 
     public int getNroRenglon() {
         return nroRenglon;
@@ -40,23 +41,42 @@ public class RenglonDeMenu {
         this.subtotalCalorias = subtotalCalorias;
     }
 
+    public MenuDiario getMenu() {
+        return menu;
+    }
+
+    public void setMenu(MenuDiario menu) {
+        this.menu = menu;
+    } 
+    
     public RenglonDeMenu() {
     }
 
-    public RenglonDeMenu(int nroRenglon, Comida comida, int cantidadPorciones) {
+    public RenglonDeMenu(Comida comida, double subtotalCalorias) {
+        this.comida = comida;
+        this.subtotalCalorias = subtotalCalorias;
+    }
+
+    public RenglonDeMenu(Comida comida, int cantidadPorciones, double subtotalCalorias, MenuDiario menu) {
+        this.comida = comida;
+        this.cantidadPorciones = cantidadPorciones;
+        this.subtotalCalorias = subtotalCalorias;
+        this.menu = menu;
+    }
+
+    public RenglonDeMenu(int nroRenglon, Comida comida, int cantidadPorciones, double subtotalCalorias, MenuDiario menu) {
         this.nroRenglon = nroRenglon;
         this.comida = comida;
         this.cantidadPorciones = cantidadPorciones;
-        this.subtotalCalorias = contadorCalorias();
-
+        this.subtotalCalorias = subtotalCalorias;
+        this.menu = menu;
     }
+    
+    
 
-    public RenglonDeMenu(Comida comida, int cantidadPorciones) {
-        this.comida = comida;
-        this.cantidadPorciones = cantidadPorciones;
-        this.subtotalCalorias = contadorCalorias();
+    
 
-    }
+    
 
     @Override
     public String toString() {

@@ -151,6 +151,11 @@ import java.util.stream.Collectors;
             System.out.println(renglon.getComida().getNombre());
         }
    }   
+    
+    @Override
+    public String toString() {
+        return codMenu+" / "+dieta.getNombreD()+", "+dieta.getPaciente().getNombre();
+    }
 }
 
 
