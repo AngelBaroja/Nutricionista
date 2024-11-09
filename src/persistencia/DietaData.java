@@ -195,9 +195,9 @@ public class DietaData {
                 } else {
                     dieta.setPaciente(null); // Manejo en caso de que nroPaciente sea NULL
                 }
-                JOptionPane.showMessageDialog(null, "Dieta encontrada");
+//                JOptionPane.showMessageDialog(null, "Dieta encontrada");
             } else {
-                JOptionPane.showMessageDialog(null, "Dieta no encontrada");
+//                JOptionPane.showMessageDialog(null, "Dieta no encontrada");
             }
             ps.close();
 

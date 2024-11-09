@@ -158,7 +158,7 @@ public class Dieta {
 
     @Override
     public String toString() {
-        return "Dieta{" + "codDieta=" + codDieta + ", nombreD=" + nombreD + ", menus=" + menus + ", fechaIni=" + fechaIni + ", fechaFin=" + fechaFin + ", pesoFinal=" + pesoFinal + ", estado=" + estado + ", totalCalorias=" + totalCalorias + ", paciente=" + paciente + ", pesoInicial=" + pesoInicial + '}';
+        return codDieta+" / "+nombreD+" / "+paciente.getNombre();
     }
     
 }
