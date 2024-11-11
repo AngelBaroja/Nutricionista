@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost:3307
--- Tiempo de generación: 26-10-2024 a las 01:29:02
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 11-11-2024 a las 19:43:21
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -46,7 +46,28 @@ INSERT INTO `comida` (`codComida`, `nombre`, `tipoComida`, `caloriasPorPorcion`,
 (1, 'Avena', 'desayuno', 389, 'Avena cocida con agua', 0),
 (2, 'Pollo a la plancha', 'almuerzo', 165, 'Pechuga de pollo sin piel', 0),
 (3, 'Ensalada mixta', 'cena', 45, 'Lechuga, tomate, zanahoria', 0),
-(4, 'Pasta integral', 'almuerzo', 124, 'Pasta de trigo integral cocida', 1);
+(4, 'Pasta integral', 'almuerzo', 124, 'Pasta de trigo integral cocida', 1),
+(5, 'Yogur natural', 'merienda', 100, 'Yogur', 0),
+(6, 'Tostadas Integrales', 'desayuno', 120, 'Tostadas integrales con mermelada sin azúcar', 0),
+(7, 'Huevos revueltos', 'desayuno', 200, 'Huevos revueltos con espinaca y tomate', 0),
+(8, 'Panqueques de avena', 'desayuno', 180, 'Panqueques de avena y plátano', 0),
+(9, 'Smoothie de frutas', 'merienda', 150, 'Smoothie de frutas mixtas con yogur', 0),
+(10, 'Barrita de cereal', 'merienda', 90, 'Barrita de cereal y frutos secos', 0),
+(11, 'Sándwich de pavo', 'merienda', 250, 'Sándwich de pan integral con pavo y queso', 0),
+(12, 'Sopa de verduras', 'almuerzo', 200, 'Sopa de verduras variadas', 0),
+(13, 'Arroz con pollo', 'almuerzo', 400, 'Arroz integral con pechuga de pollo', 0),
+(14, 'Pasta integral con salsa', 'almuerzo', 350, 'Pasta integral con salsa de tomate y verduras', 0),
+(15, 'Ensalada César', 'almuerzo', 300, 'Ensalada César con pollo y aderezo ligero', 0),
+(16, 'Yogur con frutas', 'snack', 100, 'Yogur bajo en grasa con frutas frescas', 0),
+(17, 'Frutos secos', 'snack', 150, 'Mezcla de almendras, nueces y pasas', 0),
+(18, 'Galletas integrales', 'snack', 80, 'Galletas integrales sin azúcar', 0),
+(19, 'Salmón al horno', 'cena', 350, 'Filete de salmón al horno con limón y especias', 0),
+(20, 'Tacos de pescado', 'cena', 320, 'Tacos con pescado y vegetales', 0),
+(21, 'Verduras asadas', 'cena', 200, 'Verduras asadas al horno con hierbas', 0),
+(22, 'Omelette de vegetales', 'cena', 180, 'Omelette de claras de huevo y vegetales', 0),
+(23, 'Ensalada de quinoa', 'cena', 250, 'Ensalada de quinoa con vegetales y aguacate', 0),
+(24, 'Lasaña de berenjena', 'cena', 300, 'Lasaña con láminas de berenjena en lugar de pasta', 0),
+(25, 'Hamburguesa de lentejas', 'cena', 280, 'Hamburguesa de lentejas con pan integral', 0);
 
 -- --------------------------------------------------------
 
@@ -73,7 +94,10 @@ CREATE TABLE `dieta` (
 INSERT INTO `dieta` (`codDieta`, `nombreD`, `fechaIni`, `fechaFin`, `pesoFinal`, `pesoInicial`, `estado`, `totalCalorias`, `nroPaciente`) VALUES
 (1, 'Dieta Baja en Carbohidratos', '2024-01-01', '2024-03-01', 75, NULL, 1, 1500, 1),
 (2, 'Dieta Vegetariana', '2024-02-15', '2024-05-15', 60, NULL, 1, 1800, 2),
-(3, 'Dieta Keto', '2024-01-10', '2024-04-10', 85, NULL, 0, 2000, 3);
+(3, 'Dieta Keto', '2024-01-10', '2024-04-10', 85, NULL, 0, 2000, 3),
+(10, 'Dieta de Nicolas', '2024-01-01', '2024-01-04', 75, 85, 1, 0, 4),
+(11, 'Dieta de Matias', '2024-02-02', '2024-02-06', 60, 65, 1, 0, 5),
+(12, 'Dieta de Angel', '2024-02-15', '2024-02-20', 80, 92, 1, 0, 6);
 
 -- --------------------------------------------------------
 
@@ -95,7 +119,11 @@ CREATE TABLE `menudiario` (
 INSERT INTO `menudiario` (`codMenu`, `diaNro`, `estado`, `codDieta`) VALUES
 (1, 1, 1, 1),
 (2, 2, 1, 2),
-(3, 3, 0, 3);
+(3, 3, 0, 3),
+(4, 1, 1, 10),
+(5, 2, 1, 10),
+(6, 1, 1, 11),
+(7, 2, 1, 11);
 
 -- --------------------------------------------------------
 
@@ -120,7 +148,11 @@ INSERT INTO `paciente` (`nroPaciente`, `nombre`, `edad`, `altura`, `pesoActual`,
 (1, 'Juan Perez', 105, 1.75, 80.5, 75),
 (2, 'Maria Lopez', 42, 1.62, 68.1, 60),
 (3, 'Carlos García', 28, 1.79, 90, 85),
-(5, 'Matias Corvalan', 26, 1.7, 80, 75);
+(4, 'Nicolas Lucero', 39, 1.73, 85, 80),
+(5, 'Matias Corvalan', 26, 1.7, 80, 75),
+(6, 'Angel Baroja', 28, 1.8, 90, 86),
+(7, 'Valentino Coppola', 42, 1.82, 92, 80),
+(8, 'Luciano Camaño', 20, 1.7, 76, 70);
 
 -- --------------------------------------------------------
 
@@ -191,25 +223,25 @@ ALTER TABLE `renglondemenu`
 -- AUTO_INCREMENT de la tabla `comida`
 --
 ALTER TABLE `comida`
-  MODIFY `codComida` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `codComida` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `dieta`
 --
 ALTER TABLE `dieta`
-  MODIFY `codDieta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `codDieta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `menudiario`
 --
 ALTER TABLE `menudiario`
-  MODIFY `codMenu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `codMenu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `paciente`
 --
 ALTER TABLE `paciente`
-  MODIFY `nroPaciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `nroPaciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `renglondemenu`
