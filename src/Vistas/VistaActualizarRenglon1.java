@@ -448,15 +448,15 @@ public class VistaActualizarRenglon1 extends javax.swing.JInternalFrame {
     public void cargarTodasFilas(int jrSeleccionado) {
         borrarFilasTablas();
        Dieta dieta=(Dieta) jcbDieta.getSelectedItem();
-        for (RenglonDeMenu listaRenglon : renglonData.listarRenglonesPorMenuDiario(dieta.getCodDieta(), jrSeleccionado)) {            
-                  modelo.addRow(new Object[]{
+        for (RenglonDeMenu listaRenglon : renglonData.listarRenglonesPorMenuDiario(dieta.getCodDieta(), jrSeleccionado)) {      
+            modelo.addRow(new Object[]{
                 listaRenglon.getNroRenglon(),
                 listaRenglon.getComida().getNombre(),
                 listaRenglon.getCantidadPorciones(),
                 listaRenglon.getSubtotalCalorias(),
                 listaRenglon.getMenu().getCodMenu()
-            });
-                    
+            }
+                  );   
         }
     }    
    

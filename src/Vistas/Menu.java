@@ -37,6 +37,8 @@ public class Menu extends javax.swing.JFrame {
         jmGenerarDieta = new javax.swing.JMenuItem();
         jmPacientesEnDieta = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jmiRenglonDeMenu = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -111,6 +113,28 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Menu");
+        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu3MouseClicked(evt);
+            }
+        });
+
+        jMenuItem4.setText("Cargar Menu");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem4);
+
+        jMenuItem5.setText("Eliminar Menu");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem5);
+
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Renglones");
@@ -240,6 +264,27 @@ public class Menu extends javax.swing.JFrame {
         Escritorio.add(vc);
         Escritorio.moveToFront(vc);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
+
+    }//GEN-LAST:event_jMenu3MouseClicked
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        VistaCargarMenuDiario vm = new VistaCargarMenuDiario();
+        vm.setVisible(true);
+        Escritorio.add(vm);
+        Escritorio.moveToFront(vm);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        VistaMostrarMenu vm = new VistaMostrarMenu();
+        vm.setVisible(true);
+        Escritorio.add(vm);
+        Escritorio.moveToFront(vm);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -287,6 +332,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jmGenerarDieta;
     private javax.swing.JMenuItem jmPacientesEnDieta;
     private javax.swing.JMenuItem jmiRenglonDeMenu;

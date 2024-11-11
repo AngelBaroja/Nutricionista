@@ -10,6 +10,7 @@ package Entidades;
  * @author Nicolas
  */
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -161,4 +162,7 @@ public class Dieta {
         return codDieta+" / "+nombreD+" / "+paciente.getNombre();
     }
     
+    public int cantDias(){
+        return (int) ChronoUnit.DAYS.between(this.fechaIni, this.fechaFin);
+    }
 }

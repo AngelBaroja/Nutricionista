@@ -428,6 +428,7 @@ public class VistaRenglonDeMenu extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jtDetalleComidaMouseEntered
 
     private void jbGenerarRenglonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGenerarRenglonActionPerformed
+        int calorias = 0;
         boolean invalidar = false;
         if (tabla.getSelectedRow()!=-1 && ListaDeRenglones.size() <= 5) {
             Comida comida = comidaData.buscarComidaPorId((Integer) tabla.getValueAt(tabla.getSelectedRow(), 0));

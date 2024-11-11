@@ -173,4 +173,136 @@ public class MenuDiarioData {
              System.out.println("Se Produjo un error con la base de datos");;
          }
       }
+      
+      public ArrayList<MenuDiario> listaMenuDiario(){
+          ArrayList<MenuDiario> menus = new ArrayList<>();
+          MenuDiario menu = null;
+          Conexion conexion2 = new Conexion("jdbc:mysql://localhost/nutricionista", "root", "");
+          String query = "SELECT * FROM MenuDiario";
+          PreparedStatement ps;
+        try {
+            ps = conexion.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                menu = new MenuDiario();
+                menu.setCodMenu(rs.getInt("codMenu"));
+                menu.setDia((rs.getInt("diaNro")));
+                menu.setEstado(rs.getBoolean("estado"));
+                if (rs.getObject("codDieta") != null) {
+                    menu.setDieta(new DietaData(conexion2).buscarDieta(rs.getInt("codDieta")));
+                } else {
+                    menu.setDieta(null);
+                }
+                menus.add(menu);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla MenuDiario");
+        }
+          
+          return menus;
+      }
+      
+    public void GenerarMenuDiarioAuto(MenuDiario menu) {
+        String query = "INSERT INTO menuDiario(diaNro, estado, codDieta) VALUES (?, ?, ?)";
+
+        try {
+            PreparedStatement ps = conexion.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, menu.getDia());
+            ps.setBoolean(2, menu.isEstado());
+            ps.setInt(3, menu.getDieta().getCodDieta());
+
+            ps.executeUpdate();
+
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                int codMenuGenerado = rs.getInt(1);  // Recupera el valor de la clave generada
+                menu.setCodMenu(codMenuGenerado);    // Asigna el valor al objeto MenuDiario
+                System.out.println("Menu generado con éxito, codMenu: " + codMenuGenerado);
+            }
+
+            rs.close();
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a tabla: " + ex.getMessage());
+        }
+    }
+    public List<MenuDiario> listaMenuDiarioConEstadoRenglones() {
+        Conexion conexion2 = new Conexion("jdbc:mysql://localhost/nutricionista", "root", "");
+        List<MenuDiario> menus = new ArrayList<>();
+        String query = "SELECT md.codMenu, md.diaNro, md.estado,md.codDieta , COUNT(rd.codMenu) AS tieneRenglones "
+                     + "FROM MenuDiario md "
+                     + "LEFT JOIN RenglonDeMenu rd ON md.codMenu = rd.codMenu "
+                     + "GROUP BY md.codMenu";
+
+        try (PreparedStatement ps = conexion.prepareStatement(query);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                MenuDiario menu = new MenuDiario();
+                menu.setCodMenu(rs.getInt("codMenu"));
+                menu.setDia(rs.getInt("diaNro"));
+                menu.setEstado(rs.getBoolean("estado"));
+                if (rs.getObject("codDieta") != null) {
+                    menu.setDieta(new DietaData(conexion2).buscarDieta(rs.getInt("codDieta")));
+                } else {
+                    menu.setDieta(null);
+                }
+
+                boolean tieneRenglones = rs.getInt("tieneRenglones") > 0;
+                menu.setRenglones(tieneRenglones);
+
+                menus.add(menu);
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla MenuDiario: " + ex.getMessage());
+        }
+
+        return menus;
+    }
+    public ArrayList<Dieta> listaDietaSinMenu() {
+        ArrayList<Dieta> listaDieta = new ArrayList<>();
+        Dieta dieta = null;
+        Conexion conexion2 = new Conexion("jdbc:mysql://localhost/nutricionista", "root", "");
+        String query = "SELECT d.* FROM Dieta d LEFT JOIN MenuDiario m"
+                + " ON d.codDieta = m.codDieta WHERE m.codDieta IS NULL";
+        try {
+            PreparedStatement ps = conexion.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                dieta = new Dieta();
+                dieta.setCodDieta(rs.getInt("codDieta"));
+                dieta.setNombreD(rs.getString("nombreD"));
+                if (rs.getDate("fechaIni") != null) {
+                    dieta.setFechaIni(rs.getDate("fechaIni").toLocalDate());
+                }
+                if (rs.getDate("fechaFin") != null) {
+                    dieta.setFechaFin(rs.getDate("fechaFin").toLocalDate());
+                }
+                if (rs.getObject("pesoInicial") != null) {
+                    dieta.setPesoInicial(rs.getDouble("pesoInicial"));
+                }
+                if (rs.getObject("pesoFinal") != null) { // getObject permite detectar NULL
+                    dieta.setPesoFinal(rs.getDouble("pesoFinal"));
+                }
+
+                dieta.setEstado(rs.getBoolean("estado"));
+                dieta.setTotalCalorias(rs.getInt("totalCalorias"));
+                // Verificar y asignar nroPaciente (int)
+                if (rs.getObject("nroPaciente") != null) {
+                    dieta.setPaciente(new PacienteData(conexion2).buscarPaciente(rs.getInt("nroPaciente")));
+                } else {
+                    dieta.setPaciente(null); // Manejo en caso de que nroPaciente sea NULL
+                }
+                listaDieta.add(dieta);
+            }
+            System.out.println("Lista de Dieta");
+            ps.close();
+        } catch (SQLException ex) {
+            System.out.println("SE PRODUJO UN ERROR CON LA BASE DE DATOS FORMANDO LA LISTA DE DIETAS");
+        }
+        return listaDieta;
+    }
 }

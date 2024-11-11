@@ -52,8 +52,9 @@ public class RenglonDeMenu {
     public RenglonDeMenu() {
     }
 
-    public RenglonDeMenu(Comida comida, double subtotalCalorias) {
+    public RenglonDeMenu(Comida comida,int cantidadPorciones, double subtotalCalorias) {
         this.comida = comida;
+        this.cantidadPorciones = cantidadPorciones;
         this.subtotalCalorias = subtotalCalorias;
     }
 

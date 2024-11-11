@@ -435,5 +435,22 @@ public class DietaData {
         }
         return listaDieta;
     }
+    public void alterarDieta(Dieta dieta) {
+        String query = "UPDATE dieta SET totalCalorias = ? WHERE codDieta = ?";
+        PreparedStatement ps;
+        try {
+            ps = conexion.prepareStatement(query);
+            ps.setInt(1, dieta.getTotalCalorias());
+            ps.setInt(2, dieta.getCodDieta());
 
+            int filas = ps.executeUpdate();
+            if (filas > 0) {
+                JOptionPane.showMessageDialog(null, "Dieta actualizada");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a tabla Dieta");
+        }
+
+    }
 }

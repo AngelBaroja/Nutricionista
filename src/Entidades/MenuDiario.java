@@ -19,34 +19,33 @@ import java.util.stream.Collectors;
     private int dia;
     private boolean estado;
     private List<RenglonDeMenu> comidas;
-    private float pesoActual;
+    private boolean renglones;
     private Dieta dieta;
 
     public MenuDiario(int dia) {
         this.dia = dia;
         estado = true;
         comidas = new ArrayList<>();
+        this.dieta = null;
     }
 
     public MenuDiario() {
     }
    
-    public MenuDiario(int dia, boolean estado, List<RenglonDeMenu> comidas, float pesoActual, Dieta dieta) {
+    public MenuDiario(int dia, boolean estado, List<RenglonDeMenu> comidas, Dieta dieta) {
         this.dia = dia;
         this.estado = estado;
         this.comidas = comidas;
-        this.pesoActual = pesoActual;
         this.dieta = dieta;
     }
     
     
 
-    public MenuDiario(int codMenu, int dia, boolean estado, List<RenglonDeMenu> comidas, float pesoActual, Dieta dieta) {
+    public MenuDiario(int codMenu, int dia, boolean estado, List<RenglonDeMenu> comidas, Dieta dieta) {
         this.codMenu = codMenu;
         this.dia = dia;
         this.estado = estado;
         this.comidas = comidas;
-        this.pesoActual = pesoActual;
         this.dieta = dieta;
     }
 
@@ -60,14 +59,6 @@ import java.util.stream.Collectors;
 
     public int getDia() {
         return dia;
-    }
-
-    public float getPesoActual() {
-        return pesoActual;
-    }
-
-    public void setPesoActual(float pesoActual) {
-        this.pesoActual = pesoActual;
     }
 
     public Dieta getDieta() {
@@ -102,8 +93,12 @@ import java.util.stream.Collectors;
         MenuDiario menu = new MenuDiario(dia);
         Random random = new Random();
         List<Comida> comidasAlimento = alimentos.stream()
-                .filter(comida -> ingredientes.stream().anyMatch(ingrediente -> comida.getDetalle().contains(ingrediente)))
-                .collect(Collectors.toList());
+        .filter(comida -> ingredientes.stream()
+                .anyMatch(ingrediente -> 
+                    comida.getDetalle().toLowerCase().contains(ingrediente.toLowerCase())
+                ))
+        .collect(Collectors.toList());
+        System.out.println(comidasAlimento.size());
         if (comidasAlimento.size() < 5) {
             throw new IllegalArgumentException("No hay suficientes comidas que contengan los ingredientes elegidos.");
         }
@@ -114,18 +109,19 @@ import java.util.stream.Collectors;
                 .toList();
             if (!comidasTipo.isEmpty()) {
                 Comida comidafinal = comidasTipo.get(random.nextInt(comidasTipo.size()));
-                int cantidadGramos = 1 + (random.nextInt()* (3 - 1));
+                int cantidadPorciones = 1 + random.nextInt(3);
 
-                RenglonDeMenu renglon = new RenglonDeMenu(comidafinal, cantidadGramos);
+
+                RenglonDeMenu renglon = new RenglonDeMenu(comidafinal, cantidadPorciones,comidafinal.getCaloriasPorPorcion());
                 
                 menu.addRenglon(renglon);
             }
 
-        } 
+        }
         return menu;
     }
 
-    public MenuDiario armarDietaDiaria(List<RenglonDeMenu> comidas) {
+    public MenuDiario armarDietaDiaria(List<RenglonDeMenu> comidas, Dieta dieta) {
         MenuDiario menu = new MenuDiario(dia);
         for (RenglonDeMenu comida : comidas) {
             menu.addRenglon(comida);
@@ -156,6 +152,16 @@ import java.util.stream.Collectors;
     public String toString() {
         return codMenu+" / "+dieta.getNombreD()+", "+dieta.getPaciente().getNombre();
     }
+
+    public boolean isRenglones() {
+        return renglones;
+    }
+
+    public void setRenglones(boolean renglones) {
+        this.renglones = renglones;
+    }
+
+    
 }
 
 

@@ -253,6 +253,23 @@ public class RenglonDeMenuData {
         }
         
     }
+    
+    public void eliminarRenglonesDeMenu(int codMenu){
+        String query = "DELETE FROM renglondemenu WHERE codMenu = ?";
+        try {
+            PreparedStatement ps = conexion.prepareStatement(query);
+            ps.setInt(1, codMenu);
+            
+            int filas = ps.executeUpdate();
+            if (filas > 0) {
+                System.out.println("Renglon de menu eliominado con exito. ID: " + codMenu);
+                
+            }
+        }catch (SQLException e){
+            System.out.println("Error al eliminar renglon de menu:  " + e.getMessage());
+        }
+        
+    }
             
     
 }
