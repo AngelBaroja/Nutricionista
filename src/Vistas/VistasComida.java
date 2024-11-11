@@ -366,7 +366,7 @@ public class VistasComida extends javax.swing.JInternalFrame {
             String tipo = p.getTipoComida();
             int calorias = p.getCaloriasPorPorcion();
             String detalle = p.getDetalle();
-            boolean estado = p.isBaja();
+            String estado = p.isBaja() ? "Activa" : "No Activa";
 
             modelo.addRow(new Object[]{id, nombre, tipo, calorias, detalle, estado});
 

@@ -160,7 +160,7 @@ public class VistaMostrarMenu extends javax.swing.JInternalFrame {
             m.getCodMenu(),
             m.getDieta().getNombreD(),
             m.getDia(),
-            m.isEstado(),
+            m.isEstado() ? "Activa" : "No activa",
             m.isRenglones() ? "Sí" : "No"
         });
         }
