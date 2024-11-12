@@ -31,7 +31,7 @@ public class DietaData {
 
     }
 
-    public void GuardarDietaConPaciente(Dieta dieta) { 
+    public void GuardarDietaConPaciente(Dieta dieta) {
         String query = "INSERT INTO dieta(nombreD,fechaIni,fechaFin,pesoFinal,pesoInicial,estado,totalCalorias,nroPaciente) "
                 + " VALUES (?,?,?,?,?,?,?,?)";
 
@@ -44,7 +44,7 @@ public class DietaData {
             ps.setDouble(5, dieta.getPesoInicial());
             ps.setBoolean(6, dieta.isEstado());
             ps.setInt(7, dieta.getTotalCalorias());
-            ps.setInt(8, dieta.getPaciente().getNroPaciente());            
+            ps.setInt(8, dieta.getPaciente().getNroPaciente());
 
             ps.executeUpdate();
 
@@ -67,15 +67,16 @@ public class DietaData {
             JOptionPane.showMessageDialog(null, "Error al acceder a tabla Dieta");
         }
     }
-    public void GuardarDietaSinPaciente(Dieta dieta) { 
+
+    public void GuardarDietaSinPaciente(Dieta dieta) {
         String query = "INSERT INTO dieta(nombreD,estado,totalCalorias) "
                 + " VALUES (?,?,?)";
 
         try {
             PreparedStatement ps = conexion.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, dieta.getNombreD());           
+            ps.setString(1, dieta.getNombreD());
             ps.setBoolean(2, dieta.isEstado());
-            ps.setInt(3, dieta.getTotalCalorias());                     
+            ps.setInt(3, dieta.getTotalCalorias());
 
             ps.executeUpdate();
 
@@ -171,7 +172,7 @@ public class DietaData {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-               dieta = new Dieta();
+                dieta = new Dieta();
                 dieta.setCodDieta(rs.getInt("codDieta"));
                 dieta.setNombreD(rs.getString("nombreD"));
                 if (rs.getDate("fechaIni") != null) {
@@ -249,7 +250,7 @@ public class DietaData {
         }
         return listaDieta;
     }
-    
+
     public ArrayList<Dieta> listaDietaConPacienteCargados() {
         ArrayList<Dieta> listaDieta = new ArrayList<>();
         Dieta dieta = null;
@@ -292,7 +293,59 @@ public class DietaData {
         }
         return listaDieta;
     }
-    
+
+    public ArrayList<Dieta> listaDietaPorCodComida(int codComida) {
+        ArrayList<Dieta> listaDieta = new ArrayList<>();
+        Dieta dieta = null;
+        Conexion conexion2 = new Conexion("jdbc:mysql://localhost/nutricionista", "root", "");
+        String query = "SELECT DISTINCT d.*\n"
+                + "FROM Dieta d\n"
+                + "JOIN MenuDiario md ON d.codDieta = md.codDieta\n"
+                + "JOIN RenglondeMenu rm ON md.codMenu = rm.codMenu\n"
+                + "WHERE rm.codComida = ? AND d.estado = true";
+        try {
+            PreparedStatement ps = conexion.prepareStatement(query);
+           
+            ps.setInt(1, codComida);
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                dieta = new Dieta();
+                dieta.setCodDieta(rs.getInt("codDieta"));
+                dieta.setNombreD(rs.getString("nombreD"));
+                if (rs.getDate("fechaIni") != null) {
+                    dieta.setFechaIni(rs.getDate("fechaIni").toLocalDate());
+                }
+                if (rs.getDate("fechaFin") != null) {
+                    dieta.setFechaFin(rs.getDate("fechaFin").toLocalDate());
+                }
+                if (rs.getObject("pesoInicial") != null) {
+                    dieta.setPesoInicial(rs.getDouble("pesoInicial"));
+                }
+                if (rs.getObject("pesoFinal") != null) {
+                    dieta.setPesoFinal(rs.getDouble("pesoFinal"));
+                }
+
+                dieta.setEstado(rs.getBoolean("estado"));
+                dieta.setTotalCalorias(rs.getInt("totalCalorias"));
+
+                // Verificar y asignar nroPaciente (int)
+                if (rs.getObject("nroPaciente") != null) {
+                    dieta.setPaciente(new PacienteData(conexion2).buscarPaciente(rs.getInt("nroPaciente")));
+                } else {
+                    dieta.setPaciente(null);
+                }
+                listaDieta.add(dieta);
+            }
+
+            System.out.println("Lista de Dieta");
+            ps.close();
+        } catch (SQLException ex) {
+            System.out.println("SE PRODUJO UN ERROR CON LA BASE DE DATOS FORMANDO LA LISTA DE DIETAS POR EL CODCOMIDA: " + ex.getMessage());
+        }
+        return listaDieta;
+    }
+
     public ArrayList<Dieta> listaDietaConPacienteCargadosEstadoFalse() {
         ArrayList<Dieta> listaDieta = new ArrayList<>();
         Dieta dieta = null;
@@ -335,7 +388,7 @@ public class DietaData {
         }
         return listaDieta;
     }
-    
+
     public ArrayList<Dieta> listaDietaConPacienteCargadosEstadoActivo() {
         ArrayList<Dieta> listaDieta = new ArrayList<>();
         Dieta dieta = null;
@@ -378,8 +431,6 @@ public class DietaData {
         }
         return listaDieta;
     }
-    
-    
 
     public ArrayList<Dieta> listaDietaXCantidadDias(int dias) {
         ArrayList<Dieta> listaDieta = new ArrayList<>();

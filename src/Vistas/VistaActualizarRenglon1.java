@@ -33,6 +33,8 @@ public class VistaActualizarRenglon1 extends javax.swing.JInternalFrame {
     DietaData dietaData = new DietaData(conexion);
     public static int nroRenglon;
     public static int jr;
+    public static int nroRenglon;
+    
     private Menu menu;
     
     public VistaActualizarRenglon1(Menu menu) {
@@ -66,6 +68,8 @@ public class VistaActualizarRenglon1 extends javax.swing.JInternalFrame {
         jcbDieta = new javax.swing.JComboBox<>();
         jbActualizar = new javax.swing.JButton();
         jbSalir = new javax.swing.JButton();
+        jbEliminar = new javax.swing.JButton();
+        jbAgregar = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Lucida Handwriting", 0, 36)); // NOI18N
         jLabel1.setText("Actualizar Renglon");
@@ -158,6 +162,8 @@ public class VistaActualizarRenglon1 extends javax.swing.JInternalFrame {
             }
         });
 
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -197,6 +203,8 @@ public class VistaActualizarRenglon1 extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(17, 17, 17)
                                 .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(67, 67, 67)
+                                .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(8, 8, 8)))))
@@ -226,6 +234,8 @@ public class VistaActualizarRenglon1 extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
@@ -313,7 +323,7 @@ public class VistaActualizarRenglon1 extends javax.swing.JInternalFrame {
        jr5.setSelected(false);
        jr6.setSelected(false);
        jr7.setSelected(false);      
-        cargarTodasFilas(0);
+        cargarTodasFilas(1);
        
     }//GEN-LAST:event_jr1ActionPerformed
 
@@ -324,7 +334,7 @@ public class VistaActualizarRenglon1 extends javax.swing.JInternalFrame {
        jr5.setSelected(false);
        jr6.setSelected(false);
        jr7.setSelected(false);             
-        cargarTodasFilas(5);
+        cargarTodasFilas(2);
     }//GEN-LAST:event_jr2ActionPerformed
 
     private void jr3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jr3ActionPerformed
@@ -334,7 +344,7 @@ public class VistaActualizarRenglon1 extends javax.swing.JInternalFrame {
        jr5.setSelected(false);
        jr6.setSelected(false);
        jr7.setSelected(false);            
-        cargarTodasFilas(10);
+        cargarTodasFilas(3);
     }//GEN-LAST:event_jr3ActionPerformed
 
     private void jr4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jr4ActionPerformed
@@ -344,7 +354,7 @@ public class VistaActualizarRenglon1 extends javax.swing.JInternalFrame {
        jr5.setSelected(false);
        jr6.setSelected(false);
        jr7.setSelected(false);            
-        cargarTodasFilas(15);
+        cargarTodasFilas(4);
     }//GEN-LAST:event_jr4ActionPerformed
 
     private void jr5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jr5ActionPerformed
@@ -354,7 +364,7 @@ public class VistaActualizarRenglon1 extends javax.swing.JInternalFrame {
        jr4.setSelected(false);
        jr6.setSelected(false);
        jr7.setSelected(false);           
-        cargarTodasFilas(20);
+        cargarTodasFilas(5);
     }//GEN-LAST:event_jr5ActionPerformed
 
     private void jr6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jr6ActionPerformed
@@ -364,7 +374,7 @@ public class VistaActualizarRenglon1 extends javax.swing.JInternalFrame {
        jr4.setSelected(false);
        jr5.setSelected(false);
        jr7.setSelected(false);            
-        cargarTodasFilas(25);
+        cargarTodasFilas(6);
     }//GEN-LAST:event_jr6ActionPerformed
 
     private void jr7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jr7ActionPerformed
@@ -374,12 +384,14 @@ public class VistaActualizarRenglon1 extends javax.swing.JInternalFrame {
        jr4.setSelected(false);
        jr5.setSelected(false);
        jr6.setSelected(false);           
-        cargarTodasFilas(30);
+        cargarTodasFilas(7);
     }//GEN-LAST:event_jr7ActionPerformed
 
     private void jbActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarActionPerformed
         if (tabla.getSelectedRow()!=-1) {             
              nroRenglon=(int)tabla.getValueAt(tabla.getSelectedRow(), 0);
+             RenglonDeMenu renglon = renglonData.buscarRenglonDeMenuPorId(nroRenglon);
+             TipoComidaRenglon = renglon.getComida().getTipoComida();
              
              ArrayList<JRadioButton> lista= new ArrayList();
              lista.add(jr1);
@@ -412,6 +424,8 @@ public class VistaActualizarRenglon1 extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
 
+    }//GEN-LAST:event_jbAgregarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -419,6 +433,8 @@ public class VistaActualizarRenglon1 extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbActualizar;
+    private javax.swing.JButton jbAgregar;
+    private javax.swing.JButton jbEliminar;
     private javax.swing.JButton jbSalir;
     private javax.swing.JComboBox<Dieta> jcbDieta;
     private javax.swing.JRadioButton jr1;
@@ -439,6 +455,7 @@ public class VistaActualizarRenglon1 extends javax.swing.JInternalFrame {
     private void armarTabla() {
         modelo.addColumn("Codigo");
         modelo.addColumn("Nombre C.");
+        modelo.addColumn("Tipo");
         modelo.addColumn("Porciones");
         modelo.addColumn("Calorias");
         modelo.addColumn("Menu Cod.");
@@ -449,16 +466,20 @@ public class VistaActualizarRenglon1 extends javax.swing.JInternalFrame {
         borrarFilasTablas();
        Dieta dieta=(Dieta) jcbDieta.getSelectedItem();
         for (RenglonDeMenu listaRenglon : renglonData.listarRenglonesPorMenuDiario(dieta.getCodDieta(), jrSeleccionado)) {      
+        }
+       
+        for (RenglonDeMenu listaRenglon : renglonData.listarRenglonesDelaListaCodMenu(CodMenu)) {
             modelo.addRow(new Object[]{
                 listaRenglon.getNroRenglon(),
                 listaRenglon.getComida().getNombre(),
+                listaRenglon.getComida().getTipoComida(),
                 listaRenglon.getCantidadPorciones(),
                 listaRenglon.getSubtotalCalorias(),
                 listaRenglon.getMenu().getCodMenu()
-            }
                   );   
         }
-    }    
+        
+    }
    
 
     public void borrarFilasTablas() {
@@ -468,8 +489,8 @@ public class VistaActualizarRenglon1 extends javax.swing.JInternalFrame {
         }
     }
     
-    private void cargarCombo(){        
-        for (Dieta listarTodosMenu : renglonData.listarTodosMenus()) {
+    private void cargarCombo(){   
+                for (Dieta listarTodosMenu : renglonData.listarTodosMenus()) {
             jcbDieta.addItem(listarTodosMenu);
         }
     }

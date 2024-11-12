@@ -42,6 +42,7 @@ public class VistaActualizarRenglon extends javax.swing.JInternalFrame {
     RenglonDeMenuData renglonData = new RenglonDeMenuData(conexion);
     ComidaData comidaData = new ComidaData(conexion);
     MenuDiarioData menuData = new MenuDiarioData(conexion);  
+    DietaData dietaData = new DietaData(conexion);
     private Menu menu;
     private VistaActualizarRenglon1 vista;
 
@@ -212,20 +213,21 @@ public class VistaActualizarRenglon extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jsCantidadPorciones, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel9)
-                                        .addGap(28, 28, 28)
-                                        .addComponent(jlCaloriasTotales, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(371, 371, 371))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(jbInsertarMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGap(14, 14, 14)
+                                        .addComponent(jbInsertarMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel8)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jsCantidadPorciones, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel9)
+                                            .addGap(28, 28, 28)
+                                            .addComponent(jlCaloriasTotales, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(260, 260, 260)
                                 .addComponent(jbInsertarMenu1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(19, 19, 19))))
                     .addGroup(layout.createSequentialGroup()
@@ -346,14 +348,20 @@ public class VistaActualizarRenglon extends javax.swing.JInternalFrame {
             renglon.setSubtotalCalorias(Integer.parseInt(jlCaloriasTotales.getText()));
             renglonData.actualizarRenglonMenu(renglon);
             JOptionPane.showMessageDialog(this, "El Renglon de Menu fue Actualizado");
+            
+             Dieta dieta = renglon.getMenu().getDieta();
+            int caloriasTotales = renglonData.caloriasTotalesDeUnaDieta(dieta.getCodDieta());
+            dieta.setTotalCalorias(caloriasTotales);
+            dietaData.actualizarDieta(dieta);
+            
             switch (VistaActualizarRenglon1.jr) {
-                case 1:vista.cargarTodasFilas(0);break;
-                case 2:vista.cargarTodasFilas(5);break;
-                case 3:vista.cargarTodasFilas(10);break;
-                case 4:vista.cargarTodasFilas(15);break;
-                case 5:vista.cargarTodasFilas(20);break;
-                case 6:vista.cargarTodasFilas(25);break;
-                case 7:vista.cargarTodasFilas(30);break;                
+                case 1:vista.cargarTodasFilas(1);break;
+                case 2:vista.cargarTodasFilas(2);break;
+                case 3:vista.cargarTodasFilas(3);break;
+                case 4:vista.cargarTodasFilas(4);break;
+                case 5:vista.cargarTodasFilas(5);break;
+                case 6:vista.cargarTodasFilas(6);break;
+                case 7:vista.cargarTodasFilas(7);break;                
             }
             dispose();          
 //            
@@ -456,9 +464,8 @@ public class VistaActualizarRenglon extends javax.swing.JInternalFrame {
                 coincideCalorias = comida.getCaloriasPorPorcion() >= caloriasDesde && comida.getCaloriasPorPorcion() <= caloriasHasta;
             }
 
-            // Verificar el tipo de comida (tipoSeleccionado = 0 es "todos los tipos")            
-            RenglonDeMenu renglon= renglonData.buscarRenglonDeMenuPorId(VistaActualizarRenglon1.nroRenglon);
-            boolean coincideTipo = comida.getTipoComida().equalsIgnoreCase(renglon.getComida().getTipoComida());
+            // Verificar el tipo de comida (tipoSeleccionado = 0 es "todos los tipos") 
+            boolean coincideTipo = comida.getTipoComida().equalsIgnoreCase(VistaActualizarRenglon1.TipoComidaRenglon);
 
             // Si todas las condiciones se cumplen, agregar la fila
             if (coincideNombre && coincideDetalle && coincideCalorias && coincideTipo) {

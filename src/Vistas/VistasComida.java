@@ -1,6 +1,8 @@
 package Vistas;
 
 import Entidades.Comida;
+import Entidades.Dieta;
+import Entidades.RenglonDeMenu;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import persistencia.*;
@@ -11,6 +13,10 @@ public class VistasComida extends javax.swing.JInternalFrame {
 
     private final Conexion conexion = new Conexion("jdbc:mysql://localhost/nutricionista", "root", "");
     private ComidaData comiData = new ComidaData(conexion);
+    DietaData dietaData = new DietaData(conexion);
+    RenglonDeMenuData renglonData = new RenglonDeMenuData(conexion);
+    
+    
 
     public VistasComida() {
         initComponents();
@@ -243,11 +249,28 @@ public class VistasComida extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Por favor seleccione una Comida de la tabla");
         } else {
             int id = (int) jTable.getValueAt(row, 0);
+            System.out.println("ID SELECCIONADO: "+id);
+            for (RenglonDeMenu renglon : renglonData.listarRenglones()) {
+                System.out.println(renglon.getComida().getCodComida());
+               if (renglon.getComida().getCodComida()==id) {
+                   System.out.println(renglon.toString());
+                 for (Dieta dieta : dietaData.listaDietaPorCodComida(renglon.getComida().getCodComida())) {
+                    renglonData.eliminarRenglonDeMenu(renglon.getNroRenglon()); 
+                     System.out.println(dieta.getCodDieta());
+                    int caloriaTotales= renglonData.caloriasTotalesDeUnaDieta(dieta.getCodDieta());
+                    dieta.setTotalCalorias(caloriaTotales);
+                    dietaData.actualizarDieta(dieta);
+                 }
+               } 
+            } 
+            
+            
             comiData.EliminarComida(id);
             borrarFilasTablas();
             cargarComidas();
             limpiarCampos();
             JOptionPane.showMessageDialog(this, "Comida Eliminada");
+            
         }
     }//GEN-LAST:event_EliminarActionPerformed
 
@@ -265,6 +288,14 @@ public class VistasComida extends javax.swing.JInternalFrame {
             cargarComidas();
             limpiarCampos();
             JOptionPane.showMessageDialog(this, "Actualizacion realizada con exito");
+            
+                for (Dieta dieta : dietaData.listaDietaPorCodComida(ide)) {
+                    int caloriaTotales= renglonData.caloriasTotalesDeUnaDieta(dieta.getCodDieta());
+                    dieta.setTotalCalorias(caloriaTotales);
+                    dietaData.actualizarDieta(dieta);
+                }
+           
+            
         }
     }//GEN-LAST:event_EditarActionPerformed
 

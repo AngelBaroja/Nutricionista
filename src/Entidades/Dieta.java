@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class Dieta {
     private int codDieta;
@@ -142,6 +143,26 @@ public class Dieta {
     public int calcularDiferDePeso() {
         return (int) (pesoFinal - pesoInicial);
     }
+    public String evaluarProgresoHaciaPesoObjetivo() {
+       
+    double pesoInicial = getPesoInicial();
+    double pesoFinal = getPesoFinal();
+    double pesoObjetivo = paciente.getPesoBuscado();    
+    
+    double diferenciaInicialObjetivo = Math.abs(pesoInicial - pesoObjetivo);    
+    
+    double diferenciaFinalObjetivo = Math.abs(pesoFinal - pesoObjetivo);
+    double progreso = 1 - (diferenciaFinalObjetivo / diferenciaInicialObjetivo);
+    
+    double numeroRedondeadoPesoBuscado = Math.round(paciente.getPesoBuscado() * 10) / 10.0;
+    double numeroRedondeadoPesoFinal = Math.round(getPesoFinal() * 10) / 10.0;
+    if (progreso >= 0.80) { 
+        
+        return "El paciente se acerca al peso objetivo\nPeso Final: "+numeroRedondeadoPesoFinal+"kg\nPeso Objetivo: "+numeroRedondeadoPesoBuscado+"kg";
+    } else {
+        return "El paciente no se acerca al peso objetivo\nPeso Final: "+numeroRedondeadoPesoFinal+"kg\nPeso Objetivo: "+numeroRedondeadoPesoBuscado+"kg";
+    }
+}
 
     public void imprimirDietaCompleta() {
         System.out.println("Imprimiendo detalles de la dieta...");

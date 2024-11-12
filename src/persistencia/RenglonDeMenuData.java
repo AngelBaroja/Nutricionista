@@ -63,19 +63,7 @@ public class RenglonDeMenuData {
             System.out.println("Error al actualizar el renglon de menu:  " +  e.getMessage());
     } 
 }
-    public void darBajaRenglonDeMenu(int nroRenglon){
-        String query = "UPDATE renglondemenu SET baja=true WHERE nroRenglon  = ?  ";
-        try {
-            PreparedStatement ps = conexion.prepareStatement(query);
-            ps.setInt(1, nroRenglon);
-            
-            ps.executeUpdate();
-            System.out.println("Renglon de menu dado de baja con exito. ID:  " + nroRenglon);
-        }catch(SQLException e){
-            System.out.println("Error al dar de baja el renglon de menu:  " + e.getMessage());
-        }
-        
-    }
+    
     private Comida obtenerComidaPorId(int codComida){
         ComidaData comidaData = new ComidaData(new Conexion ("jdbc:mysql://localhost/nutricionista", "root", ""));
         return comidaData.buscarComidaPorId(codComida);
@@ -131,18 +119,96 @@ public class RenglonDeMenuData {
         }
        return valor;
     }
-    
-    public List<RenglonDeMenu> listarRenglones(){
+     
+      public int caloriasTotalesDeUnaDieta(int codDieta){
+         int valor=0;
+        
+        String query = "SELECT COALESCE(SUM(rm.subTotalCalorias), 0) AS caloriasTotales \n" +
+                        "FROM Dieta d \n" +
+                        "JOIN MenuDiario md ON d.codDieta = md.codDieta \n" +
+                        "JOIN RenglondeMenu rm ON md.codMenu = rm.codMenu \n" +
+                        "JOIN Comida c ON rm.codComida = c.codComida \n" +
+                        "WHERE d.codDieta = ? AND c.baja = false;";
+        try{
+            PreparedStatement ps = conexion.prepareStatement(query);
+            ps.setInt(1, codDieta);
+            
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()){
+                valor = rs.getInt("caloriasTotales");
+            }else {
+                System.out.println("No se encontro el renglon de menu con esa ID:  " + codDieta);
+            }
+        }catch(SQLException e){
+            System.out.println("Error al buscar renglon de menu:" + e.getMessage());            
+        }
+       return valor;
+    }
+     
+     public List<Integer> LosCodMenuDeUnaDieta(int codDieta){
+         ArrayList<Integer> menusDiario = new ArrayList<>();
+        
+        String query = "SELECT md.codMenu\n" +
+                        "FROM Dieta d\n" +
+                        "JOIN MenuDiario md ON d.codDieta = md.codDieta\n" +
+                        "WHERE d.codDieta = ?\n" +
+                        "ORDER BY md.codMenu;";
+        try{
+            PreparedStatement ps = conexion.prepareStatement(query);
+            ps.setInt(1, codDieta);
+            
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+               menusDiario.add(rs.getInt("codMenu"));
+            }
+        }catch(SQLException e){
+            System.out.println("Error al buscar renglon de menu:" + e.getMessage());            
+        }
+       return menusDiario;
+    }
+     
+       public List<RenglonDeMenu> listarRenglones(){
         MenuDiarioData menuData=new MenuDiarioData(new Conexion ("jdbc:mysql://localhost/nutricionista", "root", ""));  
         List<RenglonDeMenu> renglones = new ArrayList<>();
-         RenglonDeMenu renglon = new RenglonDeMenu();
-        String query = "SELECT * FROM renglondemenu WHERE baja = false";
+         RenglonDeMenu renglon = null;
+        String query = "SELECT * FROM renglondemenu ";
         try {
             Statement st = conexion.createStatement();
             ResultSet rs = st.executeQuery(query);
             
             while (rs.next()){
+                  renglon = new RenglonDeMenu();
                  Comida comida = obtenerComidaPorId(rs.getInt("codComida"));
+                
+                renglon.setNroRenglon(rs.getInt("nroRenglon"));
+                renglon.setComida(comida);
+                renglon.setCantidadPorciones( rs.getInt("cantidadPorciones"));
+                renglon.setSubtotalCalorias(rs.getDouble("subTotalCalorias"));
+                renglon.setMenu(menuData.BuscarMenu(rs.getInt("codMenu"))); 
+                renglones.add(renglon);                
+            }
+        }catch (SQLException e){
+            System.out.println("Error al listar renglones de menu:  " + e.getMessage());
+        }
+        return renglones;
+    }
+    
+    public List<RenglonDeMenu> listarRenglonesDelaListaCodMenu(int codMenu){
+        MenuDiarioData menuData=new MenuDiarioData(new Conexion ("jdbc:mysql://localhost/nutricionista", "root", ""));  
+        List<RenglonDeMenu> renglones = new ArrayList<>();
+        
+        String query = "SELECT rm.* \n" +
+                        "FROM RenglondeMenu rm\n" +
+                        "JOIN Comida c ON rm.codComida = c.codComida\n" +
+                        "WHERE rm.codMenu = ? AND c.baja = false;";
+        try {
+            PreparedStatement ps = conexion.prepareStatement(query);
+            ps.setInt(1, codMenu);           
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()){
+                RenglonDeMenu renglon = new RenglonDeMenu();
+                Comida comida = obtenerComidaPorId(rs.getInt("codComida"));
                 
                 renglon.setNroRenglon(rs.getInt("nroRenglon"));
                 renglon.setComida(comida);
@@ -219,7 +285,8 @@ public class RenglonDeMenuData {
         String query = "SELECT DISTINCT d.*\n" +
                         "FROM Dieta d\n" +
                         "JOIN MenuDiario md ON d.codDieta = md.codDieta\n" +
-                        "JOIN RenglondeMenu rm ON md.codMenu = rm.codMenu;";
+                        "JOIN RenglondeMenu rm ON md.codMenu = rm.codMenu\n"+
+                        "WHERE d.estado=true";
         try {
             Statement st = conexion.createStatement();
             ResultSet rs = st.executeQuery(query);

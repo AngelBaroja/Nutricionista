@@ -260,7 +260,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jbInsertarMenu">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Actualizar Comida"/>
+        <Property name="text" type="java.lang.String" value="Agregar Comida"/>
       </Properties>
       <Events>
         <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jbInsertarMenuMouseEntered"/>

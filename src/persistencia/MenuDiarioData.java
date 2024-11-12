@@ -18,6 +18,7 @@ public class MenuDiarioData {
      public MenuDiarioData(Conexion conexion){
         this.conexion = conexion.buscarConexion();
     }
+     
     
      public void AlterarDietaDiaria(MenuDiario menu, Dieta diet){
           String query = "UPDATE menuDiario SET codDieta = ? WHERE codMenu = ?";
@@ -126,8 +127,9 @@ public class MenuDiarioData {
     }
       
       public MenuDiario BuscarMenu(int cod){
+          DietaData dietaData = new DietaData(new Conexion ("jdbc:mysql://localhost/nutricionista", "root", ""));
           String query = "SELECT * FROM menudiario WHERE codMenu = ?";
-          MenuDiario me = null;
+          MenuDiario me = new MenuDiario();
           try{
              PreparedStatement ps = conexion.prepareStatement(query);
              ps.setInt(1, cod);
@@ -135,15 +137,16 @@ public class MenuDiarioData {
             
              System.out.println("Menu Encontrado");
               ResultSet rs = ps.executeQuery();
-               if (rs.next()) {
-                me = new MenuDiario();
+               if (rs.next()) {                
                 me.setCodMenu(rs.getInt("codMenu"));
-                me.setDia(rs.getInt("nroDia"));
+                me.setDia(rs.getInt("diaNro"));
                 me.setEstado(rs.getBoolean("estado"));
+                me.setDieta(dietaData.buscarDieta(rs.getInt("codDieta")));
+                  
                }
                ps.close();
          } catch (SQLException ex) {
-             System.out.println("Se Produjo un error con la base de datos");;
+             System.out.println("Se Produjo un error con la base de datos");
          }
           return me;
     }
