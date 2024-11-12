@@ -590,7 +590,7 @@ public class VistaActualizarRenglon1 extends javax.swing.JInternalFrame {
                 break;
             }
         }
-       
+       // Testing
         for (RenglonDeMenu listaRenglon : renglonData.listarRenglonesDelaListaCodMenu(CodMenu)) {
             modelo.addRow(new Object[]{
                 listaRenglon.getNroRenglon(),
