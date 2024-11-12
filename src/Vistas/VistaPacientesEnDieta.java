@@ -462,12 +462,9 @@ public class VistaPacientesEnDieta extends javax.swing.JInternalFrame {
             if (pesoFinal!=0) {
                 Paciente paciente = dieta.getPaciente();
                 paciente.setPesoActual(pesoFinal);
-                pacienteData.actualizarPaciente(paciente);
-                dieta.setEstado(false);
-            }else{
-                dieta.setEstado(true);
-            }           
-            
+                pacienteData.actualizarPaciente(paciente);                
+            }       
+            dieta.setEstado(jcbEstado.isSelected());
             dietaData.actualizarDieta(dieta);
             JOptionPane.showMessageDialog(this, "Dieta Actualizada con exito");          
             borrarFilasTablas();

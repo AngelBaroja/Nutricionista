@@ -318,8 +318,7 @@ cargarlistaPaciente();
           
             pacienteData.borradoFisico(id);
              
-            borrarFilasTablas();
-            armarTabla();
+            borrarFilasTablas();            
             cargarlistaPaciente();
 
         }
