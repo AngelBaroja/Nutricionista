@@ -20,6 +20,10 @@ import persistencia.PacienteData;
 import persistencia.RenglonDeMenuData;
 import Vistas.Menu;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 /**
  *
  * @author El Angel
@@ -31,8 +35,9 @@ public class VistaActualizarRenglon1 extends javax.swing.JInternalFrame {
     ComidaData comidaData = new ComidaData(conexion);    
     MenuDiarioData menuData = new MenuDiarioData(conexion);
     DietaData dietaData = new DietaData(conexion);
-    public static int nroRenglon;
+    public static String TipoComidaRenglon;
     public static int jr;
+    public static int CodMenu;
     public static int nroRenglon;
     
     private Menu menu;
@@ -162,6 +167,18 @@ public class VistaActualizarRenglon1 extends javax.swing.JInternalFrame {
             }
         });
 
+        jbEliminar.setText("Eliminar");
+        jbEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEliminarActionPerformed(evt);
+            }
+        });
+
+        jbAgregar.setText("Agregar");
+        jbAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAgregarActionPerformed(evt);
+            }
         });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -204,6 +221,8 @@ public class VistaActualizarRenglon1 extends javax.swing.JInternalFrame {
                                 .addGap(17, 17, 17)
                                 .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(67, 67, 67)
+                                .addComponent(jbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(67, 67, 67)
                                 .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -233,7 +252,7 @@ public class VistaActualizarRenglon1 extends javax.swing.JInternalFrame {
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(35, Short.MAX_VALUE))
@@ -388,8 +407,9 @@ public class VistaActualizarRenglon1 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jr7ActionPerformed
 
     private void jbActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarActionPerformed
-        if (tabla.getSelectedRow()!=-1) {             
-             nroRenglon=(int)tabla.getValueAt(tabla.getSelectedRow(), 0);
+        if (tabla.getSelectedRow()!=-1) {
+            
+            nroRenglon=(int)tabla.getValueAt(tabla.getSelectedRow(), 0);
              RenglonDeMenu renglon = renglonData.buscarRenglonDeMenuPorId(nroRenglon);
              TipoComidaRenglon = renglon.getComida().getTipoComida();
              
@@ -424,6 +444,101 @@ public class VistaActualizarRenglon1 extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
 
+    private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
+        if (tabla.getSelectedRow()!=-1) {
+            int nroRenglon = (int) tabla.getValueAt(tabla.getSelectedRow(), 0);
+            renglonData.eliminarRenglonDeMenu(nroRenglon);
+            JOptionPane.showMessageDialog(this, "Eliminado Exitoso");
+            Dieta die =(Dieta) jcbDieta.getSelectedItem();
+            Dieta dieta = dietaData.buscarDieta(die.getCodDieta());
+            int caloriasTotales = renglonData.caloriasTotalesDeUnaDieta(dieta.getCodDieta());
+            dieta.setTotalCalorias(caloriasTotales);
+            dietaData.actualizarDieta(dieta);
+              ArrayList<JRadioButton> lista= new ArrayList();
+             lista.add(jr1);
+             lista.add(jr2);
+             lista.add(jr3);
+             lista.add(jr4);
+             lista.add(jr5);
+             lista.add(jr6);
+             lista.add(jr7);
+             int contador=0;
+             for (JRadioButton jRadioButton : lista) {
+                 contador++;
+                 if (jRadioButton.isSelected()) {
+                     break;
+                 }
+            }
+             jr=contador;
+             cargarTodasFilas(contador);
+            
+        }else{
+            JOptionPane.showMessageDialog(this, "Seleccione un Renglon de la tabla para actualizar");
+        }
+    }//GEN-LAST:event_jbEliminarActionPerformed
+
+    private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
+        if (!jr1.isSelected() && !jr2.isSelected() && !jr3.isSelected() && !jr4.isSelected() && !jr5.isSelected() && !jr6.isSelected() && !jr7.isSelected()) {
+            JOptionPane.showMessageDialog(this, "Seleccione un Menu");
+        } else {
+
+            ArrayList<JRadioButton> lista = new ArrayList();
+            lista.add(jr1);
+            lista.add(jr2);
+            lista.add(jr3);
+            lista.add(jr4);
+            lista.add(jr5);
+            lista.add(jr6);
+            lista.add(jr7);
+            int contadorRadioButton = 0;
+            for (JRadioButton jRadioButton : lista) {
+                contadorRadioButton++;
+                if (jRadioButton.isSelected()) {
+                    break;
+                }
+            }
+            jr = contadorRadioButton;
+            int contadorParaCodMenu = 0;           
+            Dieta dieta = (Dieta) jcbDieta.getSelectedItem();
+            for (Integer listaDeMenu : renglonData.LosCodMenuDeUnaDieta(dieta.getCodDieta())) {
+                //Esta lista tiene en orden los menudiario de la dieta si el jrSeleccionado es 1 tiene que mostra
+                //el primer los renglones del menu            
+                contadorParaCodMenu++;
+                if (contadorParaCodMenu == jr) {
+                    CodMenu = listaDeMenu;
+                    break;
+                }
+            }
+            
+         
+            int cantidad = 0;
+            for (RenglonDeMenu renglonDeMenu : renglonData.listarRenglonesDelaListaCodMenu(CodMenu)) {
+                cantidad++;
+            }
+            
+            if (cantidad != 5) {
+            List<String> tiposDeComidaPosibles = Arrays.asList("desayuno", "almuerzo", "snack", "cena", "merienda");
+
+            Set<String> tiposDeComidaEncontrados = new HashSet<>();
+
+            for (RenglonDeMenu renglonDeMenu : renglonData.listarRenglonesDelaListaCodMenu(CodMenu)) {
+                String tipoComida = renglonDeMenu.getComida().getTipoComida();
+                tiposDeComidaEncontrados.add(tipoComida);
+            }
+
+            for (String tipo : tiposDeComidaPosibles) {
+                if (!tiposDeComidaEncontrados.contains(tipo)) {
+                    TipoComidaRenglon=tipo;
+                    break;
+                }
+            }
+                VistaActualizarRenglonAgregar var = new VistaActualizarRenglonAgregar(menu, this);
+                menu.getEscritorio().add(var);
+                var.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "El Menu posee el maximo de Renglones permitidos");
+            }
+        }
     }//GEN-LAST:event_jbAgregarActionPerformed
 
 
@@ -464,8 +579,16 @@ public class VistaActualizarRenglon1 extends javax.swing.JInternalFrame {
 
     public void cargarTodasFilas(int jrSeleccionado) {
         borrarFilasTablas();
-       Dieta dieta=(Dieta) jcbDieta.getSelectedItem();
-        for (RenglonDeMenu listaRenglon : renglonData.listarRenglonesPorMenuDiario(dieta.getCodDieta(), jrSeleccionado)) {      
+        Dieta dieta=(Dieta) jcbDieta.getSelectedItem();            
+        int contador = 0; 
+        for (Integer listaDeMenu : renglonData.LosCodMenuDeUnaDieta(dieta.getCodDieta())) {
+            //Esta lista tiene en orden los menudiario de la dieta si el jrSeleccionado es 1 tiene que mostra
+            //el primer los renglones del menu            
+            contador++;           
+            if (contador == jrSeleccionado) {
+                CodMenu = listaDeMenu;
+                break;
+            }
         }
        
         for (RenglonDeMenu listaRenglon : renglonData.listarRenglonesDelaListaCodMenu(CodMenu)) {
@@ -476,7 +599,7 @@ public class VistaActualizarRenglon1 extends javax.swing.JInternalFrame {
                 listaRenglon.getCantidadPorciones(),
                 listaRenglon.getSubtotalCalorias(),
                 listaRenglon.getMenu().getCodMenu()
-                  );   
+            });   
         }
         
     }
