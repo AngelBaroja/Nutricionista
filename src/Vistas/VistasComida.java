@@ -6,8 +6,6 @@ import Entidades.RenglonDeMenu;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import persistencia.*;
-import entidades.*;
-import java.sql.Connection;
 
 public class VistasComida extends javax.swing.JInternalFrame {
 
@@ -115,7 +113,7 @@ public class VistasComida extends javax.swing.JInternalFrame {
             }
         });
 
-        Estado.setText("Activo");
+        Estado.setText("BAJA");
 
         IDanch.setEditable(false);
 

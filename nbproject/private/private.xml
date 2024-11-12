@@ -3,15 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Valentino/Documents/GitHub/Nutricionista/src/persistencia/ComidaData.java</file>
-            <file>file:/C:/Users/Valentino/Documents/GitHub/Nutricionista/src/Entidades/Comida.java</file>
-            <file>file:/C:/Users/Valentino/Documents/GitHub/Nutricionista/src/Vistas/VistasComida.java</file>
-            <file>file:/C:/Users/Valentino/Documents/GitHub/Nutricionista/src/Entidades/Dieta.java</file>
-            <file>file:/C:/Users/Valentino/Documents/GitHub/Nutricionista/src/persistencia/DietaData.java</file>
-            <file>file:/C:/Users/Valentino/Documents/GitHub/Nutricionista/src/Entidades/MenuDiario.java</file>
-            <file>file:/C:/Users/Valentino/Documents/GitHub/Nutricionista/src/nutricionista/Main.java</file>
-            <file>file:/C:/Users/Valentino/Documents/GitHub/Nutricionista/src/Vistas/Menu.java</file>
-            <file>file:/C:/Users/Valentino/Documents/GitHub/Nutricionista/src/persistencia/MenuDiarioData.java</file>
+            <file>file:/C:/Users/Matias/Documents/GitHub/Nutricionista/src/nutricionista/Main.java</file>
+            <file>file:/C:/Users/Matias/Documents/GitHub/Nutricionista/src/Vistas/VistaPacientesEnDieta.java</file>
+            <file>file:/C:/Users/Matias/Documents/GitHub/Nutricionista/src/Vistas/VistasComida.java</file>
         </group>
     </open-files>
 </project-private>

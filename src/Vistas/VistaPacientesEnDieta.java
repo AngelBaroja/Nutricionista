@@ -596,7 +596,7 @@ private DefaultTableModel modelo2 = new DefaultTableModel() {
                 listaDieta.getPesoInicial(),
                 listaDieta.getPesoFinal(),
                 listaDieta.getTotalCalorias(),
-                listaDieta.isEstado() ? "Activa" : "No Activa"
+                listaDieta.isEstado() ? "Activo" : "No Activo"
 
             });
         }
