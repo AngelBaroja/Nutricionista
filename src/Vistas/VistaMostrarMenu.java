@@ -40,6 +40,7 @@ public class VistaMostrarMenu extends javax.swing.JInternalFrame {
         tablaMenu = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Roboto Medium", 0, 30)); // NOI18N
         jLabel1.setText("Mostrar Menu Diario");
@@ -76,6 +77,13 @@ public class VistaMostrarMenu extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton3.setText("DAR DE BAJA/ALTA");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,15 +94,16 @@ public class VistaMostrarMenu extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(184, 184, 184))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(125, 125, 125)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(128, 128, 128))))
+                .addComponent(jLabel1)
+                .addGap(184, 184, 184))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addComponent(jButton3)
+                .addGap(71, 71, 71)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(128, 128, 128))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,7 +115,8 @@ public class VistaMostrarMenu extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
                 .addGap(33, 33, 33))
         );
 
@@ -141,17 +151,48 @@ public class VistaMostrarMenu extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        int filaSeleccionada = tablaMenu.getSelectedRow();
+        if (filaSeleccionada != -1) {
+  
+            int id = (int) tablaMenu.getValueAt(filaSeleccionada, 0);
+            String estado =  (String) tablaMenu.getValueAt(filaSeleccionada, 3);
+            if (estado.equals("Activa")) {
+                int confirmacion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que deseas dar de baja este elemento?", "Confirmación de baja", JOptionPane.YES_NO_OPTION);
+
+                if (confirmacion == JOptionPane.YES_OPTION) {
+
+                    menuData.CambiarEstadoFalse(id);
+                    borrarFilasTablas();
+                    cargarlistaMenu();
+                }
+            } else {
+                int confirmacion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que deseas dar de alta este elemento?", "Confirmación de alta", JOptionPane.YES_NO_OPTION);
+
+                if (confirmacion == JOptionPane.YES_OPTION) {
+
+                    menuData.CambiarEstadoTrue(id);
+                    borrarFilasTablas();
+                    cargarlistaMenu();
+                }
+            }
+    } else {
+        JOptionPane.showMessageDialog(this, "Selecciona un elemento para dar de baja/alta.");
+    }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaMenu;
     // End of variables declaration//GEN-END:variables
     private DefaultTableModel modelo = new DefaultTableModel(){
         public boolean isCellEditable(int fila, int columna){
-            return columna != 0;
+            return false;
         }
     };
     private void armarTabla(){

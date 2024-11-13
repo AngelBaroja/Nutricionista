@@ -211,33 +211,38 @@ public class VistaCargarMenuDiario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnGenerarManuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarManuActionPerformed
-        Dieta dieta = new Dieta();
+        if (dietasManu.getSelectedIndex() <= 0) { // Verificar que se haya seleccionado una dieta válida
+            JOptionPane.showMessageDialog(this, "Por favor, selecciona una dieta válida.");
+            return;
+        }
+
         boolean estado = estadoManu.isSelected();
-        
+        Dieta dietaSeleccionada = dietasCombo.get(dietasManu.getSelectedIndex() - 1);
+
         MenuDiario menu = new MenuDiario();
-        int indice = dietasManu.getSelectedIndex();
-            int contador = 0;
-            for (Dieta a : dietaData.listaDietaConPacienteCargados()) {
-                contador++;
-                if (contador == indice) {
-                    menu.setDieta(a);
-                    break;
-                }
-            }
+        menu.setDieta(dietaSeleccionada);
         int dias = menu.getDieta().cantDias();
         menu.setEstado(estado);
+
         for (int i = 0; i < dias; i++) {
-            menu.setDia(i+1);
+            menu.setDia(i + 1);
             menuData.GenerarMenuDiario(menu);
         }
-            dietasAuto.setSelectedIndex(0);
-            dietasManu.setSelectedIndex(0);
-            this.ingredientes.setText("");
-            estadoManu.setSelected(false);
+        JOptionPane.showMessageDialog(this, "Menu generado con exito!", "CORRECTO!", JOptionPane.INFORMATION_MESSAGE);
+        dietasAuto.setSelectedIndex(0);
+        dietasManu.setSelectedIndex(0);
+        this.ingredientes.setText("");
+        estadoManu.setSelected(false);
+        cargarCombo(dietasManu);
+        cargarCombo(dietasAuto);
     }//GEN-LAST:event_btnGenerarManuActionPerformed
 
     private void brnGenerarAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnGenerarAutoActionPerformed
 
+        if (dietasAuto.getSelectedIndex() <= 0) {
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione una dieta válida.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         if (comprobacion()) {  
             ArrayList<Comida> alimentos = new ArrayList<>(comidaData.listarComidas());
             Dieta dietaSeleccionada = dietasCombo.get(dietasAuto.getSelectedIndex() - 1);
@@ -267,11 +272,13 @@ public class VistaCargarMenuDiario extends javax.swing.JInternalFrame {
 
             dietaSeleccionada.setTotalCalorias(calorias);
             dietaData.alterarDieta(dietaSeleccionada);
-
+            JOptionPane.showMessageDialog(this, "Menu generado con exito!", "CORRECTO!", JOptionPane.INFORMATION_MESSAGE);
             dietasAuto.setSelectedIndex(0);
             dietasManu.setSelectedIndex(0);
             this.ingredientes.setText("");
             estadoManu.setSelected(false);
+            cargarCombo(dietasAuto);
+            cargarCombo(dietasManu);
         }
 
         
@@ -323,6 +330,7 @@ public class VistaCargarMenuDiario extends javax.swing.JInternalFrame {
     private List<Dieta> dietasCombo = new ArrayList<>();
 
     private void cargarCombo(JComboBox<String> combo) {
+        combo.removeAllItems();
         combo.addItem("- - DIETAS SIN MENU - -");
         dietasCombo.clear(); // Asegúrate de limpiar la lista antes de llenarla nuevamente
         for (Dieta dieta : menuData.listaDietaSinMenu()) {
