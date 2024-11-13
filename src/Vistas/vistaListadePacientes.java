@@ -315,8 +315,8 @@ cargarlistaPaciente();
         int confirmacion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que deseas eliminar este elemento?", "Confirmación de borrado", JOptionPane.YES_NO_OPTION);
         
         if (confirmacion == JOptionPane.YES_OPTION) {
-          
-            pacienteData.borradoFisico(id);
+            
+            pacienteData.borradoFisicoPaciente(id);
              
             borrarFilasTablas();            
             cargarlistaPaciente();
@@ -334,12 +334,12 @@ cargarlistaPaciente();
         seacerca.setSelected(false);
         cargarlistaPaciente();
         borrarFilasTablas();
-        Paciente paciente = null;
         ArrayList<Paciente> pacientes = (ArrayList<Paciente>) Paciente.listarLosQueLLegaron(pacienteData.listaPaciente());
         for (Paciente p : pacientes) {
             int nroPaciente = p.getNroPaciente();
             String nombre = p.getNombre();
             int edad = p.getEdad();
+            
 
             String altura = String.format("%.2f", p.getAltura());
             String pesoActual = String.format("%.2f", p.getPesoActual());

@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -44,7 +45,6 @@ public class PacienteData {
                 System.out.println("No se pudo obtener el Numero del Paciente");
             }
             ps.close();
-            System.out.println("Paciente Guardado");
         } catch (SQLException ex) {
             System.out.println("SE PRODUJO UN ERROR CON LA BASE DE DATOS GUARDANDO");
         }
@@ -66,7 +66,6 @@ public class PacienteData {
             ps.executeUpdate();
 
             ps.close();
-            System.out.println("Paciente Actualizado");
         } catch (SQLException ex) {
             System.out.println("SE PRODUJO UN ERROR CON LA BASE DE DATOS ACTUALIZANDO");
         }
@@ -89,7 +88,6 @@ public class PacienteData {
                 paciente.setAltura(rs.getFloat("altura"));
                 paciente.setPesoActual(rs.getFloat("pesoActual"));
                 paciente.setPesoBuscado(rs.getFloat("pesoBuscado"));
-                System.out.println("Paciente Encontrado");
             } else{
                 System.out.println("No existe ese Paciente");
             }
@@ -117,7 +115,6 @@ public class PacienteData {
                 paciente.setPesoBuscado(rs.getFloat("pesoBuscado"));
                 listaPaciente.add(paciente);
             }
-            System.out.println("Lista de pacientes");
             ps.close();            
         } catch (SQLException ex) {
             System.out.println("SE PRODUJO UN ERROR CON LA BASE DE DATOS FORMANDO LA LISTA DE PACIENTES");
@@ -145,7 +142,6 @@ public class PacienteData {
                 paciente.setPesoBuscado(rs.getDouble("pesoBuscado"));
                 listaPaciente.add(paciente);
             }
-            System.out.println("Lista de pacientes sin Dieta");
             ps.close();
         } catch (SQLException ex) {
             System.out.println("SE PRODUJO UN ERROR CON LA BASE DE DATOS FORMANDO LA LISTA DE PACIENTES");
@@ -153,19 +149,61 @@ public class PacienteData {
         return listaPaciente;
     }
     
-    public void borradoFisico(int nroPaciente) {
-        String query = "DELETE FROM paciente WHERE nroPaciente= ? ";
-        try {
-            PreparedStatement ps = conexion.prepareStatement(query);
-            ps.setInt(1, nroPaciente);
-            ps.executeUpdate();
+    public void borradoFisicoPaciente(int nroPaciente) {
+        String queryGetDieta = "SELECT codDieta FROM dieta WHERE nroPaciente = ?";
+        String queryGetMenus = "SELECT codMenu FROM menuDiario WHERE codDieta = ?";
+        String queryDeleteRenglones = "DELETE FROM renglondemenu WHERE codMenu = ?";
+        String queryDeleteMenus = "DELETE FROM menuDiario WHERE codDieta = ?";
+        String queryDeleteDieta = "DELETE FROM dieta WHERE codDieta = ?";
+        String queryDeletePaciente = "DELETE FROM paciente WHERE nroPaciente = ?";
 
-            ps.close();
-            JOptionPane.showMessageDialog(null, "Paciente eliminado con exito");
+        try {
+            PreparedStatement psGetDieta = conexion.prepareStatement(queryGetDieta);
+            psGetDieta.setInt(1, nroPaciente);
+            ResultSet rsDieta = psGetDieta.executeQuery();
+
+            if (rsDieta.next()) {
+                int codDieta = rsDieta.getInt("codDieta");
+                psGetDieta.close();
+
+                PreparedStatement psGetMenus = conexion.prepareStatement(queryGetMenus);
+                psGetMenus.setInt(1, codDieta);
+                ResultSet rsMenus = psGetMenus.executeQuery();
+                List<Integer> codMenus = new ArrayList<>();
+
+                while (rsMenus.next()) {
+                    codMenus.add(rsMenus.getInt("codMenu"));
+                }
+                psGetMenus.close();
+
+                PreparedStatement psDeleteRenglones = conexion.prepareStatement(queryDeleteRenglones);
+                for (int codMenu : codMenus) {
+                    psDeleteRenglones.setInt(1, codMenu);
+                    psDeleteRenglones.executeUpdate();
+                }
+                psDeleteRenglones.close();
+
+                PreparedStatement psDeleteMenus = conexion.prepareStatement(queryDeleteMenus);
+                psDeleteMenus.setInt(1, codDieta);
+                psDeleteMenus.executeUpdate();
+                psDeleteMenus.close();
+                PreparedStatement psDeleteDieta = conexion.prepareStatement(queryDeleteDieta);
+                psDeleteDieta.setInt(1, codDieta);
+                psDeleteDieta.executeUpdate();
+                psDeleteDieta.close();
+            }
+
+            PreparedStatement psDeletePaciente = conexion.prepareStatement(queryDeletePaciente);
+            psDeletePaciente.setInt(1, nroPaciente);
+            psDeletePaciente.executeUpdate();
+            psDeletePaciente.close();
+
+
         } catch (SQLException ex) {
-            System.out.println("SE PRODUJO UN ERROR CON LA BASE DE DATOS BORRANDOLO FISICAMENTE");
+            JOptionPane.showMessageDialog(null, "Error al eliminar el paciente y sus datos relacionados: " + ex.getMessage());
         }
     }
+
     
     public ArrayList<Paciente> listaPacientesQueNoLlegaron(){
         ArrayList<Paciente> lista = new ArrayList<>();
@@ -185,7 +223,6 @@ public class PacienteData {
                 paciente.setPesoBuscado(rs.getFloat("pesoBuscado"));
                 lista.add(paciente);
             }
-            System.out.println("Lista de pacientes");
             ps.close();
         } catch (SQLException ex) {
             System.out.println("No se pudo ingresar a la tabla Pacientes");
@@ -193,17 +230,4 @@ public class PacienteData {
 
         return lista;
     }
-//    Hasta que paciente no tenga un estado no se lo puede borrar logicamente
-//     public void borradoLogico(int nroPaciente) {
-//      String query = "UPDATE `paciente` SET `estado`= false WHERE nroPaciente = ? ";
-//         try {
-//             PreparedStatement ps = conexion.prepareStatement(query);
-//             ps.setInt(1, nroPaciente);
-//             ps.executeUpdate();
-//             ps.close();
-//             System.out.println("Paciente Borrado Logicamente");
-//         } catch (SQLException ex) {
-//             System.out.println("SE PRODUJO UN ERROR CON LA BASE DE DATOS BORRANDOLO LOGICAMENTE");;
-//         }
-//    }
 }

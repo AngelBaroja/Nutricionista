@@ -238,10 +238,11 @@ public class VistaCargarMenuDiario extends javax.swing.JInternalFrame {
 
     private void brnGenerarAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnGenerarAutoActionPerformed
 
-        if (comprobacion()) {  // Ejecutar solo si comprobación pasa
+        if (comprobacion()) {  
             ArrayList<Comida> alimentos = new ArrayList<>(comidaData.listarComidas());
-            Dieta dietaSeleccionada = dietaData.listaDietaConPacienteCargados().get(dietasAuto.getSelectedIndex() - 1);
+            Dieta dietaSeleccionada = dietasCombo.get(dietasAuto.getSelectedIndex() - 1);
             int calorias = 0;
+            
 
             MenuDiario menuCargado = new MenuDiario();
             menuCargado.setDieta(dietaSeleccionada);
@@ -319,11 +320,15 @@ public class VistaCargarMenuDiario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
+    private List<Dieta> dietasCombo = new ArrayList<>();
+
     private void cargarCombo(JComboBox<String> combo) {
         combo.addItem("- - DIETAS SIN MENU - -");
-        for (Dieta a : menuData.listaDietaSinMenu()) {
-            combo.addItem(a.toString());
-        }
+        dietasCombo.clear(); // Asegúrate de limpiar la lista antes de llenarla nuevamente
+        for (Dieta dieta : menuData.listaDietaSinMenu()) {
+            dietasCombo.add(dieta); // Guarda cada dieta en la lista
+            combo.addItem(dieta.toString()); // Agrega su representación al ComboBox
+            }
         combo.setSelectedIndex(0);
         // Usar un renderer para mostrar tooltips
         combo.setRenderer(new DefaultListCellRenderer() {

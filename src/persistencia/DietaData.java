@@ -52,16 +52,11 @@ public class DietaData {
 
             if (rs.next()) {
                 dieta.setCodDieta(rs.getInt(1));
-                /*int codDieta = rs.getInt(1);
-                
-                for (MenuDiario menu : dieta.getMenus()) {
-                    guardarMenuDiario(codDieta, menu);
-                }*/
+
             } else {
                 System.out.println("No se pudo obtener el Numero de la dieta");
             }
             ps.close();
-            System.out.println("Dieta Guardada");
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a tabla Dieta");
@@ -84,16 +79,10 @@ public class DietaData {
 
             if (rs.next()) {
                 dieta.setCodDieta(rs.getInt(1));
-                /*int codDieta = rs.getInt(1);
-                
-                for (MenuDiario menu : dieta.getMenus()) {
-                    guardarMenuDiario(codDieta, menu);
-                }*/
             } else {
                 System.out.println("No se pudo obtener el Numero de la dieta");
             }
             ps.close();
-            System.out.println("Dieta Guardada");
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a tabla Dieta");
@@ -116,10 +105,7 @@ public class DietaData {
             ps.setInt(8, dieta.getPaciente().getNroPaciente());
             ps.setInt(9, dieta.getCodDieta());
 
-            int filas = ps.executeUpdate();
-            if (filas > 0) {
-                JOptionPane.showMessageDialog(null, "Dieta actualizada");
-            }
+            ps.executeUpdate();
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a tabla Dieta");
@@ -127,22 +113,44 @@ public class DietaData {
 
     }
 
-    public void borradoFisicoDieta(int codDieta) {
-        String query = "DELETE FROM dieta WHERE codDieta = ?";
+   public void borradoDietaFisico(int codDieta) { // Eliminación de dieta, sus menús y renglones asociados
+    String query = "SELECT codMenu FROM menuDiario WHERE codDieta = ?";
+    String query2 = "DELETE FROM renglondemenu WHERE codMenu = ?";
+    String query3 = "DELETE FROM menuDiario WHERE codDieta = ?";
+    String query4 = "DELETE FROM dieta WHERE codDieta = ?";
 
-        try {
-            PreparedStatement ps = conexion.prepareStatement(query);
-            ps.setInt(1, codDieta);
+    try {
+        PreparedStatement psGetMenus = conexion.prepareStatement(query);
+        psGetMenus.setInt(1, codDieta);
+        ResultSet rs = psGetMenus.executeQuery();
+        List<Integer> codMenus = new ArrayList<>();
 
-            int filas = ps.executeUpdate();
-            if (filas > 0) {
-                JOptionPane.showMessageDialog(null, "Dieta eliminada");
-            }
-            ps.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a tabla Dieta");
+        while (rs.next()) {
+            codMenus.add(rs.getInt("codMenu"));
         }
+        psGetMenus.close();
+
+        PreparedStatement psDeleteRenglones = conexion.prepareStatement(query2);
+        for (int codMenu : codMenus) {
+            psDeleteRenglones.setInt(1, codMenu);
+            psDeleteRenglones.executeUpdate();
+        }
+        psDeleteRenglones.close();
+
+        PreparedStatement psDeleteMenus = conexion.prepareStatement(query3);
+        psDeleteMenus.setInt(1, codDieta);
+        psDeleteMenus.executeUpdate();
+        psDeleteMenus.close();
+
+        PreparedStatement psDeleteDieta = conexion.prepareStatement(query4);
+        psDeleteDieta.setInt(1, codDieta);
+        psDeleteDieta.executeUpdate();
+        psDeleteDieta.close();
+        
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al eliminar la dieta y sus datos relacionados: " + ex.getMessage());
     }
+}
 
     public void borradoLogicoDieta(int codDieta) {
         String query = "UPDATE dieta SET estado = false WHERE codDieta = ?";
@@ -151,10 +159,7 @@ public class DietaData {
             PreparedStatement ps = conexion.prepareCall(query);
             ps.setInt(1, codDieta);
 
-            int filas = ps.executeUpdate();
-            if (filas > 0) {
-                JOptionPane.showMessageDialog(null, "Dieta dada de baja");
-            }
+            ps.executeUpdate();
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a tabla Dieta");
@@ -194,11 +199,9 @@ public class DietaData {
                 if (rs.getObject("nroPaciente") != null) {
                     dieta.setPaciente(new PacienteData(conexion2).buscarPaciente(rs.getInt("nroPaciente")));
                 } else {
-                    dieta.setPaciente(null); // Manejo en caso de que nroPaciente sea NULL
+                    dieta.setPaciente(null); 
                 }
-//                JOptionPane.showMessageDialog(null, "Dieta encontrada");
             } else {
-//                JOptionPane.showMessageDialog(null, "Dieta no encontrada");
             }
             ps.close();
 
@@ -243,7 +246,6 @@ public class DietaData {
                 }
                 listaDieta.add(dieta);
             }
-            System.out.println("Lista de Dieta");
             ps.close();
         } catch (SQLException ex) {
             System.out.println("SE PRODUJO UN ERROR CON LA BASE DE DATOS FORMANDO LA LISTA DE DIETAS");
@@ -286,7 +288,6 @@ public class DietaData {
                 }
                 listaDieta.add(dieta);
             }
-            System.out.println("Lista de Dieta");
             ps.close();
         } catch (SQLException ex) {
             System.out.println("SE PRODUJO UN ERROR CON LA BASE DE DATOS FORMANDO LA LISTA DE DIETAS");
@@ -338,7 +339,6 @@ public class DietaData {
                 listaDieta.add(dieta);
             }
 
-            System.out.println("Lista de Dieta");
             ps.close();
         } catch (SQLException ex) {
             System.out.println("SE PRODUJO UN ERROR CON LA BASE DE DATOS FORMANDO LA LISTA DE DIETAS POR EL CODCOMIDA: " + ex.getMessage());
@@ -381,7 +381,6 @@ public class DietaData {
                 }
                 listaDieta.add(dieta);
             }
-            System.out.println("Lista de Dieta");
             ps.close();
         } catch (SQLException ex) {
             System.out.println("SE PRODUJO UN ERROR CON LA BASE DE DATOS FORMANDO LA LISTA DE DIETAS");
@@ -424,7 +423,6 @@ public class DietaData {
                 }
                 listaDieta.add(dieta);
             }
-            System.out.println("Lista de Dieta");
             ps.close();
         } catch (SQLException ex) {
             System.out.println("SE PRODUJO UN ERROR CON LA BASE DE DATOS FORMANDO LA LISTA DE DIETAS");
@@ -478,7 +476,6 @@ public class DietaData {
                 }
                 listaDieta.add(dieta);
             }
-            System.out.println("Lista de Dieta x dias");
             ps.close();
         } catch (SQLException ex) {
             System.out.println("SE PRODUJO UN ERROR CON LA BASE DE DATOS FORMANDO LA LISTA DE DIETAS POR DIAS");
@@ -494,10 +491,7 @@ public class DietaData {
             ps.setInt(1, dieta.getTotalCalorias());
             ps.setInt(2, dieta.getCodDieta());
 
-            int filas = ps.executeUpdate();
-            if (filas > 0) {
-                JOptionPane.showMessageDialog(null, "Dieta actualizada");
-            }
+            ps.executeUpdate();
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a tabla Dieta");

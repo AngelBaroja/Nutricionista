@@ -1,6 +1,7 @@
 package Vistas;
 
 import Entidades.Dieta;
+import Entidades.MenuDiario;
 import Entidades.Paciente;
 import java.text.SimpleDateFormat;
 import java.time.ZoneId;
@@ -9,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import persistencia.Conexion;
 import persistencia.DietaData;
+import persistencia.MenuDiarioData;
 import persistencia.PacienteData;
 
 /**
@@ -20,6 +22,7 @@ public class VistaPacientesEnDieta extends javax.swing.JInternalFrame {
     Conexion conexion = new Conexion("jdbc:mysql://localhost/nutricionista", "root", "");
     PacienteData pacienteData = new PacienteData(conexion);
     DietaData dietaData = new DietaData(conexion);
+    MenuDiarioData menuData = new MenuDiarioData(conexion);
 
     public VistaPacientesEnDieta() {
         initComponents();
@@ -478,11 +481,15 @@ public class VistaPacientesEnDieta extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Porfavor, seleccione un elemento de la lista");
         }else{
             Dieta dieta = dietaData.buscarDieta(Integer.parseInt(jlCodigo.getText()));
-            dietaData.borradoFisicoDieta(dieta.getCodDieta());
-            JOptionPane.showMessageDialog(this, "Dieta Eliminada con exito");
-            limpiarCampos();
-            borrarFilasTablas();
-            cargarFilas();
+            int confirmacion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que deseas eliminar este elemento?", "Confirmación de borrado", JOptionPane.YES_NO_OPTION);
+        
+            if (confirmacion == JOptionPane.YES_OPTION) {
+                dietaData.borradoDietaFisico(dieta.getCodDieta());
+                JOptionPane.showMessageDialog(this, "Dieta Eliminada con exito");
+                limpiarCampos();
+                borrarFilasTablas();
+                cargarFilas();
+            }
         }
     }//GEN-LAST:event_jbBorrarActionPerformed
 

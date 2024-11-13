@@ -89,37 +89,43 @@ import java.util.stream.Collectors;
         this.comidas = comidas;
     }    
 
-    public static MenuDiario generarDietaDiaria(List<Comida> alimentos ,List<String> ingredientes, int dia) {
-        MenuDiario menu = new MenuDiario(dia);
-        Random random = new Random();
-        List<Comida> comidasAlimento = alimentos.stream()
+    public static MenuDiario generarDietaDiaria(List<Comida> alimentos, List<String> ingredientes, int dia) {
+    MenuDiario menu = new MenuDiario(dia);
+    Random random = new Random();
+
+    List<Comida> comidasAlimento = alimentos.stream()
         .filter(comida -> ingredientes.stream()
                 .anyMatch(ingrediente -> 
                     comida.getDetalle().toLowerCase().contains(ingrediente.toLowerCase())
                 ))
         .collect(Collectors.toList());
-        System.out.println(comidasAlimento.size());
-        if (comidasAlimento.size() < 5) {
-            throw new IllegalArgumentException("No hay suficientes comidas que contengan los ingredientes elegidos.");
+
+    String[] tipos = {"desayuno", "merienda", "snack", "almuerzo", "cena"};
+    for (String tipo : tipos) {
+        long count = comidasAlimento.stream()
+            .filter(c -> c.getTipoComida().equalsIgnoreCase(tipo))
+            .count();
+        
+        if (count == 0) {
+            throw new IllegalArgumentException("No hay suficientes comidas para el tipo: " + tipo);
         }
-        String[] tipo = {"desayuno", "merienda", "snack", "almuerzo", "cena"};
-        for (String comi : tipo) {
-            List<Comida> comidasTipo = comidasAlimento.stream()
-                .filter(c -> c.getTipoComida().equals(comi))
-                .toList();
-            if (!comidasTipo.isEmpty()) {
-                Comida comidafinal = comidasTipo.get(random.nextInt(comidasTipo.size()));
-                int cantidadPorciones = 1 + random.nextInt(3);
-
-
-                RenglonDeMenu renglon = new RenglonDeMenu(comidafinal, cantidadPorciones,comidafinal.getCaloriasPorPorcion());
-                
-                menu.addRenglon(renglon);
-            }
-
-        }
-        return menu;
     }
+
+    for (String tipo : tipos) {
+        List<Comida> comidasTipo = comidasAlimento.stream()
+            .filter(c -> c.getTipoComida().equalsIgnoreCase(tipo))
+            .toList();
+        
+        Comida comidafinal = comidasTipo.get(random.nextInt(comidasTipo.size()));
+        int cantidadPorciones = 1 + random.nextInt(3);
+
+        RenglonDeMenu renglon = new RenglonDeMenu(comidafinal, cantidadPorciones, comidafinal.getCaloriasPorPorcion());
+        menu.addRenglon(renglon);
+    }
+
+    return menu;
+}
+
 
     public MenuDiario armarDietaDiaria(List<RenglonDeMenu> comidas, Dieta dieta) {
         MenuDiario menu = new MenuDiario(dia);

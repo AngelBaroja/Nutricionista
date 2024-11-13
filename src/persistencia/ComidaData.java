@@ -40,7 +40,6 @@ public class ComidaData {
                 
                 if (rs.next()) {
                     comida.setCodComida(rs.getInt(1));
-                    System.out.println("Comida agregada con exito:  " + comida);
                 
             }
                     
@@ -61,11 +60,10 @@ public class ComidaData {
                 ps.setInt(6, comida.getCodComida());
                 
                 ps.executeUpdate();
-                System.out.println("Comida actualizada con exito:  " + comida);
                 
-}catch (SQLException e){
-                System.out.println("Error al actualiuzar  comida:  " +e.getMessage());
-}
+            }catch (SQLException e){
+                            System.out.println("Error al actualizar  comida:  " +e.getMessage());
+            }
         }
     
         public void darBajaComida(int codComida){
@@ -75,7 +73,6 @@ public class ComidaData {
                 ps.setInt(1, codComida);
                 
                 ps.executeUpdate();
-                System.out.println("Comida dad de baja con exito: codComida =  " +codComida);
             }catch (SQLException e){
                 System.out.println("Error al dar de baja comida: "  +e.getMessage());
                 
@@ -190,7 +187,6 @@ public class ComidaData {
                
                 int filas = ps.executeUpdate();
                 if (filas > 1) {
-                    System.out.println("Comida eliminada con exito.");
                 }
                 ps.close();
                 }catch (SQLException e){
