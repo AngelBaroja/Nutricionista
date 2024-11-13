@@ -4,17 +4,34 @@
  */
 package Vistas;
 
+import Entidades.Dieta;
+import Entidades.MenuDiario;
+import Entidades.RenglonDeMenu;
+import java.util.ArrayList;
+import persistencia.ComidaData;
+import persistencia.Conexion;
+import persistencia.DietaData;
+import persistencia.MenuDiarioData;
+import persistencia.PacienteData;
+import persistencia.RenglonDeMenuData;
+
 /**
  *
  * @author El Angel
  */
 public class VistaVerMenus extends javax.swing.JInternalFrame {
-
+    Conexion conexion = new Conexion("jdbc:mysql://localhost/nutricionista", "root", "");
+    PacienteData pacienteData = new PacienteData(conexion);
+    RenglonDeMenuData renglonData = new RenglonDeMenuData(conexion);
+    ComidaData comidaData = new ComidaData(conexion);    
+    MenuDiarioData menuData = new MenuDiarioData(conexion);
+    DietaData dietaData = new DietaData(conexion);
     /**
      * Creates new form VISTA
      */
     public VistaVerMenus() {
         initComponents();
+        cargarCombo();
     }
 
     /**
@@ -27,71 +44,149 @@ public class VistaVerMenus extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jtMenus = new javax.swing.JTextArea();
+        jcbDieta = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jbSalir = new javax.swing.JButton();
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jtMenus.setColumns(20);
+        jtMenus.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jtMenus.setRows(5);
+        jScrollPane1.setViewportView(jtMenus);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbDieta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbDietaActionPerformed(evt);
+            }
+        });
+        jcbDieta.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jcbDietaPropertyChange(evt);
+            }
+        });
 
-        jButton1.setText("jButton1");
+        jLabel1.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
+        jLabel1.setText("Dietas");
 
-        jButton2.setText("jButton2");
+        jLabel2.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
+        jLabel2.setText("Menus");
 
-        jButton3.setText("jButton3");
+        jbSalir.setText("Salir");
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(94, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(103, 103, 103))
+                        .addGap(207, 207, 207)
+                        .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(jButton3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
-                .addContainerGap())
+                        .addGap(209, 209, 209)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(117, 117, 117)
+                        .addComponent(jcbDieta, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(69, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(212, 212, 212))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17)
+                .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jcbDieta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton3)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jbSalir)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jcbDietaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jcbDietaPropertyChange
+      
+    }//GEN-LAST:event_jcbDietaPropertyChange
+
+    private void jcbDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbDietaActionPerformed
+        jtMenus.setText("");
+        Dieta dieta = (Dieta) jcbDieta.getSelectedItem();
+        StringBuilder resultado = new StringBuilder();
+        MenuDiario menu=null;
+        if (dieta != null) {
+        ArrayList<RenglonDeMenu> lista = new ArrayList();
+            for (MenuDiario menuDiario : menuData.listaMenuDiario()) {
+                if (menuDiario.getDieta().getCodDieta()==dieta.getCodDieta()) {
+                    for (RenglonDeMenu renglonDeMenu : renglonData.listarRenglonesDelaListaCodMenu(menuDiario.getCodMenu())) {
+                        lista.add(renglonDeMenu);
+                    }
+                   menu=menuDiario;                  
+                   resultado.append(imprimirMenuDiario(menu, lista));
+                   resultado.append("                   ----------------------------------\n");
+                   lista.clear();
+                }
+            }
+            jtMenus.setText(resultado.toString());
+            jtMenus.setCaretPosition(0);
+        }
+    }//GEN-LAST:event_jcbDietaActionPerformed
+
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
+    dispose();
+    }//GEN-LAST:event_jbSalirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JButton jbSalir;
+    private javax.swing.JComboBox<Dieta> jcbDieta;
+    private javax.swing.JTextArea jtMenus;
     // End of variables declaration//GEN-END:variables
+    private void cargarCombo(){   
+                for (Dieta listarTodosMenu : renglonData.listarTodosMenus()) {
+            jcbDieta.addItem(listarTodosMenu);
+        }
+    }
+    
+    public String imprimirMenuDiario(MenuDiario menuDiario, ArrayList<RenglonDeMenu> renglonDeMenu) {
+        StringBuilder resultado = new StringBuilder();
+        String dia;
+        switch (menuDiario.getDia()) {
+            case 1:dia = "Lunes";break;
+            case 2:dia = "Martes";break;
+            case 3:dia = "Miercoles";break;
+            case 4:dia = "Jueves";break;
+            case 5:dia = "Viernes";break;
+            case 6:dia = "Sabado";break;
+            case 7:dia = "Domingo";break;
+            default: dia="Lunes";
+        }
+        resultado.append("Día ").append(dia).append(": ").append(menuData.caloriasDelMenu(menuDiario.getCodMenu())).append(" kcal\n");
+
+        for (RenglonDeMenu renglon : renglonDeMenu) {
+            resultado.append(renglon.getComida().getNombre()).append("\n");
+        }
+
+        return resultado.toString();
+    }
 }

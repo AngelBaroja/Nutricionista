@@ -30,10 +30,7 @@ public class MenuDiarioData {
             ps.executeUpdate();
             
             ResultSet rs = ps.getGeneratedKeys();
-            ps.close();
-            
-            System.out.println("Menu Alterado");
-            
+            ps.close();  
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a tabla");
         }
@@ -48,8 +45,7 @@ public class MenuDiarioData {
              ps.setInt(2, reng.getNroRenglon());
              ps.executeUpdate();
              ResultSet rs = ps.getGeneratedKeys();
-             ps.close();
-             System.out.println("Renglon Añadido");  
+             ps.close();           
              } catch (SQLException ex) {
              JOptionPane.showMessageDialog(null, "Error al acceder a tabla");
         }
@@ -72,7 +68,7 @@ public class MenuDiarioData {
              ps.executeUpdate();
              ResultSet rs = ps.getGeneratedKeys();
              ps.close();
-             System.out.println("Renglon Actualizado");  
+             
              } catch (SQLException ex) {
              JOptionPane.showMessageDialog(null, "Error al acceder a tabla");
         }
@@ -94,7 +90,7 @@ public class MenuDiarioData {
             ps.executeUpdate();
             
             ps.close();
-            System.out.println("Menu generado");
+            
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a tabla"+ex.getMessage());
@@ -110,7 +106,7 @@ public class MenuDiarioData {
             ps.executeUpdate();
 
             ps.close();
-            System.out.println("Renglones relacionados Borrados");
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a tabla");
         }
@@ -120,7 +116,7 @@ public class MenuDiarioData {
             ps.executeUpdate();
 
             ps.close();
-            System.out.println("Menu Borrado");
+           
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a tabla");
         }
@@ -135,7 +131,7 @@ public class MenuDiarioData {
              ps.setInt(1, cod);
              
             
-             System.out.println("Menu Encontrado");
+             
               ResultSet rs = ps.executeQuery();
                if (rs.next()) {                
                 me.setCodMenu(rs.getInt("codMenu"));
@@ -150,6 +146,27 @@ public class MenuDiarioData {
          }
           return me;
     }
+          public int caloriasDelMenu(int codMenu){
+          int calorias=0;
+          String query = "SELECT SUM(rm.subTotalCalorias) AS TotalCalorias\n" +
+                        "FROM MenuDiario md\n" +
+                        "JOIN RenglonDeMenu rm ON md.codMenu = rm.codMenu\n" +
+                        "GROUP BY md.codMenu\n" +
+                        "HAVING md.codMenu =?;";
+          
+          try{
+             PreparedStatement ps = conexion.prepareStatement(query);
+             ps.setInt(1, codMenu);
+             ResultSet rs = ps.executeQuery();
+               if (rs.next()) {               
+               calorias = rs.getInt("TotalCalorias");                  
+               }
+               ps.close();
+         } catch (SQLException ex) {
+             System.out.println("Se Produjo un error con la base de datos descargando las calorias del Menu");
+         }
+          return calorias;
+    }
       
       
       public void CambiarEstadoFalse(int cod) {
@@ -158,8 +175,7 @@ public class MenuDiarioData {
              PreparedStatement ps = conexion.prepareStatement(query);
              ps.setInt(1, cod);
              ps.executeUpdate();
-             ps.close();
-             System.out.println("Estado Cambiado");
+             ps.close();             
          } catch (SQLException ex) {
              System.out.println("Se Produjo un error con la base de datos");;
          }
@@ -170,8 +186,7 @@ public class MenuDiarioData {
              PreparedStatement ps = conexion.prepareStatement(query);
              ps.setInt(1, cod);
              ps.executeUpdate();
-             ps.close();
-             System.out.println("Estado Cambiado");
+             ps.close();            
          } catch (SQLException ex) {
              System.out.println("Se Produjo un error con la base de datos");;
          }
@@ -221,8 +236,7 @@ public class MenuDiarioData {
             if (rs.next()) {
                 int codMenuGenerado = rs.getInt(1);  // Recupera el valor de la clave generada
                 menu.setCodMenu(codMenuGenerado);    // Asigna el valor al objeto MenuDiario
-                System.out.println("Menu generado con éxito, codMenu: " + codMenuGenerado);
-            }
+                }
 
             rs.close();
             ps.close();
@@ -301,7 +315,7 @@ public class MenuDiarioData {
                 }
                 listaDieta.add(dieta);
             }
-            System.out.println("Lista de Dieta");
+            
             ps.close();
         } catch (SQLException ex) {
             System.out.println("SE PRODUJO UN ERROR CON LA BASE DE DATOS FORMANDO LA LISTA DE DIETAS");
