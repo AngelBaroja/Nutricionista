@@ -69,13 +69,14 @@ public class vistaPacientes extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
 
         Nombre.setBackground(new java.awt.Color(153, 153, 153));
+        Nombre.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         Nombre.setForeground(new java.awt.Color(0, 0, 0));
         Nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NombreActionPerformed(evt);
             }
         });
-        jPanel1.add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 170, 30));
+        jPanel1.add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 260, 30));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
@@ -95,6 +96,7 @@ public class vistaPacientes extends javax.swing.JInternalFrame {
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 420, -1, 30));
 
         PesoActual.setBackground(new java.awt.Color(153, 153, 153));
+        PesoActual.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         PesoActual.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(PesoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 120, 30));
 
@@ -114,6 +116,8 @@ public class vistaPacientes extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(Guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 420, -1, 30));
+
+        Edad.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jPanel1.add(Edad, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 172, 80, 20));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -122,12 +126,14 @@ public class vistaPacientes extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
 
         Altura.setBackground(new java.awt.Color(153, 153, 153));
+        Altura.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         Altura.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(Altura, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 90, 30));
 
         PesoBuscado.setBackground(new java.awt.Color(153, 153, 153));
+        PesoBuscado.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         PesoBuscado.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(PesoBuscado, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, 100, 30));
+        jPanel1.add(PesoBuscado, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, 110, 30));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));

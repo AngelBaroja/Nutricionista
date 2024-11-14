@@ -116,12 +116,16 @@ private DietaData dietadata = new DietaData(conexion);
         jLabel2.setText("Buscar Paciente:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
 
+        Id.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         Id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 IdActionPerformed(evt);
             }
         });
         Id.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                IdKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 IdKeyTyped(evt);
             }
@@ -348,34 +352,34 @@ cargarlistaPaciente();
     }//GEN-LAST:event_pesologradoActionPerformed
 
     private void IdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IdKeyTyped
-        borrarFilasTablas();
-        if (Id.getText().equals("")) {
-            cargarlistaPaciente();
-        } else{
-             try {
-                int nroPaciente = Integer.parseInt(Id.getText());
-
-                Paciente paciente = pacienteData.buscarPaciente(nroPaciente);
-
-                if (paciente != null) {
-                    DefaultTableModel model = (DefaultTableModel) listaPaciente.getModel();
-                    model.setRowCount(0); // Limpiar filas previas
-
-                    model.addRow(new Object[]{
-                        paciente.getNroPaciente(), 
-                        paciente.getNombre(), 
-                        paciente.getEdad(), 
-                        paciente.getAltura(), 
-                        paciente.getPesoActual(), 
-                        paciente.getPesoBuscado()
-                    });
-                } else {
-                    JOptionPane.showMessageDialog(this, "No se encontró un paciente con ese ID.");
-                }
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "Por favor, ingresa un número válido como ID.");
-            }
-         }
+//        borrarFilasTablas();
+//        if (Id.getText().equals("")) {
+//            cargarlistaPaciente();
+//        } else{
+//             try {
+//                int nroPaciente = Integer.parseInt(Id.getText());
+//
+//                Paciente paciente = pacienteData.buscarPaciente(nroPaciente);
+//
+//                if (paciente != null) {
+//                    DefaultTableModel model = (DefaultTableModel) listaPaciente.getModel();
+//                    model.setRowCount(0); // Limpiar filas previas
+//
+//                    model.addRow(new Object[]{
+//                        paciente.getNroPaciente(), 
+//                        paciente.getNombre(), 
+//                        paciente.getEdad(), 
+//                        paciente.getAltura(), 
+//                        paciente.getPesoActual(), 
+//                        paciente.getPesoBuscado()
+//                    });
+//                } else {
+//                    JOptionPane.showMessageDialog(this, "No se encontró un paciente con ese ID.");
+//                }
+//            } catch (NumberFormatException e) {
+//                JOptionPane.showMessageDialog(this, "Por favor, ingresa un número válido como ID.");
+//            }
+//         }
     }//GEN-LAST:event_IdKeyTyped
 
     private void seacercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seacercaActionPerformed
@@ -416,6 +420,37 @@ cargarlistaPaciente();
             Salir.setEnabled(true);
         }
     }//GEN-LAST:event_seacercaActionPerformed
+
+    private void IdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IdKeyReleased
+         borrarFilasTablas();
+        if (Id.getText().equals("")) {
+            cargarlistaPaciente();
+        } else{
+             try {
+                int nroPaciente = Integer.parseInt(Id.getText());
+
+                Paciente paciente = pacienteData.buscarPaciente(nroPaciente);
+
+                if (paciente != null) {
+                    DefaultTableModel model = (DefaultTableModel) listaPaciente.getModel();
+                    model.setRowCount(0); // Limpiar filas previas
+
+                    model.addRow(new Object[]{
+                        paciente.getNroPaciente(), 
+                        paciente.getNombre(), 
+                        paciente.getEdad(), 
+                        paciente.getAltura(), 
+                        paciente.getPesoActual(), 
+                        paciente.getPesoBuscado()
+                    });
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se encontró un paciente con ese ID.");
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Por favor, ingresa un número válido como ID.");
+            }
+         }
+    }//GEN-LAST:event_IdKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

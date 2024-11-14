@@ -108,7 +108,7 @@ public class VistaRenglonDeMenu extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Lucida Handwriting", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre de la Comida : ");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, -1, -1));
 
         jtNombreComida.setBackground(new java.awt.Color(153, 153, 153));
         jtNombreComida.setForeground(new java.awt.Color(0, 0, 0));
@@ -119,7 +119,8 @@ public class VistaRenglonDeMenu extends javax.swing.JInternalFrame {
         });
         jPanel1.add(jtNombreComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, 240, -1));
 
-        tabla.setBackground(new java.awt.Color(153, 153, 153));
+        tabla.setBackground(new java.awt.Color(204, 204, 204));
+        tabla.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         tabla.setForeground(new java.awt.Color(0, 0, 0));
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -149,7 +150,7 @@ public class VistaRenglonDeMenu extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Lucida Handwriting", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Calorias desde:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, -1, -1));
 
         jcbTipo.setBackground(new java.awt.Color(153, 153, 153));
         jcbTipo.setForeground(new java.awt.Color(0, 0, 0));
@@ -158,7 +159,7 @@ public class VistaRenglonDeMenu extends javax.swing.JInternalFrame {
                 jcbTipoActionPerformed(evt);
             }
         });
-        jPanel1.add(jcbTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 230, -1));
+        jPanel1.add(jcbTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 230, -1));
 
         jtDesdeCalorias.setBackground(new java.awt.Color(153, 153, 153));
         jtDesdeCalorias.setForeground(new java.awt.Color(0, 0, 0));
@@ -181,12 +182,12 @@ public class VistaRenglonDeMenu extends javax.swing.JInternalFrame {
                 jtHastaCaloriasKeyReleased(evt);
             }
         });
-        jPanel1.add(jtHastaCalorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 190, 100, -1));
+        jPanel1.add(jtHastaCalorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 190, 100, -1));
 
         jLabel7.setFont(new java.awt.Font("Lucida Handwriting", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Detalle de la Comida : ");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, -1, -1));
 
         jtDetalleComida.setBackground(new java.awt.Color(153, 153, 153));
         jtDetalleComida.setForeground(new java.awt.Color(0, 0, 0));
@@ -213,7 +214,7 @@ public class VistaRenglonDeMenu extends javax.swing.JInternalFrame {
                 jsCantidadPorcionesStateChanged(evt);
             }
         });
-        jPanel1.add(jsCantidadPorciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, 80, -1));
+        jPanel1.add(jsCantidadPorciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 370, 80, -1));
 
         jLabel9.setFont(new java.awt.Font("Lucida Handwriting", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -222,9 +223,9 @@ public class VistaRenglonDeMenu extends javax.swing.JInternalFrame {
 
         jlCaloriasTotales.setBackground(new java.awt.Color(153, 153, 153));
         jlCaloriasTotales.setFont(new java.awt.Font("Lucida Handwriting", 0, 14)); // NOI18N
-        jlCaloriasTotales.setForeground(new java.awt.Color(0, 0, 0));
+        jlCaloriasTotales.setForeground(new java.awt.Color(255, 255, 255));
         jlCaloriasTotales.setText("                                ");
-        jPanel1.add(jlCaloriasTotales, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 410, -1, -1));
+        jPanel1.add(jlCaloriasTotales, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 410, -1, -1));
 
         jbInsertarMenu.setBackground(new java.awt.Color(153, 153, 153));
         jbInsertarMenu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -268,9 +269,10 @@ public class VistaRenglonDeMenu extends javax.swing.JInternalFrame {
         jPanel1.add(jr1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 370, -1, -1));
 
         jcbMenu.setBackground(new java.awt.Color(153, 153, 153));
+        jcbMenu.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jcbMenu.setForeground(new java.awt.Color(0, 0, 0));
         jcbMenu.setEnabled(false);
-        jPanel1.add(jcbMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 450, 190, -1));
+        jPanel1.add(jcbMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 450, 320, -1));
 
         jr4.setBackground(new java.awt.Color(0, 0, 0));
         jr4.setText("4");
@@ -316,7 +318,7 @@ public class VistaRenglonDeMenu extends javax.swing.JInternalFrame {
         jPanel1.add(jbBorrarRenglon, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 410, 150, -1));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pexels-n-voitkevich-5794773 (1).jpg"))); // NOI18N
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(-410, 0, 1150, 550));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(-420, 0, 1150, 550));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -367,16 +369,16 @@ public class VistaRenglonDeMenu extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jsCantidadPorcionesStateChanged
 
     private void jbInsertarMenuMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbInsertarMenuMouseEntered
-          jbInsertarMenu.setToolTipText("Permite generar un nuevo Renglon con comida");
-          jbInsertarMenu.setFont(new java.awt.Font("Dialog", java.awt.Font.BOLD, 13));
-          setCursor(new Cursor(Cursor.HAND_CURSOR));
-          jbInsertarMenu.setBorder(new LineBorder(Color.RED, 2));
+//          jbInsertarMenu.setToolTipText("Permite generar un nuevo Renglon con comida");
+//          jbInsertarMenu.setFont(new java.awt.Font("Dialog", java.awt.Font.BOLD, 13));
+//          setCursor(new Cursor(Cursor.HAND_CURSOR));
+//          jbInsertarMenu.setBorder(new LineBorder(Color.RED, 2));
     }//GEN-LAST:event_jbInsertarMenuMouseEntered
 
     private void jbInsertarMenuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbInsertarMenuMouseExited
-        setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-         jbInsertarMenu.setFont(new java.awt.Font("Dialog", java.awt.Font.PLAIN, 13));
-         jbInsertarMenu.setBorder(new LineBorder(Color.GRAY, 1));
+//        setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+//         jbInsertarMenu.setFont(new java.awt.Font("Dialog", java.awt.Font.PLAIN, 13));
+//         jbInsertarMenu.setBorder(new LineBorder(Color.GRAY, 1));
     }//GEN-LAST:event_jbInsertarMenuMouseExited
 
     private void jtDetalleComidaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtDetalleComidaMouseEntered

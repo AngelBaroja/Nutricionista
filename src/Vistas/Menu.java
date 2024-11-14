@@ -41,10 +41,10 @@ public class Menu extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jmiRenglonDeMenu = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
 
         jMenuItem6.setText("jMenuItem6");
 
@@ -58,7 +58,7 @@ public class Menu extends javax.swing.JFrame {
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 484, Short.MAX_VALUE)
+            .addGap(0, 486, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Paciente");
@@ -149,14 +149,6 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
-        jMenu5.setText("Comidas");
-        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu5MouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(jMenu5);
-
         jMenu4.setText("Renglones");
 
         jmiRenglonDeMenu.setText("Generar Renglon");
@@ -176,6 +168,14 @@ public class Menu extends javax.swing.JFrame {
         jMenu4.add(jMenuItem3);
 
         jMenuBar1.add(jMenu4);
+
+        jMenu5.setText("Comidas");
+        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu5MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
 

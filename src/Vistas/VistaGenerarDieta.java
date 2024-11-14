@@ -100,6 +100,7 @@ public class VistaGenerarDieta extends javax.swing.JInternalFrame {
         jPanel2.add(jtDietaConPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 100, -1));
 
         jcbPaciente.setBackground(new java.awt.Color(204, 204, 204));
+        jcbPaciente.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jcbPaciente.setForeground(new java.awt.Color(0, 0, 0));
         jcbPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,6 +117,7 @@ public class VistaGenerarDieta extends javax.swing.JInternalFrame {
         jPanel2.add(jdcFechaInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 20, -1));
 
         jlFechaInicial.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jlFechaInicial.setForeground(new java.awt.Color(255, 255, 255));
         jlFechaInicial.setText("                            ");
         jPanel2.add(jlFechaInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, -1, -1));
 
@@ -127,10 +129,12 @@ public class VistaGenerarDieta extends javax.swing.JInternalFrame {
         jPanel2.add(jdcFechaFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, 20, -1));
 
         jlFechaFinal.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jlFechaFinal.setForeground(new java.awt.Color(255, 255, 255));
         jlFechaFinal.setText("                            ");
         jPanel2.add(jlFechaFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, -1, -1));
 
         jlPesoInicial.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jlPesoInicial.setForeground(new java.awt.Color(255, 255, 255));
         jlPesoInicial.setText("                         ");
         jPanel2.add(jlPesoInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, -1, -1));
 

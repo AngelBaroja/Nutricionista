@@ -46,7 +46,8 @@ public class VistaMostrarMenu extends javax.swing.JInternalFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tablaMenu.setBackground(new java.awt.Color(153, 153, 153));
+        tablaMenu.setBackground(new java.awt.Color(204, 204, 204));
+        tablaMenu.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         tablaMenu.setForeground(new java.awt.Color(0, 0, 0));
         tablaMenu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -64,6 +65,7 @@ public class VistaMostrarMenu extends javax.swing.JInternalFrame {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, -1, 240));
 
         jLabel1.setFont(new java.awt.Font("Roboto Medium", 0, 30)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
         jLabel1.setText("Mostrar Menu Diario");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, -1, -1));
 

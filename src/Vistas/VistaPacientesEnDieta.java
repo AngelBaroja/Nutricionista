@@ -74,9 +74,13 @@ public class VistaPacientesEnDieta extends javax.swing.JInternalFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setFont(new java.awt.Font("Arial Black", 1, 36)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(204, 204, 204));
         jLabel5.setText("Pacientes con Dieta");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, -1, 36));
 
+        tabla2.setBackground(new java.awt.Color(204, 204, 204));
+        tabla2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        tabla2.setForeground(new java.awt.Color(0, 0, 0));
         tabla2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -105,46 +109,56 @@ public class VistaPacientesEnDieta extends javax.swing.JInternalFrame {
         jPanel1.add(jtBuscarDieta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 60, 273, -1));
 
         jLabel8.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(204, 204, 204));
         jLabel8.setText("Buscar por nombre de Paciente:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(204, 204, 204));
         jLabel9.setText("Codigo:");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(204, 204, 204));
         jLabel10.setText("Paciente;");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(204, 204, 204));
         jLabel11.setText("Fecha Inicial:");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(204, 204, 204));
         jLabel12.setText("Fecha Final:");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, -1, -1));
 
         jLabel13.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(204, 204, 204));
         jLabel13.setText("Peso Inicial:");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, -1, -1));
 
         jLabel14.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(204, 204, 204));
         jLabel14.setText("Peso Final:");
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 330, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(204, 204, 204));
         jLabel15.setText("Calorias:");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, -1, -1));
 
         jLabel16.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(204, 204, 204));
         jLabel16.setText("Estado:");
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 370, -1, -1));
 
         jLabel17.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(204, 204, 204));
         jLabel17.setText("Terminada:");
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, -1, -1));
 
-        jrActivos.setBackground(new java.awt.Color(0, 0, 0));
+        jrActivos.setBackground(new java.awt.Color(204, 204, 204));
         jrActivos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jrActivosActionPerformed(evt);
@@ -175,10 +189,12 @@ public class VistaPacientesEnDieta extends javax.swing.JInternalFrame {
         jPanel1.add(jdcFechaFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 290, 20, -1));
 
         jlFechaFinal.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jlFechaFinal.setForeground(new java.awt.Color(204, 204, 204));
         jlFechaFinal.setText("                    ");
         jPanel1.add(jlFechaFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 290, -1, -1));
 
         jlFechaInicial.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jlFechaInicial.setForeground(new java.awt.Color(204, 204, 204));
         jlFechaInicial.setText("                    ");
         jPanel1.add(jlFechaInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, -1, -1));
 
@@ -191,12 +207,13 @@ public class VistaPacientesEnDieta extends javax.swing.JInternalFrame {
         jtPesoFinal.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(jtPesoFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 330, 107, -1));
 
-        jcbEstado.setBackground(new java.awt.Color(0, 0, 0));
+        jcbEstado.setBackground(new java.awt.Color(153, 153, 153));
         jcbEstado.setForeground(new java.awt.Color(0, 0, 0));
         jcbEstado.setText("jCheckBox1");
-        jPanel1.add(jcbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 370, 20, -1));
+        jPanel1.add(jcbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 370, 20, 20));
 
         jlCalorias.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jlCalorias.setForeground(new java.awt.Color(204, 204, 204));
         jlCalorias.setText("               ");
         jPanel1.add(jlCalorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, -1, -1));
 

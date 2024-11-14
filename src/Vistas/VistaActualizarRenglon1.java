@@ -83,12 +83,12 @@ public class VistaActualizarRenglon1 extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Lucida Handwriting", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Actualizar Renglon");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Lucida Handwriting", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre de la Dieta:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, -1, -1));
 
         jr1.setBackground(new java.awt.Color(0, 0, 0));
         jr1.setText("1");
@@ -158,7 +158,8 @@ public class VistaActualizarRenglon1 extends javax.swing.JInternalFrame {
         });
         jPanel1.add(jr7, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 130, -1, -1));
 
-        tabla.setBackground(new java.awt.Color(153, 153, 153));
+        tabla.setBackground(new java.awt.Color(204, 204, 204));
+        tabla.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         tabla.setForeground(new java.awt.Color(0, 0, 0));
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -187,13 +188,14 @@ public class VistaActualizarRenglon1 extends javax.swing.JInternalFrame {
         jPanel1.add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 30, -1, -1));
 
         jcbDieta.setBackground(new java.awt.Color(153, 153, 153));
+        jcbDieta.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jcbDieta.setForeground(new java.awt.Color(0, 0, 0));
         jcbDieta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcbDietaActionPerformed(evt);
             }
         });
-        jPanel1.add(jcbDieta, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, 150, -1));
+        jPanel1.add(jcbDieta, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, 280, -1));
 
         jbActualizar.setBackground(new java.awt.Color(153, 153, 153));
         jbActualizar.setForeground(new java.awt.Color(0, 0, 0));
