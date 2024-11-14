@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -107,7 +108,7 @@ import java.util.stream.Collectors;
             .count();
         
         if (count == 0) {
-            throw new IllegalArgumentException("No hay suficientes comidas para el tipo: " + tipo);
+            JOptionPane.showMessageDialog(null, "No hay suficientes comidas para el tipo: " + tipo, "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
