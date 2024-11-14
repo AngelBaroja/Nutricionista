@@ -42,6 +42,7 @@ private DietaData dietadata = new DietaData(conexion);
         buttonGroup3 = new javax.swing.ButtonGroup();
         buttonGroup4 = new javax.swing.ButtonGroup();
         buttonGroup5 = new javax.swing.ButtonGroup();
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listaPaciente = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -52,6 +53,7 @@ private DietaData dietadata = new DietaData(conexion);
         borrar = new javax.swing.JButton();
         pesologrado = new javax.swing.JRadioButton();
         seacerca = new javax.swing.JRadioButton();
+        jLabel3 = new javax.swing.JLabel();
 
         jButton4.setText("jButton4");
 
@@ -60,6 +62,8 @@ private DietaData dietadata = new DietaData(conexion);
         jToggleButton1.setText("jToggleButton1");
 
         jButton6.setText("jButton6");
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         listaPaciente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -87,19 +91,29 @@ private DietaData dietadata = new DietaData(conexion);
         });
         jScrollPane1.setViewportView(listaPaciente);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("Lista Paciente");
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 690, 244));
 
+        jLabel1.setBackground(new java.awt.Color(102, 102, 102));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Lista Paciente");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 330, -1));
+
+        Salir.setBackground(new java.awt.Color(153, 153, 153));
         Salir.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Salir.setForeground(new java.awt.Color(0, 0, 0));
         Salir.setText("Salir");
         Salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SalirActionPerformed(evt);
             }
         });
+        jPanel1.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 470, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Buscar Paciente:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
 
         Id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,91 +125,68 @@ private DietaData dietadata = new DietaData(conexion);
                 IdKeyTyped(evt);
             }
         });
+        jPanel1.add(Id, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 120, -1));
 
+        Actualizar.setBackground(new java.awt.Color(153, 153, 153));
         Actualizar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Actualizar.setForeground(new java.awt.Color(0, 0, 0));
         Actualizar.setText("Actualizar");
         Actualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ActualizarActionPerformed(evt);
             }
         });
+        jPanel1.add(Actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 470, -1, -1));
 
+        borrar.setBackground(new java.awt.Color(153, 153, 153));
         borrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        borrar.setForeground(new java.awt.Color(0, 0, 0));
         borrar.setText("Borrar");
         borrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 borrarActionPerformed(evt);
             }
         });
+        jPanel1.add(borrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 470, -1, -1));
 
+        pesologrado.setBackground(new java.awt.Color(153, 153, 153));
+        pesologrado.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        pesologrado.setForeground(new java.awt.Color(0, 0, 0));
         pesologrado.setText("Peso logrado");
         pesologrado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pesologradoActionPerformed(evt);
             }
         });
+        jPanel1.add(pesologrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, -1, -1));
 
+        seacerca.setBackground(new java.awt.Color(153, 153, 153));
+        seacerca.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        seacerca.setForeground(new java.awt.Color(0, 0, 0));
         seacerca.setText("Se acerca al peso");
         seacerca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 seacercaActionPerformed(evt);
             }
         });
+        jPanel1.add(seacerca, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/d53461c1acc264746ea5bc688eac96b3.jpg"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 520));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(borrar)
-                .addGap(18, 18, 18)
-                .addComponent(Actualizar)
-                .addGap(18, 18, 18)
-                .addComponent(Salir)
-                .addGap(173, 173, 173))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(Id, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(131, 131, 131)
-                        .addComponent(pesologrado)
-                        .addGap(18, 18, 18)
-                        .addComponent(seacerca))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(249, 249, 249)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(83, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Id, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(pesologrado)
-                            .addComponent(seacerca))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Actualizar)
-                    .addComponent(Salir)
-                    .addComponent(borrar))
-                .addGap(32, 32, 32))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -357,45 +348,6 @@ cargarlistaPaciente();
         
     }//GEN-LAST:event_pesologradoActionPerformed
 
-    private void seacercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seacercaActionPerformed
-        Actualizar.setEnabled(false);
-        borrar.setEnabled(false);
-        Salir.setEnabled(false);
-        pesologrado.setSelected(false);
-        borrarFilasTablas();
-        String[] columnanueva = {"Nro Paciente", "Nombre Completo","Peso Actual","Peso Buscado","¿Se acerca al peso?"};
-        DefaultTableModel modelo2 = new DefaultTableModel(columnanueva, 0);
-        listaPaciente.setModel(modelo2);
-        ArrayList<Dieta> listaDieta = dietadata.listaDietaConPacienteCargados();
-        for (Paciente paciente : pacienteData.listaPaciente()) {
-            int nroPaciente = paciente.getNroPaciente();
-            String nombre = paciente.getNombre();
-            String pesoActual = String.format("%.2f", paciente.getPesoActual());
-            String pesoBuscado = String.format("%.2f", paciente.getPesoBuscado());
-            
-            Dieta dieta = listaDieta.stream()
-                             .filter(d -> d.getPaciente() != null && d.getPaciente().getNroPaciente() == nroPaciente)
-                             .findFirst()
-                             .orElse(null);
-
-            if (dieta != null) {
-                if (!(paciente.getPesoActual() <= paciente.getPesoBuscado())) {
-                    boolean acerca = paciente.seAcercaAlPeso(dieta);
-                    modelo2.addRow(new Object[]{nroPaciente,nombre,pesoActual,pesoBuscado,acerca});
-                }
-                
-            }
-        }
-        
-        if (!seacerca.isSelected()) {
-            borrarFilasTablas();
-            cargarlistaPaciente();
-            Actualizar.setEnabled(true);
-            borrar.setEnabled(true);
-            Salir.setEnabled(true);
-        }
-    }//GEN-LAST:event_seacercaActionPerformed
-
     private void IdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IdKeyTyped
         borrarFilasTablas();
         if (Id.getText().equals("")) {
@@ -427,6 +379,45 @@ cargarlistaPaciente();
          }
     }//GEN-LAST:event_IdKeyTyped
 
+    private void seacercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seacercaActionPerformed
+        Actualizar.setEnabled(false);
+        borrar.setEnabled(false);
+        Salir.setEnabled(false);
+        pesologrado.setSelected(false);
+        borrarFilasTablas();
+        String[] columnanueva = {"Nro Paciente", "Nombre Completo","Peso Actual","Peso Buscado","¿Se acerca al peso?"};
+        DefaultTableModel modelo2 = new DefaultTableModel(columnanueva, 0);
+        listaPaciente.setModel(modelo2);
+        ArrayList<Dieta> listaDieta = dietadata.listaDietaConPacienteCargados();
+        for (Paciente paciente : pacienteData.listaPaciente()) {
+            int nroPaciente = paciente.getNroPaciente();
+            String nombre = paciente.getNombre();
+            String pesoActual = String.format("%.2f", paciente.getPesoActual());
+            String pesoBuscado = String.format("%.2f", paciente.getPesoBuscado());
+
+            Dieta dieta = listaDieta.stream()
+            .filter(d -> d.getPaciente() != null && d.getPaciente().getNroPaciente() == nroPaciente)
+            .findFirst()
+            .orElse(null);
+
+            if (dieta != null) {
+                if (!(paciente.getPesoActual() <= paciente.getPesoBuscado())) {
+                    boolean acerca = paciente.seAcercaAlPeso(dieta);
+                    modelo2.addRow(new Object[]{nroPaciente,nombre,pesoActual,pesoBuscado,acerca});
+                }
+
+            }
+        }
+
+        if (!seacerca.isSelected()) {
+            borrarFilasTablas();
+            cargarlistaPaciente();
+            Actualizar.setEnabled(true);
+            borrar.setEnabled(true);
+            Salir.setEnabled(true);
+        }
+    }//GEN-LAST:event_seacercaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Actualizar;
@@ -443,6 +434,8 @@ cargarlistaPaciente();
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JTable listaPaciente;
