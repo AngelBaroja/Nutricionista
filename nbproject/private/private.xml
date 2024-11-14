@@ -3,9 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Matias/Documents/GitHub/Nutricionista/src/nutricionista/Main.java</file>
-            <file>file:/C:/Users/Matias/Documents/GitHub/Nutricionista/src/Vistas/VistaPacientesEnDieta.java</file>
-            <file>file:/C:/Users/Matias/Documents/GitHub/Nutricionista/src/Vistas/VistasComida.java</file>
+            <file>file:/C:/Users/Nicolas/Desktop/Nicoulp/integrador/Nutricionista/src/Vistas/vistaListadePacientes.java</file>
+            <file>file:/C:/Users/Nicolas/Desktop/Nicoulp/integrador/Nutricionista/src/Entidades/RenglonDeMenu.java</file>
+            <file>file:/C:/Users/Nicolas/Desktop/Nicoulp/integrador/Nutricionista/src/Entidades/Paciente.java</file>
+            <file>file:/C:/Users/Nicolas/Desktop/Nicoulp/integrador/Nutricionista/src/Vistas/Menu.java</file>
+            <file>file:/C:/Users/Nicolas/Desktop/Nicoulp/integrador/Nutricionista/src/Vistas/VistasComida.java</file>
+            <file>file:/C:/Users/Nicolas/Desktop/Nicoulp/integrador/Nutricionista/src/Vistas/vistaPacientes.java</file>
         </group>
     </open-files>
 </project-private>
