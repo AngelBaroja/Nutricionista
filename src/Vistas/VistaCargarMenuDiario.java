@@ -244,6 +244,9 @@ public class VistaCargarMenuDiario extends javax.swing.JInternalFrame {
 
             for (int i = 0; i < dias; i++) {
                 MenuDiario menuGenerado = MenuDiario.generarDietaDiaria(alimentos, listaIngredientes, i + 1);
+                if (menuGenerado == null) {
+                    return;
+                }
                 menuCargado.setDia(i + 1);
 
                 menuData.GenerarMenuDiarioAuto(menuCargado);

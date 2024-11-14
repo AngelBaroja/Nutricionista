@@ -117,6 +117,7 @@ import javax.swing.JOptionPane;
         
         if (count == 0) {
             JOptionPane.showMessageDialog(null, "No hay suficientes comidas para el tipo: " + tipo, "Error", JOptionPane.ERROR_MESSAGE);
+            return null;
         }
     }
 
