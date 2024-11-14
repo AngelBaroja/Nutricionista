@@ -68,8 +68,8 @@ public class vistaPacientes extends javax.swing.JInternalFrame {
         jLabel5.setText("Altura:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
 
-        Nombre.setBackground(new java.awt.Color(51, 51, 51));
-        Nombre.setForeground(new java.awt.Color(204, 204, 204));
+        Nombre.setBackground(new java.awt.Color(153, 153, 153));
+        Nombre.setForeground(new java.awt.Color(0, 0, 0));
         Nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NombreActionPerformed(evt);
@@ -82,36 +82,38 @@ public class vistaPacientes extends javax.swing.JInternalFrame {
         jLabel6.setText("Peso actual:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
 
-        jButton2.setBackground(new java.awt.Color(51, 51, 51));
+        jButton2.setBackground(new java.awt.Color(153, 153, 153));
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(204, 204, 204));
+        jButton2.setForeground(new java.awt.Color(0, 0, 0));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/exit (2).png"))); // NOI18N
         jButton2.setText("Salir");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, -1, 30));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 420, -1, 30));
 
-        PesoActual.setBackground(new java.awt.Color(51, 51, 51));
-        PesoActual.setForeground(new java.awt.Color(204, 204, 204));
-        jPanel1.add(PesoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 110, 30));
+        PesoActual.setBackground(new java.awt.Color(153, 153, 153));
+        PesoActual.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(PesoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 120, 30));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Nombre paciente:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
 
-        Guardar.setBackground(new java.awt.Color(51, 51, 51));
+        Guardar.setBackground(new java.awt.Color(153, 153, 153));
         Guardar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Guardar.setForeground(new java.awt.Color(204, 204, 204));
+        Guardar.setForeground(new java.awt.Color(0, 0, 0));
+        Guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/file-upload.png"))); // NOI18N
         Guardar.setText("Guardar");
         Guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(Guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 440, -1, 30));
+        jPanel1.add(Guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 420, -1, 30));
         jPanel1.add(Edad, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 172, 80, 20));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -119,12 +121,12 @@ public class vistaPacientes extends javax.swing.JInternalFrame {
         jLabel4.setText("Edad:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
 
-        Altura.setBackground(new java.awt.Color(51, 51, 51));
-        Altura.setForeground(new java.awt.Color(204, 204, 204));
+        Altura.setBackground(new java.awt.Color(153, 153, 153));
+        Altura.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(Altura, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 90, 30));
 
-        PesoBuscado.setBackground(new java.awt.Color(51, 51, 51));
-        PesoBuscado.setForeground(new java.awt.Color(204, 204, 204));
+        PesoBuscado.setBackground(new java.awt.Color(153, 153, 153));
+        PesoBuscado.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(PesoBuscado, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, 100, 30));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -139,7 +141,7 @@ public class vistaPacientes extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/d53461c1acc264746ea5bc688eac96b3.jpg"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -120, 740, 650));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -120, 740, 610));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

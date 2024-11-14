@@ -68,6 +68,7 @@ public class VistaActualizarRenglon extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jtNombreComida = new javax.swing.JTextField();
@@ -75,7 +76,6 @@ public class VistaActualizarRenglon extends javax.swing.JInternalFrame {
         tabla = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jtDesdeCalorias = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jtHastaCalorias = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -86,19 +86,32 @@ public class VistaActualizarRenglon extends javax.swing.JInternalFrame {
         jlCaloriasTotales = new javax.swing.JLabel();
         jbInsertarMenu = new javax.swing.JButton();
         jbInsertarMenu1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Lucida Handwriting", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Actualiza la Comida");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Lucida Handwriting", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre de la Comida : ");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, -1, -1));
 
+        jtNombreComida.setBackground(new java.awt.Color(153, 153, 153));
+        jtNombreComida.setForeground(new java.awt.Color(0, 0, 0));
         jtNombreComida.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jtNombreComidaKeyReleased(evt);
             }
         });
+        jPanel2.add(jtNombreComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 80, 150, -1));
 
+        tabla.setBackground(new java.awt.Color(153, 153, 153));
+        tabla.setForeground(new java.awt.Color(0, 0, 0));
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -117,30 +130,43 @@ public class VistaActualizarRenglon extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tabla);
 
-        jLabel4.setFont(new java.awt.Font("Lucida Handwriting", 0, 14)); // NOI18N
-        jLabel4.setText("Calorias:");
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 610, 120));
 
+        jLabel4.setFont(new java.awt.Font("Lucida Handwriting", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Calorias desde:");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, -1, -1));
+
+        jtDesdeCalorias.setBackground(new java.awt.Color(153, 153, 153));
+        jtDesdeCalorias.setForeground(new java.awt.Color(0, 0, 0));
         jtDesdeCalorias.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jtDesdeCaloriasKeyReleased(evt);
             }
         });
-
-        jLabel5.setFont(new java.awt.Font("Lucida Handwriting", 0, 14)); // NOI18N
-        jLabel5.setText("desde");
+        jPanel2.add(jtDesdeCalorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, 80, -1));
 
         jLabel6.setFont(new java.awt.Font("Lucida Handwriting", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("hasta:");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, -1, -1));
 
+        jtHastaCalorias.setBackground(new java.awt.Color(153, 153, 153));
+        jtHastaCalorias.setForeground(new java.awt.Color(0, 0, 0));
         jtHastaCalorias.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jtHastaCaloriasKeyReleased(evt);
             }
         });
+        jPanel2.add(jtHastaCalorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 140, 80, -1));
 
         jLabel7.setFont(new java.awt.Font("Lucida Handwriting", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Detalle de la Comida : ");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, -1, -1));
 
+        jtDetalleComida.setBackground(new java.awt.Color(153, 153, 153));
+        jtDetalleComida.setForeground(new java.awt.Color(0, 0, 0));
         jtDetalleComida.setToolTipText("");
         jtDetalleComida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -152,22 +178,34 @@ public class VistaActualizarRenglon extends javax.swing.JInternalFrame {
                 jtDetalleComidaKeyReleased(evt);
             }
         });
+        jPanel2.add(jtDetalleComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, 150, -1));
 
         jLabel8.setFont(new java.awt.Font("Lucida Handwriting", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Cantidad de Porciones:");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, -1, -1));
 
         jsCantidadPorciones.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jsCantidadPorcionesStateChanged(evt);
             }
         });
+        jPanel2.add(jsCantidadPorciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Lucida Handwriting", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Calorias Totales:");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 370, -1, 20));
 
         jlCaloriasTotales.setFont(new java.awt.Font("Lucida Handwriting", 0, 14)); // NOI18N
+        jlCaloriasTotales.setForeground(new java.awt.Color(255, 255, 255));
         jlCaloriasTotales.setText("                                ");
+        jPanel2.add(jlCaloriasTotales, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 370, -1, 20));
 
+        jbInsertarMenu.setBackground(new java.awt.Color(153, 153, 153));
+        jbInsertarMenu.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jbInsertarMenu.setForeground(new java.awt.Color(255, 255, 255));
+        jbInsertarMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/refresh (2).png"))); // NOI18N
         jbInsertarMenu.setText("Actualizar Comida");
         jbInsertarMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -182,7 +220,10 @@ public class VistaActualizarRenglon extends javax.swing.JInternalFrame {
                 jbInsertarMenuActionPerformed(evt);
             }
         });
+        jPanel2.add(jbInsertarMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 180, -1, -1));
 
+        jbInsertarMenu1.setForeground(new java.awt.Color(153, 153, 153));
+        jbInsertarMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/exit (2).png"))); // NOI18N
         jbInsertarMenu1.setText("Salir");
         jbInsertarMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -197,97 +238,23 @@ public class VistaActualizarRenglon extends javax.swing.JInternalFrame {
                 jbInsertarMenu1ActionPerformed(evt);
             }
         });
+        jPanel2.add(jbInsertarMenu1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 20, -1, -1));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pexels-n-voitkevich-5794773 (1).jpg"))); // NOI18N
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(-370, 0, 1160, 500));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(143, 143, 143))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGap(14, 14, 14)
-                                        .addComponent(jbInsertarMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel8)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jsCantidadPorciones, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel9)
-                                            .addGap(28, 28, 28)
-                                            .addComponent(jlCaloriasTotales, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(260, 260, 260)
-                                .addComponent(jbInsertarMenu1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(19, 19, 19))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jtNombreComida, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(jtDesdeCalorias, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
-                                .addComponent(jLabel6)
-                                .addGap(18, 18, 18)
-                                .addComponent(jtHastaCalorias, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(jtDetalleComida, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(26, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 786, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jtNombreComida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jtDetalleComida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jtDesdeCalorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jtHastaCalorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jsCantidadPorciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jlCaloriasTotales))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbInsertarMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbInsertarMenu1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -385,13 +352,15 @@ public class VistaActualizarRenglon extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbInsertarMenu;
     private javax.swing.JButton jbInsertarMenu1;

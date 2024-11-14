@@ -94,9 +94,13 @@ public class VistaGenerarDieta extends javax.swing.JInternalFrame {
         jLabel9.setText("Peso Inicial:");
         jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, -1, -1));
 
+        jtDietaConPaciente.setBackground(new java.awt.Color(204, 204, 204));
         jtDietaConPaciente.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jtDietaConPaciente.setForeground(new java.awt.Color(0, 0, 0));
         jPanel2.add(jtDietaConPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 100, -1));
 
+        jcbPaciente.setBackground(new java.awt.Color(204, 204, 204));
+        jcbPaciente.setForeground(new java.awt.Color(0, 0, 0));
         jcbPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcbPacienteActionPerformed(evt);
@@ -109,44 +113,49 @@ public class VistaGenerarDieta extends javax.swing.JInternalFrame {
                 jdcFechaInicialPropertyChange(evt);
             }
         });
-        jPanel2.add(jdcFechaInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, -1, -1));
+        jPanel2.add(jdcFechaInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 20, -1));
 
         jlFechaInicial.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jlFechaInicial.setText("                            ");
-        jPanel2.add(jlFechaInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, -1, -1));
+        jPanel2.add(jlFechaInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, -1, -1));
 
         jdcFechaFinal.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jdcFechaFinalPropertyChange(evt);
             }
         });
-        jPanel2.add(jdcFechaFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, -1, -1));
+        jPanel2.add(jdcFechaFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, 20, -1));
 
         jlFechaFinal.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jlFechaFinal.setText("                            ");
-        jPanel2.add(jlFechaFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 310, -1, -1));
+        jPanel2.add(jlFechaFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, -1, -1));
 
         jlPesoInicial.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jlPesoInicial.setText("                         ");
-        jPanel2.add(jlPesoInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, -1, -1));
+        jPanel2.add(jlPesoInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, -1, -1));
 
+        jbGuardarConPaciente.setBackground(new java.awt.Color(204, 204, 204));
         jbGuardarConPaciente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jbGuardarConPaciente.setForeground(new java.awt.Color(153, 153, 153));
+        jbGuardarConPaciente.setForeground(new java.awt.Color(0, 0, 0));
+        jbGuardarConPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/file-upload.png"))); // NOI18N
         jbGuardarConPaciente.setText("Guardar");
         jbGuardarConPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbGuardarConPacienteActionPerformed(evt);
             }
         });
-        jPanel2.add(jbGuardarConPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 383, 110, -1));
+        jPanel2.add(jbGuardarConPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 390, -1, -1));
 
+        jbSalir.setBackground(new java.awt.Color(204, 204, 204));
+        jbSalir.setForeground(new java.awt.Color(0, 0, 0));
+        jbSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/exit (2).png"))); // NOI18N
         jbSalir.setText("Salir");
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbSalirActionPerformed(evt);
             }
         });
-        jPanel2.add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 390, -1, -1));
+        jPanel2.add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 390, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/descarga (2).jpeg"))); // NOI18N
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 490));

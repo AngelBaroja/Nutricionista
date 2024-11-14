@@ -91,29 +91,30 @@ private DietaData dietadata = new DietaData(conexion);
         });
         jScrollPane1.setViewportView(listaPaciente);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 690, 244));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 690, 244));
 
         jLabel1.setBackground(new java.awt.Color(102, 102, 102));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Lista Paciente");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 330, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 330, -1));
 
         Salir.setBackground(new java.awt.Color(153, 153, 153));
         Salir.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Salir.setForeground(new java.awt.Color(0, 0, 0));
+        Salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/trash (1).png"))); // NOI18N
         Salir.setText("Salir");
         Salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SalirActionPerformed(evt);
             }
         });
-        jPanel1.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 470, -1, -1));
+        jPanel1.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 470, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Buscar Paciente:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
 
         Id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,11 +126,12 @@ private DietaData dietadata = new DietaData(conexion);
                 IdKeyTyped(evt);
             }
         });
-        jPanel1.add(Id, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 120, -1));
+        jPanel1.add(Id, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 200, -1));
 
         Actualizar.setBackground(new java.awt.Color(153, 153, 153));
         Actualizar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Actualizar.setForeground(new java.awt.Color(0, 0, 0));
+        Actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/refresh (2).png"))); // NOI18N
         Actualizar.setText("Actualizar");
         Actualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,13 +143,14 @@ private DietaData dietadata = new DietaData(conexion);
         borrar.setBackground(new java.awt.Color(153, 153, 153));
         borrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         borrar.setForeground(new java.awt.Color(0, 0, 0));
-        borrar.setText("Borrar");
+        borrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/trash (1).png"))); // NOI18N
+        borrar.setText("Eliminar");
         borrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 borrarActionPerformed(evt);
             }
         });
-        jPanel1.add(borrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 470, -1, -1));
+        jPanel1.add(borrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 470, -1, -1));
 
         pesologrado.setBackground(new java.awt.Color(153, 153, 153));
         pesologrado.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -172,21 +175,17 @@ private DietaData dietadata = new DietaData(conexion);
         jPanel1.add(seacerca, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/d53461c1acc264746ea5bc688eac96b3.jpg"))); // NOI18N
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 520));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 540));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(72, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();

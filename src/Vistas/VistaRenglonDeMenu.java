@@ -67,6 +67,7 @@ public class VistaRenglonDeMenu extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jtNombreComida = new javax.swing.JTextField();
@@ -76,7 +77,6 @@ public class VistaRenglonDeMenu extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jcbTipo = new javax.swing.JComboBox<>();
         jtDesdeCalorias = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jtHastaCalorias = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -88,27 +88,39 @@ public class VistaRenglonDeMenu extends javax.swing.JInternalFrame {
         jbInsertarMenu = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        jcbMenu = new javax.swing.JComboBox<>();
         jr1 = new javax.swing.JRadioButton();
+        jcbMenu = new javax.swing.JComboBox<>();
+        jr4 = new javax.swing.JRadioButton();
         jr2 = new javax.swing.JRadioButton();
         jr3 = new javax.swing.JRadioButton();
-        jr4 = new javax.swing.JRadioButton();
         jr5 = new javax.swing.JRadioButton();
         jbGenerarRenglon = new javax.swing.JButton();
         jbBorrarRenglon = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Lucida Handwriting", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Renglon de Menu");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Lucida Handwriting", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre de la Comida : ");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, -1, -1));
 
+        jtNombreComida.setBackground(new java.awt.Color(153, 153, 153));
+        jtNombreComida.setForeground(new java.awt.Color(0, 0, 0));
         jtNombreComida.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jtNombreComidaKeyReleased(evt);
             }
         });
+        jPanel1.add(jtNombreComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, 240, -1));
 
+        tabla.setBackground(new java.awt.Color(153, 153, 153));
+        tabla.setForeground(new java.awt.Color(0, 0, 0));
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -127,39 +139,57 @@ public class VistaRenglonDeMenu extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tabla);
 
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, 610, 120));
+
         jLabel3.setFont(new java.awt.Font("Lucida Handwriting", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Tipo:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Lucida Handwriting", 0, 14)); // NOI18N
-        jLabel4.setText("Calorias:");
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Calorias desde:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, -1, -1));
 
+        jcbTipo.setBackground(new java.awt.Color(153, 153, 153));
+        jcbTipo.setForeground(new java.awt.Color(0, 0, 0));
         jcbTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcbTipoActionPerformed(evt);
             }
         });
+        jPanel1.add(jcbTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 230, -1));
 
+        jtDesdeCalorias.setBackground(new java.awt.Color(153, 153, 153));
+        jtDesdeCalorias.setForeground(new java.awt.Color(0, 0, 0));
         jtDesdeCalorias.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jtDesdeCaloriasKeyReleased(evt);
             }
         });
-
-        jLabel5.setFont(new java.awt.Font("Lucida Handwriting", 0, 14)); // NOI18N
-        jLabel5.setText("desde");
+        jPanel1.add(jtDesdeCalorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 100, -1));
 
         jLabel6.setFont(new java.awt.Font("Lucida Handwriting", 0, 14)); // NOI18N
-        jLabel6.setText("hasta:");
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Hasta:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, -1, -1));
 
+        jtHastaCalorias.setBackground(new java.awt.Color(153, 153, 153));
+        jtHastaCalorias.setForeground(new java.awt.Color(0, 0, 0));
         jtHastaCalorias.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jtHastaCaloriasKeyReleased(evt);
             }
         });
+        jPanel1.add(jtHastaCalorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 190, 100, -1));
 
         jLabel7.setFont(new java.awt.Font("Lucida Handwriting", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Detalle de la Comida : ");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, -1, -1));
 
+        jtDetalleComida.setBackground(new java.awt.Color(153, 153, 153));
+        jtDetalleComida.setForeground(new java.awt.Color(0, 0, 0));
         jtDetalleComida.setToolTipText("");
         jtDetalleComida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -171,23 +201,36 @@ public class VistaRenglonDeMenu extends javax.swing.JInternalFrame {
                 jtDetalleComidaKeyReleased(evt);
             }
         });
+        jPanel1.add(jtDetalleComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 240, -1));
 
         jLabel8.setFont(new java.awt.Font("Lucida Handwriting", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Cantidad de Porciones:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, -1, 20));
 
         jsCantidadPorciones.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jsCantidadPorcionesStateChanged(evt);
             }
         });
+        jPanel1.add(jsCantidadPorciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, 80, -1));
 
         jLabel9.setFont(new java.awt.Font("Lucida Handwriting", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Calorias Totales:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 410, -1, -1));
 
+        jlCaloriasTotales.setBackground(new java.awt.Color(153, 153, 153));
         jlCaloriasTotales.setFont(new java.awt.Font("Lucida Handwriting", 0, 14)); // NOI18N
+        jlCaloriasTotales.setForeground(new java.awt.Color(0, 0, 0));
         jlCaloriasTotales.setText("                                ");
+        jPanel1.add(jlCaloriasTotales, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 410, -1, -1));
 
-        jbInsertarMenu.setText("Introducir al Menu");
+        jbInsertarMenu.setBackground(new java.awt.Color(153, 153, 153));
+        jbInsertarMenu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jbInsertarMenu.setForeground(new java.awt.Color(0, 0, 0));
+        jbInsertarMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/add.png"))); // NOI18N
+        jbInsertarMenu.setText("Agrergar al Menu");
         jbInsertarMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jbInsertarMenuMouseEntered(evt);
@@ -201,177 +244,89 @@ public class VistaRenglonDeMenu extends javax.swing.JInternalFrame {
                 jbInsertarMenuActionPerformed(evt);
             }
         });
+        jPanel1.add(jbInsertarMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 490, -1, -1));
 
+        jButton2.setBackground(new java.awt.Color(153, 153, 153));
+        jButton2.setForeground(new java.awt.Color(0, 0, 0));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/exit (2).png"))); // NOI18N
         jButton2.setText("Salir");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, -1, 30));
 
         jLabel10.setFont(new java.awt.Font("Lucida Handwriting", 0, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Menu:");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 450, -1, -1));
 
-        jcbMenu.setEnabled(false);
-
+        jr1.setBackground(new java.awt.Color(0, 0, 0));
         jr1.setText("1");
         jr1.setEnabled(false);
+        jPanel1.add(jr1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 370, -1, -1));
 
-        jr2.setText("2");
-        jr2.setEnabled(false);
+        jcbMenu.setBackground(new java.awt.Color(153, 153, 153));
+        jcbMenu.setForeground(new java.awt.Color(0, 0, 0));
+        jcbMenu.setEnabled(false);
+        jPanel1.add(jcbMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 450, 190, -1));
 
-        jr3.setText("3");
-        jr3.setEnabled(false);
-
+        jr4.setBackground(new java.awt.Color(0, 0, 0));
         jr4.setText("4");
         jr4.setEnabled(false);
+        jPanel1.add(jr4, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 370, -1, -1));
 
+        jr2.setBackground(new java.awt.Color(0, 0, 0));
+        jr2.setText("2");
+        jr2.setEnabled(false);
+        jPanel1.add(jr2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 370, -1, -1));
+
+        jr3.setBackground(new java.awt.Color(0, 0, 0));
+        jr3.setText("3");
+        jr3.setEnabled(false);
+        jPanel1.add(jr3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 370, -1, -1));
+
+        jr5.setBackground(new java.awt.Color(0, 0, 0));
         jr5.setText("5");
         jr5.setEnabled(false);
+        jPanel1.add(jr5, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 370, -1, -1));
 
+        jbGenerarRenglon.setBackground(new java.awt.Color(153, 153, 153));
+        jbGenerarRenglon.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jbGenerarRenglon.setForeground(new java.awt.Color(0, 0, 0));
         jbGenerarRenglon.setText("Generar Renglon");
         jbGenerarRenglon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbGenerarRenglonActionPerformed(evt);
             }
         });
+        jPanel1.add(jbGenerarRenglon, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 370, -1, -1));
 
+        jbBorrarRenglon.setBackground(new java.awt.Color(153, 153, 153));
+        jbBorrarRenglon.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jbBorrarRenglon.setForeground(new java.awt.Color(0, 0, 0));
+        jbBorrarRenglon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/trash (1).png"))); // NOI18N
         jbBorrarRenglon.setText("Borrar Renglon");
         jbBorrarRenglon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbBorrarRenglonActionPerformed(evt);
             }
         });
+        jPanel1.add(jbBorrarRenglon, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 410, 150, -1));
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pexels-n-voitkevich-5794773 (1).jpg"))); // NOI18N
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(-410, 0, 1150, 550));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jtNombreComida, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(jtDesdeCalorias, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
-                                .addComponent(jLabel6)
-                                .addGap(18, 18, 18)
-                                .addComponent(jtHastaCalorias, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(jcbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(jtDetalleComida, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(142, 142, 142)
-                                .addComponent(jLabel1))))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGap(53, 53, 53)
-                            .addComponent(jbInsertarMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(57, 57, 57)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel10)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jcbMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel8)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jsCantidadPorciones, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(53, 53, 53)
-                                    .addComponent(jLabel9)
-                                    .addGap(28, 28, 28)
-                                    .addComponent(jlCaloriasTotales, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(290, 290, 290)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jr1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jr2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jr3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jr4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jr5)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jbBorrarRenglon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jbGenerarRenglon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                .addContainerGap(26, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jtNombreComida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jtDetalleComida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jcbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jtDesdeCalorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jtHastaCalorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jsCantidadPorciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jr1)
-                    .addComponent(jr2)
-                    .addComponent(jr3)
-                    .addComponent(jr4)
-                    .addComponent(jr5)
-                    .addComponent(jbGenerarRenglon, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jlCaloriasTotales)
-                    .addComponent(jbBorrarRenglon, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jcbMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbInsertarMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -503,7 +458,7 @@ public class VistaRenglonDeMenu extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbInsertarMenuActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-      dispose();
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
@@ -511,14 +466,15 @@ public class VistaRenglonDeMenu extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbBorrarRenglon;
     private javax.swing.JButton jbGenerarRenglon;
@@ -699,7 +655,7 @@ public class VistaRenglonDeMenu extends javax.swing.JInternalFrame {
         }
     }
     public void cargarComboMenu(){
-        for (MenuDiario listarMenu : renglonData.listarMenus()) {
+        for (MenuDiario listarMenu : renglonData.listarMenusEnTRUE()) {
             jcbMenu.addItem(listarMenu);
         }
     }

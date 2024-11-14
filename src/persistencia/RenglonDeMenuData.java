@@ -102,7 +102,7 @@ public class RenglonDeMenuData {
         String query = "SELECT COUNT(md.codMenu) AS cantidadMenus\n" +
                         "FROM Dieta d\n" +
                         "JOIN MenuDiario md ON d.codDieta = md.codDieta\n" +
-                        "WHERE d.codDieta=?\n" +
+                        "WHERE d.codDieta=? AND md.estado=true \n" +
                         "GROUP BY d.codDieta;";
         try{
             PreparedStatement ps = conexion.prepareStatement(query);
@@ -151,7 +151,7 @@ public class RenglonDeMenuData {
         String query = "SELECT md.codMenu\n" +
                         "FROM Dieta d\n" +
                         "JOIN MenuDiario md ON d.codDieta = md.codDieta\n" +
-                        "WHERE d.codDieta = ?\n" +
+                        "WHERE d.codDieta = ? AND md.estado=true \n" +
                         "ORDER BY md.codMenu;";
         try{
             PreparedStatement ps = conexion.prepareStatement(query);
@@ -278,7 +278,30 @@ public class RenglonDeMenuData {
         }
         return menusDiarios;
     }
-        
+        public List<MenuDiario> listarMenusEnTRUE(){
+        DietaData dietaData = new DietaData(new Conexion ("jdbc:mysql://localhost/nutricionista", "root", ""));
+        List<MenuDiario> menusDiarios = new ArrayList<>();
+        String query = "SELECT md.*\n" +
+                        "FROM MenuDiario md\n" +
+                        "LEFT JOIN renglondemenu rm ON md.codMenu = rm.codMenu\n" +
+                        "WHERE rm.codMenu IS NULL AND md.estado=true";
+        try {
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()){
+                MenuDiario menu = new MenuDiario();
+                menu.setCodMenu(rs.getInt("codMenu"));
+                menu.setDia(rs.getInt("diaNro"));
+                menu.setEstado(rs.getBoolean("estado"));
+                menu.setDieta(dietaData.buscarDieta(rs.getInt("codDieta")));
+                menusDiarios.add(menu);
+            }
+        }catch (SQLException e){
+            System.out.println("Error al listar Menus sin Renglon:  " + e.getMessage());
+        }
+        return menusDiarios;
+    }
      public List<Dieta> listarTodosMenus(){            
         PacienteData paciente = new PacienteData(new Conexion ("jdbc:mysql://localhost/nutricionista", "root", ""));
         List<Dieta> dietas = new ArrayList<>();

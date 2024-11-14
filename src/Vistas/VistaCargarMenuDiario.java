@@ -70,6 +70,7 @@ public class VistaCargarMenuDiario extends javax.swing.JInternalFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Roboto Medium", 1, 30)); // NOI18N
         jLabel1.setText("Generar Menu Diario");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, -1, -1));
@@ -82,6 +83,8 @@ public class VistaCargarMenuDiario extends javax.swing.JInternalFrame {
         jLabel3.setText("AUTOMATICO");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 
+        dietasManu.setBackground(new java.awt.Color(153, 153, 153));
+        dietasManu.setForeground(new java.awt.Color(0, 0, 0));
         dietasManu.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 dietasManuItemStateChanged(evt);
@@ -93,17 +96,22 @@ public class VistaCargarMenuDiario extends javax.swing.JInternalFrame {
         jLabel5.setText("DIETA:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, -1, -1));
 
+        estadoManu.setBackground(new java.awt.Color(153, 153, 153));
+        estadoManu.setForeground(new java.awt.Color(0, 0, 0));
         estadoManu.setText("ESTADO");
         estadoManu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 estadoManuActionPerformed(evt);
             }
         });
-        jPanel1.add(estadoManu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, -1, -1));
+        jPanel1.add(estadoManu, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 330, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("INGREDIENTES:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
+
+        ingredientes.setBackground(new java.awt.Color(153, 153, 153));
+        ingredientes.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(ingredientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 140, -1));
 
         btnGenerarManu.setBackground(new java.awt.Color(51, 51, 51));
@@ -114,7 +122,7 @@ public class VistaCargarMenuDiario extends javax.swing.JInternalFrame {
                 btnGenerarManuActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGenerarManu, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, -1, -1));
+        jPanel1.add(btnGenerarManu, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, -1, -1));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         brnGenerarAuto.setBackground(new java.awt.Color(51, 51, 51));
@@ -128,18 +136,23 @@ public class VistaCargarMenuDiario extends javax.swing.JInternalFrame {
         });
         jPanel1.add(brnGenerarAuto, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 380, 100, 30));
 
+        btnSalir.setBackground(new java.awt.Color(153, 153, 153));
+        btnSalir.setForeground(new java.awt.Color(0, 0, 0));
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/exit (2).png"))); // NOI18N
         btnSalir.setText("SALIR");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 40, -1, -1));
+        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 30, -1, 30));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel8.setText("DIETA:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, -1, -1));
 
+        dietasAuto.setBackground(new java.awt.Color(153, 153, 153));
+        dietasAuto.setForeground(new java.awt.Color(0, 0, 0));
         dietasAuto.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 dietasAutoItemStateChanged(evt);
@@ -148,7 +161,7 @@ public class VistaCargarMenuDiario extends javax.swing.JInternalFrame {
         jPanel1.add(dietasAuto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 180, 20));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/4994444c2a8447af58521d63b78b4b02.jpg"))); // NOI18N
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -400, 670, 840));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -400, -1, 840));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

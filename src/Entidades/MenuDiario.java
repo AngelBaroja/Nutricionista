@@ -18,6 +18,14 @@ import javax.swing.JOptionPane;
     public class MenuDiario {
     private int codMenu;
     private int dia;
+
+    public boolean isRenglones() {
+        return renglones;
+    }
+
+    public void setRenglones(boolean renglones) {
+        this.renglones = renglones;
+    }
     private boolean estado;
     private List<RenglonDeMenu> comidas;
     private boolean renglones;
@@ -155,19 +163,20 @@ import javax.swing.JOptionPane;
         }
    }   
     
-    @Override
+  @Override
     public String toString() {
-        return codMenu+" / "+dieta.getNombreD()+", "+dieta.getPaciente().getNombre();
+        String diaEscrito="Lunes";
+        switch (dia) {
+            case 1:diaEscrito="Lunes       ";break;
+            case 2:diaEscrito="Martes     ";break;
+            case 3:diaEscrito="Miercoles";break;
+            case 4:diaEscrito="Jueves     ";break;
+            case 5:diaEscrito="Viernes   ";break;
+            case 6:diaEscrito="Sabado     ";break;
+            case 7:diaEscrito="Domingo   ";break;
+        }
+        return diaEscrito+" / "+dieta.getCodDieta()+" / "+dieta.getNombreD()+", "+dieta.getPaciente().getNombre();
     }
-
-    public boolean isRenglones() {
-        return renglones;
-    }
-
-    public void setRenglones(boolean renglones) {
-        this.renglones = renglones;
-    }
-
     
 }
 
